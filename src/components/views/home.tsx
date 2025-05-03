@@ -1,5 +1,5 @@
 import { useSimpleFeature } from "@/lib/dk/use-simple-feature";
-import { MenuIcon } from "lucide-react";
+import { ArrowRightIcon, MenuIcon, XIcon } from "lucide-react";
 
 export const HomeView = () => {
   const menu = useSimpleFeature();
@@ -41,7 +41,7 @@ export const HomeView = () => {
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
-                href="/specjalizacje"
+                href="/materialy"
               >
                 Materiały
               </a>
@@ -73,94 +73,157 @@ export const HomeView = () => {
           </ul>
 
           <a
-            className="primary-button ml-16 ltp:inline hidden"
+            className="primary-button text-center px-6 py-2.5 ml-16 ltp:inline hidden"
             href="/konsultacje"
           >
             Umów konsultację
           </a>
 
-          <button
-            className="ml-auto ltp:hidden"
-            aria-label={menu.isOn ? "Zamknij menu" : "Otwórz menu"}
-            type="button"
-            onClick={menu.toggle}
-          >
-            <MenuIcon role="img" aria-labelledby="menuIconTitle">
-              <title id="menuIconTitle">Ikona nawigacji mobilnej</title>
-            </MenuIcon>
-          </button>
-        </nav>
-      </header>
-
-      {menu.isOn && (
-        <div className="layout-mobile-navigation">
-          <div className="absolute top-0 right-0 left-0 h-20 flex items-center justify-end px-6 tbt:px-10">
+          {menu.isOff && (
             <button
-              aria-label={menu.isOn ? "Zamknij menu" : "Otwórz menu"}
+              className="ml-auto ltp:hidden"
+              aria-label="Otwórz menu"
               type="button"
               onClick={menu.toggle}
             >
               <MenuIcon role="img" aria-labelledby="menuIconTitle">
-                <title id="menuIconTitle">Ikona nawigacji mobilnej</title>
+                <title id="menuIconTitle">
+                  Ikona do otwierania nawigacji mobilnej
+                </title>
               </MenuIcon>
+            </button>
+          )}
+        </nav>
+      </header>
+
+      {menu.isOn && (
+        <nav
+          className="layout-mobile-navigation"
+          aria-label="Nawigacja mobilna"
+        >
+          <div className="absolute top-0 right-0 left-0 h-16 mbl:h-18 tbt:h-20 flex items-center justify-end px-4 mbl:px-6 tbt:px-10">
+            <button
+              aria-label="Zamknij menu"
+              type="button"
+              onClick={menu.toggle}
+            >
+              <XIcon role="img" aria-labelledby="mobileMenuIconTitle">
+                <title id="mobileMenuIconTitle">
+                  Ikona do zamykania nawigacji mobilnej
+                </title>
+              </XIcon>
             </button>
           </div>
           <div className="flex flex-col items-center justify-center h-full">
-            <ul className="space-y-4">
-              <li className="text-center animate-jump-top-bottom">
+            <ul className="space-y-4" role="menu">
+              <li
+                className="text-center animate-jump-top-bottom"
+                role="presentation"
+              >
                 <a
                   className="hover:text-white font-m text-h4"
                   href="/specjalizacje"
+                  role="menuitem"
                 >
                   Specjalizacje
                 </a>
               </li>
-              <li className="text-center animate-jump-top-bottom delay-100">
+              <li
+                className="text-center animate-jump-top-bottom delay-100"
+                role="presentation"
+              >
                 <a
                   className="hover:text-white font-m text-h4"
-                  href="/specjalizacje"
+                  href="/materialy"
+                  role="menuitem"
                 >
                   Materiały
                 </a>
               </li>
-              <li className="text-center animate-jump-top-bottom delay-200">
-                <a className="hover:text-white font-m text-h4" href="/o-mnie">
+              <li
+                className="text-center animate-jump-top-bottom delay-200"
+                role="presentation"
+              >
+                <a
+                  className="hover:text-white font-m text-h4"
+                  href="/o-mnie"
+                  role="menuitem"
+                >
                   O mnie
                 </a>
               </li>
-              <li className="text-center animate-jump-top-bottom delay-300">
-                <a className="hover:text-white font-m text-h4" href="/opinie">
+              <li
+                className="text-center animate-jump-top-bottom delay-300"
+                role="presentation"
+              >
+                <a
+                  className="hover:text-white font-m text-h4"
+                  href="/opinie"
+                  role="menuitem"
+                >
                   Opinie
                 </a>
               </li>
-              <li className="text-center animate-jump-top-bottom delay-400">
-                <a className="hover:text-white font-m text-h4" href="/faq">
+              <li
+                className="text-center animate-jump-top-bottom delay-400"
+                role="presentation"
+              >
+                <a
+                  className="hover:text-white font-m text-h4"
+                  href="/faq"
+                  role="menuitem"
+                >
                   FAQ
                 </a>
               </li>
             </ul>
             <a
-              className="primary-button mt-8 animate-jump-top-bottom delay-500"
+              className="primary-button text-center px-6 py-2.5 mt-8 animate-jump-top-bottom delay-500"
               href="/konsultacje"
             >
               Umów konsultację
             </a>
           </div>
-        </div>
+        </nav>
       )}
 
       <main>
-        <section aria-labelledby="hero-title">
-          <h1 id="hero-title">Chcesz awansować na seniora w rok?</h1>
-          <p>
-            Zdobądź wiedzę i umiejętności w oparciu o spersonalizowany plan
-            działania
-          </p>
-          <a href="#paths">Wybierz ścieżkę</a>
-          <div aria-hidden="true">{/* Decorative green circles */}</div>
+        <section
+          className="fluid h-[728px] flex items-center"
+          aria-labelledby="hero-title"
+        >
+          <div className="w-[688px]">
+            <h1 id="hero-title" className="text-h1 font-m">
+              Chcesz awansować <br /> na seniora w rok?
+            </h1>
+            <p className="text-regular mt-6 font-r">
+              Zdobądź potrzebną wiedzę i kluczowe
+              <br /> umiejętności w oparciu o plan dopasowany
+              <br /> do Twoich celów.
+            </p>
+            <a
+              className="relative flex items-center pl-13.5 pr-6.5 w-fit h-11 group mt-7"
+              href="#paths"
+              aria-label="Wybierz ścieżkę rozwoju"
+            >
+              <div
+                className="absolute left-0 top-0 bottom-0 my-auto bg-primary-500 size-11 rounded-full border border-primary-400 transition-all shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] group-hover:w-full group-hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)]"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute transition-transform flex justify-center items-center left-0 top-0 bottom-0 my-auto size-11 text-inverted-foreground text-regular-bold font-m group-hover:translate-x-3.5"
+                aria-hidden="true"
+              >
+                <ArrowRightIcon />
+              </div>
+              <span className="text-regular-bold font-m drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-inverted-foreground">
+                Wybierz ścieżkę
+              </span>
+            </a>
+          </div>
         </section>
 
-        <section aria-labelledby="progress-title">
+        {/* <section aria-labelledby="progress-title">
           <h2 id="progress-title">
             Stoisz w miejscu i nie wiesz jak zrobić kolejny krok?
           </h2>
@@ -168,7 +231,7 @@ export const HomeView = () => {
             Pomogę Ci rozwinąć umiejętności i poszerzyć wiedzę w wielu
             dziedzinach IT.
           </p>
-          <nav aria-label="Specialization categories">
+          <nav aria-label="Kategorie specjalizacji">
             <ul>
               <li>
                 <button type="button">Frontend</button>
@@ -180,10 +243,10 @@ export const HomeView = () => {
                 <button type="button">AI</button>
               </li>
               <li>
-                <button type="button">Soft skills</button>
+                <button type="button">Umiejętności miękkie</button>
               </li>
               <li>
-                <button type="button">Devops</button>
+                <button type="button">DevOps</button>
               </li>
               <li>
                 <button type="button">Testowanie</button>
@@ -196,11 +259,13 @@ export const HomeView = () => {
           <h2 id="about-title">Działam w IT od [X] lat</h2>
           <div>
             <img src="/path-to-image.jpg" alt="Adrian - IT Mentor" />
-            <div aria-label="Social media links">
-              {/* Social media icons/links */}
+            <div aria-label="Linki do mediów społecznościowych">
+              <a href="https://linkedin.com/in/adrian" aria-label="LinkedIn">LinkedIn</a>
+              <a href="https://github.com/adrian" aria-label="GitHub">GitHub</a>
+              <a href="https://twitter.com/adrian" aria-label="Twitter">Twitter</a>
             </div>
           </div>
-          <p>{/* About text */}</p>
+          <p>Jestem doświadczonym mentorem IT z pasją do wspierania programistów w ich rozwoju zawodowym. Pomagam transformować juniorów w wysoko wykwalifikowanych specjalistów poprzez spersonalizowane strategie nauki i rozwoju umiejętności.</p>
         </section>
 
         <section aria-labelledby="publications-title">
@@ -208,8 +273,15 @@ export const HomeView = () => {
             <h2 id="publications-title">Publikacje</h2>
             <span>/2024</span>
           </header>
-          <section aria-label="Publications carousel">
-            {/* Publication cards */}
+          <section aria-label="Karuzela publikacji">
+            <article>
+              <h3>Jak zostać Senior Developerem</h3>
+              <p>Kompleksowy przewodnik po ścieżce awansu w branży IT</p>
+            </article>
+            <article>
+              <h3>Trendy technologiczne 2024</h3>
+              <p>Analiza kluczowych technologii, które zdominują rynek</p>
+            </article>
           </section>
         </section>
 
@@ -220,12 +292,26 @@ export const HomeView = () => {
           <div>
             <article>
               <h3>SAMOUK</h3>
-              <p>{/* Plan description */}</p>
-              <ul>{/* Feature list */}</ul>
+              <p>Pakiet materiałów edukacyjnych dla samodzielnych learnerów</p>
+              <ul>
+                <li>Dostęp do 10 autorskich kursów</li>
+                <li>Materiały wideo i tekstowe</li>
+                <li>Prywatna grupa wsparcia</li>
+              </ul>
               <p>od 50 zł</p>
               <a href="/materials">Zobacz materiały</a>
             </article>
-            {/* Other pricing plans */}
+            <article>
+              <h3>MENTORING INDYWIDUALNY</h3>
+              <p>Spersonalizowane wsparcie w rozwoju kariery</p>
+              <ul>
+                <li>Indywidualne konsultacje</li>
+                <li>Plan rozwoju dopasowany do Twoich celów</li>
+                <li>Analiza portfolio i code review</li>
+              </ul>
+              <p>od 200 zł</p>
+              <a href="/konsultacje">Umów się</a>
+            </article>
           </div>
         </section>
 
@@ -234,15 +320,22 @@ export const HomeView = () => {
           <div>
             <div>
               <blockquote>
-                {/* Testimonial content */}
+                "Adrian pomógł mi przejść z poziomu juniora do mid-developera w zaledwie 6 miesięcy. Jego wskazówki i strategia nauki były kluczowe w moim rozwoju."
                 <footer>
                   <img src="/path-to-image.jpg" alt="" />
                   <cite>Anna - Junior Frontend Developer</cite>
                 </footer>
               </blockquote>
             </div>
-            <form aria-label="Booking form">
-              {/* Calendar and form fields */}
+            <form aria-label="Formularz rezerwacji">
+              <input type="text" placeholder="Imię" required />
+              <input type="email" placeholder="Email" required />
+              <select>
+                <option>Konsultacja online</option>
+                <option>Konsultacja stacjonarna</option>
+              </select>
+              <textarea placeholder="Krótki opis Twoich celów" />
+              <button type="submit">Zarezerwuj spotkanie</button>
             </form>
           </div>
         </section>
@@ -252,27 +345,61 @@ export const HomeView = () => {
             <h2 id="materials-title">Materiały</h2>
             <a href="/materials">Wszystkie materiały</a>
           </header>
-          <div>{/* Material cards */}</div>
+          <div>
+            <article>
+              <h3>Kurs React od podstaw</h3>
+              <p>Kompleksowy przewodnik po nowoczesnym frameworku</p>
+            </article>
+            <article>
+              <h3>Architektura mikroserwisów</h3>
+              <p>Zaawansowane techniki projektowania systemów rozproszonych</p>
+            </article>
+          </div>
         </section>
 
         <section aria-labelledby="testimonials-title">
           <h2 id="testimonials-title">
             Opinie osób, które osiągnęły swój cel, dzięki mojemu wsparciu
           </h2>
-          <section aria-label="Testimonials carousel">
-            {/* Testimonial slides */}
+          <section aria-label="Karuzela opinii">
+            <blockquote>
+              "Dzięki mentoringowi Adrian pomógł mi zrozumieć zawiłości architektury frontendowej i awansować w mojej firmie."
+              <footer>
+                <cite>Michał - Frontend Developer</cite>
+              </footer>
+            </blockquote>
+            <blockquote>
+              "Indywidualne podejście i praktyczne wskazówki sprawiły, że moja wiedza z zakresu backend developmentu znacząco wzrosła."
+              <footer>
+                <cite>Piotr - Backend Developer</cite>
+              </footer>
+            </blockquote>
           </section>
         </section>
 
         <section aria-labelledby="faq-title">
           <h2 id="faq-title">FAQ</h2>
           <div>
-            <form aria-label="Contact form">{/* Contact form fields */}</form>
-            <div>{/* FAQ accordion */}</div>
+            <form aria-label="Formularz kontaktowy">
+              <input type="text" placeholder="Imię" required />
+              <input type="email" placeholder="Email" required />
+              <textarea placeholder="Twoje pytanie" />
+              <button type="submit">Wyślij pytanie</button>
+            </form>
+            <div>
+              <details>
+                <summary>Jak długo trwa mentoring?</summary>
+                <p>Czas trwania mentoringu jest indywidualnie dopasowany do Twoich celów i postępów. Standardowo proces trwa od 3 do 12 miesięcy.</p>
+              </details>
+              <details>
+                <summary>Czy oferujesz konsultacje online?</summary>
+                <p>Tak, wszystkie konsultacje mogą odbywać się zdalnie za pośrednictwem platform takich jak Zoom, Google Meet lub Microsoft Teams.</p>
+              </details>
+            </div>
           </div>
-        </section>
+        </section> */}
       </main>
-
+      {/* 
       <footer>
         <div>
           <nav aria-label="Footer navigation">
@@ -308,15 +435,13 @@ export const HomeView = () => {
               </ul>
             </div>
           </nav>
-          <div aria-label="Social media links">
-            {/* Social media icons/links */}
-          </div>
+          <div aria-label="Social media links">Social media icons/links</div>
         </div>
         <div>
           <p>Powered by GreenOn Software © 2025</p>
           <p>Design by Małgo Kruszyńska</p>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };

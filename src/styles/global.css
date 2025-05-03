@@ -20,6 +20,7 @@
   --foreground: #d7d8d9;
   --primary-400: #0dd97d;
   --primary-500: #0bad67;
+  --inverted-foreground: #091610;
 
   /* Indexes */
   --z-layout-navigation: 1;
@@ -90,6 +91,7 @@
   --color-foreground: var(--foreground);
   --color-primary-400: var(--primary-400);
   --color-primary-500: var(--primary-500);
+  --color-inverted-foreground: var(--inverted-foreground);
 
   /* Typography - Font Family */
   --font-main: var(--font-main);
@@ -143,11 +145,11 @@
 
 @layer components {
   .fluid {
-    @apply max-w-fluid mx-auto px-6 tbt:px-10;
+    @apply max-w-fluid mx-auto px-4 mbl:px-6 tbt:px-10;
   }
 
   .layout-navigation {
-    @apply h-20 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10;
+    @apply h-16 mbl:h-18 tbt:h-20 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black;
   }
 
   .layout-mobile-navigation {
@@ -155,6 +157,6 @@
   }
 
   .primary-button {
-    @apply text-center bg-primary-500 text-[#091610] px-6 py-2.5 rounded-full border border-primary-400 text-regular-bold font-m transition-shadow duration-500 ease-in-out hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.8)];
+    @apply bg-primary-500 text-inverted-foreground rounded-full border border-primary-400 text-regular-bold font-m transition-shadow duration-500 ease-in-out shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)];
   }
 }
