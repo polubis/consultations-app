@@ -1,19 +1,19 @@
 ---
 description: 
-globs: 
+globs: *.tsx
 alwaysApply: false
 ---
-### Guidelines for React
+# Guidelines for React
 
-#### React Coding Standards
+## Accessibility instructions
 
-- Use functional components with hooks instead of class components
-- Implement React.memo() for expensive components that render often with the same props
-- Utilize React.lazy() and Suspense for code-splitting and performance optimization
-- Use the useCallback hook for event handlers passed to child components to prevent unnecessary re-renders
-- Prefer useMemo for expensive calculations to avoid recomputation on every render
-- Implement useId() for generating unique IDs for accessibility attributes
-- Use the new use hook for data fetching in React 19+ projects
-- Leverage Server Components for {{data_fetching_heavy_components}} when using React with Next.js or similar frameworks
-- Consider using the new useOptimistic hook for optimistic UI updates in forms
-- Use useTransition for non-urgent state updates to keep the UI responsive
+- Focus on semantic HTML structure
+- Attach correct aria attributes for passed HTML node
+- Add missing title and aria-roles
+- Make sure generated HTML is readable for screen readers
+- Make sure that tab navigation is working correctly
+- All components should be `export const ComponentName` based inline
+- Elements as `input` and `button` and other that has `type` property should have always explicitly defined type
+- Use colors from defined palette inside [global.css](mdc:src/styles/global.css)
+
+- Use polish language to describe accessibility roles, placeholders, titles, ...etc

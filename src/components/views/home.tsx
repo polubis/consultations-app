@@ -1,8 +1,13 @@
+import { useSimpleFeature } from "@/lib/dk/use-simple-feature";
+import { MenuIcon } from "lucide-react";
+
 export const HomeView = () => {
+  const menu = useSimpleFeature();
+
   return (
     <>
-      <header className="navigation-container">
-        <nav className="fluid flex items-center" aria-label="Main navigation">
+      <header className="layout-navigation" aria-label="Główna nawigacja">
+        <nav className="fluid flex items-center h-full">
           <a href="/">
             <svg
               width="28"
@@ -13,7 +18,7 @@ export const HomeView = () => {
               role="img"
               aria-labelledby="logoTitle"
             >
-              <title id="logoTitle">GreenOn Software Logo</title>
+              <title id="logoTitle">Logo strony</title>
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -24,39 +29,125 @@ export const HomeView = () => {
             </svg>
           </a>
 
-          <ul className="flex gap-8 ml-auto">
+          <ul className="gap-8 ml-auto ltp:flex hidden">
             <li>
-              <a className="navigation-link" href="/specjalizacje">
+              <a
+                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                href="/specjalizacje"
+              >
                 Specjalizacje
               </a>
             </li>
             <li>
-              <a className="navigation-link" href="/specjalizacje">
+              <a
+                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                href="/specjalizacje"
+              >
                 Materiały
               </a>
             </li>
             <li>
-              <a className="navigation-link" href="/o-mnie">
+              <a
+                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                href="/o-mnie"
+              >
                 O mnie
               </a>
             </li>
             <li>
-              <a className="navigation-link" href="/opinie">
+              <a
+                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                href="/opinie"
+              >
                 Opinie
               </a>
             </li>
             <li>
-              <a className="navigation-link" href="/faq">
+              <a
+                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                href="/faq"
+              >
                 FAQ
               </a>
             </li>
           </ul>
 
-          <a className="primary-button ml-16" href="/konsultacje">
+          <a
+            className="primary-button ml-16 ltp:inline hidden"
+            href="/konsultacje"
+          >
             Umów konsultację
           </a>
+
+          <button
+            className="ml-auto ltp:hidden"
+            aria-label={menu.isOn ? "Zamknij menu" : "Otwórz menu"}
+            type="button"
+            onClick={menu.toggle}
+          >
+            <MenuIcon role="img" aria-labelledby="menuIconTitle">
+              <title id="menuIconTitle">Ikona nawigacji mobilnej</title>
+            </MenuIcon>
+          </button>
         </nav>
       </header>
+
+      {menu.isOn && (
+        <div className="layout-mobile-navigation">
+          <div className="absolute top-0 right-0 left-0 h-20 flex items-center justify-end px-6 tbt:px-10">
+            <button
+              aria-label={menu.isOn ? "Zamknij menu" : "Otwórz menu"}
+              type="button"
+              onClick={menu.toggle}
+            >
+              <MenuIcon role="img" aria-labelledby="menuIconTitle">
+                <title id="menuIconTitle">Ikona nawigacji mobilnej</title>
+              </MenuIcon>
+            </button>
+          </div>
+          <div className="flex flex-col items-center justify-center h-full">
+            <ul className="space-y-4">
+              <li className="text-center animate-jump-top-bottom">
+                <a
+                  className="hover:text-white font-m text-h4"
+                  href="/specjalizacje"
+                >
+                  Specjalizacje
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom delay-100">
+                <a
+                  className="hover:text-white font-m text-h4"
+                  href="/specjalizacje"
+                >
+                  Materiały
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom delay-200">
+                <a className="hover:text-white font-m text-h4" href="/o-mnie">
+                  O mnie
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom delay-300">
+                <a className="hover:text-white font-m text-h4" href="/opinie">
+                  Opinie
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom delay-400">
+                <a className="hover:text-white font-m text-h4" href="/faq">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+            <a
+              className="primary-button mt-8 animate-jump-top-bottom delay-500"
+              href="/konsultacje"
+            >
+              Umów konsultację
+            </a>
+          </div>
+        </div>
+      )}
 
       <main>
         <section aria-labelledby="hero-title">
