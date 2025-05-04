@@ -12,8 +12,9 @@ alwaysApply: false
 - Add missing title and aria-roles
 - Make sure generated HTML is readable for screen readers
 - Make sure that tab navigation is working correctly
-- All components should be `export const ComponentName` based inline
+- All components should have exports like `export { ComponentName }` and `export type { ComponentNameProps }` at the bottom of the file
 - Elements as `input` and `button` and other that has `type` property should have always explicitly defined type
 - Use colors from defined palette inside [global.css](mdc:src/styles/global.css)
-
 - Use polish language to describe accessibility roles, placeholders, titles, ...etc
+
+- Every component should have a dedicated type for `props` exported at the bottom of the file

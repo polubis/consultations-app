@@ -149,7 +149,7 @@
   }
 
   .layout-navigation {
-    @apply h-16 mbl:h-18 tbt:h-20 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black;
+    @apply h-16 mbl:h-18 tbt:h-20 ltp:pt-6 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black;
   }
 
   .layout-mobile-navigation {
