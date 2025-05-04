@@ -1,69 +1,154 @@
 ---
 import MainLayout from "@/layouts/main.astro";
-import CircleTransparent from "../../public/circle-transparent.svg";
-import CircleFilled from "../../public/circle-filled.svg";
+import GlassGraphic from "../../public/glass.svg";
+import PlanetGraphic from "../../public/planet.svg";
 import { LayoutNavigation } from "@/components/layout/layout-navigation";
 import { Action } from "@/components/ui/action";
 ---
 
+<style>
+	@keyframes animate-planet-graphic {
+	  0% {
+		transform: translate(80px, 80px);
+	  }
+	  100% {
+		transform: translate(0px, 0px);
+	  }
+	}
+  
+	.planet-graphic {
+	  animation: animate-planet-graphic 10s linear forwards;
+	}
+  </style>
+  
+
 <MainLayout>
-	<LayoutNavigation client:load />
-	<main>
-	  <section
-		class="fluid h-[728px] flex items-center"
-		aria-labelledby="hero-title"
-	  >
-		<div class="w-[688px]">
-		  <h1 id="hero-title" class="text-h1 font-m">
-			Chcesz awansować <br /> na seniora w rok?
-			<span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true" />
-		  </h1>
-		  <p class="text-regular mt-6 font-r">
-			Zdobądź potrzebną wiedzę i kluczowe
-			<br /> umiejętności w oparciu o plan dopasowany
-			<br /> do Twoich celów.
-		  </p>
-		 <Action />
-		</div>
-		<div class="relative" aria-hidden="true">
-			<CircleFilled class="absolute inset-0" />
-		  <CircleTransparent class="absolute inset-0" />
-		</div>
-	  </section>
+  <LayoutNavigation client:load />
+  <main>
+    <section
+      class="fluid min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] items-center flex gap-8 justify-between"
+      aria-labelledby="hero-title"
+    >
+      <div class="flex-1/2">
+        <h1 id="hero-title" class="text-h1 font-m">
+          Chcesz awansować <br /> na seniora w rok?
+          <span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true"
+          ></span>
+        </h1>
+        <p class="text-regular mt-6 font-r">
+          Zdobądź potrzebną wiedzę i kluczowe
+          <br /> umiejętności w oparciu o plan dopasowany
+          <br /> do Twoich celów.
+        </p>
+        <Action />
+      </div>
+      <div class="relative flex-1/2" aria-hidden="true">
+		<PlanetGraphic
+		class="absolute inset-0 m-auto planet-graphic"
+	  />
+	  <GlassGraphic class="absolute inset-0 m-auto glass-graphic" />
+      </div>
+    </section>
+    <!-- <section
+      class="fluid h-[728px] flex items-center justify-between"
+      aria-labelledby="hero-title"
+    >
+      <div>
+        <h1 id="hero-title" class="text-h1 font-m">
+          Chcesz awansować <br /> na seniora w rok?
+          <span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true"
+          ></span>
+        </h1>
+        <p class="text-regular mt-6 font-r">
+          Zdobądź potrzebną wiedzę i kluczowe
+          <br /> umiejętności w oparciu o plan dopasowany
+          <br /> do Twoich celów.
+        </p>
+        <Action />
+      </div>
+      <div class="relative size-[600px]" aria-hidden="true">
+        <PlanetGraphic class="absolute inset-0" />
+        <GlassGraphic class="absolute inset-0" />
+      </div>
+    </section> -->
 
-	  {/* <section aria-labelledby="progress-title">
-		<h2 id="progress-title">
-		  Stoisz w miejscu i nie wiesz jak zrobić kolejny krok?
-		</h2>
-		<p>
-		  Pomogę Ci rozwinąć umiejętności i poszerzyć wiedzę w wielu
-		  dziedzinach IT.
-		</p>
-		<nav aria-label="Kategorie specjalizacji">
-		  <ul>
-			<li>
-			  <button type="button">Frontend</button>
-			</li>
-			<li>
-			  <button type="button">Backend</button>
-			</li>
-			<li>
-			  <button type="button">AI</button>
-			</li>
-			<li>
-			  <button type="button">Umiejętności miękkie</button>
-			</li>
-			<li>
-			  <button type="button">DevOps</button>
-			</li>
-			<li>
-			  <button type="button">Testowanie</button>
-			</li>
-		  </ul>
-		</nav>
-	  </section>
+    <section
+      class="fluid min-h-screen flex flex-col justify-center items-center text-center"
+      aria-labelledby="progress-title"
+    >
+      <h2 id="progress-title" class="text-h2 font-m max-w-xl">
+        Stoisz w miejscu i nie wiesz jak zrobić kolejny krok?
+      </h2>
+      <p class="text-regular font-r mt-8 mb-13">
+        Pomogę Ci rozwinąć umiejętności i poszerzyć wiedzę w wielu dziedzinach
+        IT.
+      </p>
+      <div class="relative">
+        <div
+          class="absolute bg-[rgba(21,214,131,0.08)] blur-3xl w-full h-full"
+          aria-hidden="true"
+        >
+        </div>
+        <ul
+          aria-label="Kategorie specjalizacji"
+          role="list"
+          class="flex flex-wrap justify-center gap-6 max-w-[600px] relative z-10"
+        >
+          <li
+            class="before:animate-fade-in-out before:delay-[4s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            Frontend
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[11s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            Backend
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[22s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            AI
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[13s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            Sofware Development
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[5s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            Soft Skills
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[2s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            Fullstack
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[15s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            DevOps
+          </li>
+          <li
+            class="before:animate-fade-in-out before:delay-[30s] before:opacity-0 text-regular-bold font-m px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+            role="listitem"
+          >
+            QA
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
-	  <section aria-labelledby="about-title">
+  {
+    /* <section aria-labelledby="about-title">
 		<h2 id="about-title">Działam w IT od [X] lat</h2>
 		<div>
 		  <img src="/path-to-image.jpg" alt="Adrian - IT Mentor" />
@@ -205,9 +290,11 @@ import { Action } from "@/components/ui/action";
 			</details>
 		  </div>
 		</div>
-	  </section> */}
-	</main>
-	{/* 
+	  </section> */
+  }
+</MainLayout>
+{
+  /* 
 	<footer>
 	  <div>
 		<nav aria-label="Footer navigation">
@@ -249,6 +336,6 @@ import { Action } from "@/components/ui/action";
 		<p>Powered by GreenOn Software © 2025</p>
 		<p>Design by Małgo Kruszyńska</p>
 	  </div>
-	</footer> */}
-</MainLayout>
+	</footer> */
+}
 

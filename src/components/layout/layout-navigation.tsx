@@ -117,7 +117,7 @@ const LayoutNavigation = () => {
           <div className="flex flex-col items-center justify-center h-full">
             <ul className="space-y-4" role="menu">
               <li
-                className="text-center animate-jump-top-bottom"
+                className="text-center animate-jump-top-bottom opacity-0"
                 role="presentation"
               >
                 <a
@@ -129,7 +129,7 @@ const LayoutNavigation = () => {
                 </a>
               </li>
               <li
-                className="text-center animate-jump-top-bottom delay-100"
+                className="text-center animate-jump-top-bottom opacity-0 delay-100"
                 role="presentation"
               >
                 <a
@@ -141,7 +141,7 @@ const LayoutNavigation = () => {
                 </a>
               </li>
               <li
-                className="text-center animate-jump-top-bottom delay-200"
+                className="text-center animate-jump-top-bottom opacity-0 delay-200"
                 role="presentation"
               >
                 <a
@@ -153,7 +153,7 @@ const LayoutNavigation = () => {
                 </a>
               </li>
               <li
-                className="text-center animate-jump-top-bottom delay-300"
+                className="text-center animate-jump-top-bottom opacity-0 delay-300"
                 role="presentation"
               >
                 <a
@@ -165,7 +165,7 @@ const LayoutNavigation = () => {
                 </a>
               </li>
               <li
-                className="text-center animate-jump-top-bottom delay-400"
+                className="text-center animate-jump-top-bottom opacity-0 delay-400"
                 role="presentation"
               >
                 <a
@@ -178,7 +178,7 @@ const LayoutNavigation = () => {
               </li>
             </ul>
             <a
-              className="primary-button text-center px-6 py-2.5 mt-8 animate-jump-top-bottom delay-500"
+              className="primary-button text-center px-6 py-2.5 mt-8 animate-jump-top-bottom opacity-0 delay-500"
               href="/konsultacje"
             >
               Umów konsultację

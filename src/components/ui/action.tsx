@@ -12,12 +12,12 @@ const Action = () => {
         aria-hidden="true"
       />
       <div
-        className="absolute transition-transform flex justify-center items-center left-0 top-0 bottom-0 my-auto size-11 text-inverted-foreground text-regular-bold font-m group-hover:translate-x-3.5"
+        className="absolute transition-transform flex justify-center items-center left-0 top-0 bottom-0 my-auto size-11 text-[#091610] text-regular-bold font-m group-hover:translate-x-3.5"
         aria-hidden="true"
       >
         <ArrowRightIcon />
       </div>
-      <span className="text-regular-bold font-m drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-inverted-foreground">
+      <span className="text-regular-bold font-m drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-[#091610]">
         Wybierz ścieżkę
       </span>
     </a>
