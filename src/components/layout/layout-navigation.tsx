@@ -31,7 +31,7 @@ const LayoutNavigation = () => {
           <ul className="gap-8 ml-auto ltp:flex hidden">
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
                 href="/specjalizacje"
               >
                 Specjalizacje
@@ -39,7 +39,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
                 href="/materialy"
               >
                 Materiały
@@ -47,7 +47,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
                 href="/o-mnie"
               >
                 O mnie
@@ -55,7 +55,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
                 href="/opinie"
               >
                 Opinie
@@ -63,7 +63,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-r duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
                 href="/faq"
               >
                 FAQ
@@ -149,7 +149,7 @@ const LayoutNavigation = () => {
                 role="presentation"
               >
                 <a
-                  className="hover:text-white font-m text-h4"
+                  className="hover:text-white font-500 text-h4"
                   href="/specjalizacje"
                   role="menuitem"
                 >
@@ -161,7 +161,7 @@ const LayoutNavigation = () => {
                 role="presentation"
               >
                 <a
-                  className="hover:text-white font-m text-h4"
+                  className="hover:text-white font-500 text-h4"
                   href="/materialy"
                   role="menuitem"
                 >
@@ -173,7 +173,7 @@ const LayoutNavigation = () => {
                 role="presentation"
               >
                 <a
-                  className="hover:text-white font-m text-h4"
+                  className="hover:text-white font-500 text-h4"
                   href="/o-mnie"
                   role="menuitem"
                 >
@@ -185,7 +185,7 @@ const LayoutNavigation = () => {
                 role="presentation"
               >
                 <a
-                  className="hover:text-white font-m text-h4"
+                  className="hover:text-white font-500 text-h4"
                   href="/opinie"
                   role="menuitem"
                 >
@@ -197,7 +197,7 @@ const LayoutNavigation = () => {
                 role="presentation"
               >
                 <a
-                  className="hover:text-white font-m text-h4"
+                  className="hover:text-white font-500 text-h4"
                   href="/faq"
                   role="menuitem"
                 >

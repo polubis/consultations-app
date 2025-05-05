@@ -45,8 +45,9 @@
   --container-fluid: 1440px;
 
   /* Typography - Font Weights */
-  --font-weight-m: 500;
-  --font-weight-r: 300;
+  --font-weight-500: 500;
+  --font-weight-550: 550;
+  --font-weight-300: 300;
 
   /* Typography - Regular Text Styles */
   --text-regular: 16px;
@@ -134,8 +135,9 @@
   --breakpoint-mbl: 640px;
 
   /* Typography - Font Weights */
-  --font-weight-m: var(--font-weight-m);
-  --font-weight-r: var(--font-weight-r);
+  --font-weight-500: var(--font-weight-500);
+  --font-weight-550: var(--font-weight-550);
+  --font-weight-300: var(--font-weight-300);
 
   /* Animation */
   --animate-jump-top-bottom: jump-top-bottom 0.4s ease-in-out forwards;
@@ -166,6 +168,6 @@
   }
 
   .primary-button {
-    @apply bg-primary-500 text-[#091610] rounded-full border border-primary-400 text-regular-bold font-m transition-shadow duration-500 ease-in-out shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)];
+    @apply bg-primary-500 text-[#091610] rounded-full border border-primary-400 text-regular-bold font-500 transition-shadow duration-500 ease-in-out shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)];
   }
 }
