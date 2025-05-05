@@ -1,5 +1,4 @@
 import { useSimpleFeature } from "@/lib/dk/use-simple-feature";
-import { MenuIcon, XIcon } from "lucide-react";
 
 const LayoutNavigation = () => {
   const menu = useSimpleFeature();
@@ -86,11 +85,26 @@ const LayoutNavigation = () => {
               type="button"
               onClick={menu.toggle}
             >
-              <MenuIcon role="img" aria-labelledby="menuIconTitle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                role="img"
+                aria-labelledby="menuIconTitle"
+              >
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="18" y2="18" />
                 <title id="menuIconTitle">
                   Ikona do otwierania nawigacji mobilnej
                 </title>
-              </MenuIcon>
+              </svg>
             </button>
           )}
         </nav>
@@ -107,11 +121,25 @@ const LayoutNavigation = () => {
               type="button"
               onClick={menu.toggle}
             >
-              <XIcon role="img" aria-labelledby="mobileMenuIconTitle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                role="img"
+                aria-labelledby="mobileMenuIconTitle"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
                 <title id="mobileMenuIconTitle">
                   Ikona do zamykania nawigacji mobilnej
                 </title>
-              </XIcon>
+              </svg>
             </button>
           </div>
           <div className="flex flex-col items-center justify-center h-full">

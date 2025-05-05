@@ -153,6 +153,10 @@
     @apply max-w-fluid mx-auto px-4 mbl:px-6 tbt:px-10;
   }
 
+  .full-section {
+    @apply min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] py-6;
+  }
+
   .layout-navigation {
     @apply h-16 mbl:h-18 tbt:h-20 ltp:pt-6 ltp:pb-4 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black;
   }

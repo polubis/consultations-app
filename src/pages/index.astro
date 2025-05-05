@@ -3,33 +3,94 @@ import MainLayout from "@/layouts/main.astro";
 import GlassGraphic from "../../public/glass.svg";
 import PlanetGraphic from "../../public/planet.svg";
 import { LayoutNavigation } from "@/components/layout/layout-navigation";
-import { Action } from "@/components/ui/action";
 ---
 
 <style>
-	@keyframes animate-planet-graphic {
-	  0% {
-		transform: translate(80px, 80px);
-	  }
-	  100% {
-		transform: translate(0px, 0px);
-	  }
+  @keyframes eclipse {
+    0% {
+      transform: translate(-160px, 160px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
+
+  @keyframes nova-boom {
+    0% {
+      transform: scale(0.4);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes nova-pulse {
+    0% {
+      transform: scale(0);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shine {
+	0%, 100% {
+		opacity: var(--star-base-opacity, 0.3); 
 	}
-  
-	.planet-graphic {
-	  animation: animate-planet-graphic 10s linear forwards;
+	50% {
+		opacity: 1;
 	}
-  </style>
-  
+  }
+
+  .planet-graphic {
+    animation: eclipse 10s linear forwards;
+  }
+
+  .nova-boom,
+  .nova-pulse {
+    background: linear-gradient(
+      270deg,
+      #40df84 50%,
+      rgba(35, 121, 72, 0.4) 108.45%
+    );
+    filter: blur(84.3846px);
+    transform: matrix(1, 0.07, -0.07, 1, 0, 0);
+  }
+
+  .nova-boom {
+    animation: nova-boom 1s linear 10s forwards;
+  }
+
+  .nova-pulse {
+    animation: nova-pulse 4s ease-in-out 10.5s infinite;
+  }
+</style>
 
 <MainLayout>
   <LayoutNavigation client:load />
   <main>
     <section
-      class="fluid min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] items-center flex gap-8 justify-between"
+      class="relative fluid full-section flex flex-col items-center gap-12 ltp:flex-row"
       aria-labelledby="hero-title"
     >
-      <div class="flex-1/2">
+	<div
+	class="milky-way absolute inset-0 size-full overflow-hidden"
+	aria-hidden="true"
+  >
+	<!-- Stars will be added here by the script -->
+  </div>
+      <div class="shrink-0">
         <h1 id="hero-title" class="text-h1 font-m">
           Chcesz awansować <br /> na seniora w rok?
           <span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true"
@@ -40,13 +101,60 @@ import { Action } from "@/components/ui/action";
           <br /> umiejętności w oparciu o plan dopasowany
           <br /> do Twoich celów.
         </p>
-        <Action />
+		<a
+		class="relative flex items-center pl-13.5 pr-6.5 w-fit h-11 group mt-7"
+		href="#paths"
+		aria-label="Wybierz ścieżkę rozwoju"
+	  >
+		<div
+		  class="absolute left-0 top-0 bottom-0 my-auto bg-primary-500 size-11 rounded-full border border-primary-400 transition-all shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] group-hover:w-full group-hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)]"
+		  aria-hidden="true"
+		/>
+		<div
+		  class="absolute transition-transform flex justify-center items-center left-0 top-0 bottom-0 my-auto size-11 text-[#091610] text-regular-bold font-m group-hover:translate-x-3.5"
+		  aria-hidden="true"
+		>
+		  <svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+		  >
+			<path d="M5 12h14" />
+			<path d="m12 5 7 7-7 7" />
+			<title id="mobileMenuIconTitle">
+				Ikona do wyboru ścieżki rozwoju
+			  </title>
+		  </svg>
+		</div>
+		<span class="text-regular-bold font-m drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-[#091610]">
+		  Wybierz ścieżkę
+		</span>
+	  </a>
       </div>
-      <div class="relative flex-1/2" aria-hidden="true">
-		<PlanetGraphic
-		class="absolute inset-0 m-auto planet-graphic"
-	  />
-	  <GlassGraphic class="absolute inset-0 m-auto glass-graphic" />
+
+      <div
+        class="relative aspect-square w-full max-w-[640px] ltp:ml-auto"
+        aria-hidden="true"
+      >
+        <div
+          class="nova-boom absolute opacity-0 inset-0 m-auto size-full rounded-full"
+        >
+        </div>
+        <div
+          class="nova-pulse absolute opacity-0 inset-0 m-auto size-full rounded-full"
+        >
+        </div>
+        <PlanetGraphic
+          class="absolute inset-0 m-auto size-full planet-graphic"
+        />
+        <GlassGraphic class="absolute inset-0 m-auto size-full" />
       </div>
     </section>
     <!-- <section
@@ -73,7 +181,7 @@ import { Action } from "@/components/ui/action";
     </section> -->
 
     <section
-      class="fluid min-h-screen flex flex-col justify-center items-center text-center"
+      class="fluid full-section flex flex-col justify-center items-center text-center"
       aria-labelledby="progress-title"
     >
       <h2 id="progress-title" class="text-h2 font-m max-w-xl">
@@ -146,6 +254,40 @@ import { Action } from "@/components/ui/action";
       </div>
     </section>
   </main>
+
+  <script is:inline>
+	const milkyWayContainer = document.querySelector('.milky-way') 
+	const numberOfStars = 150; 
+
+	if (milkyWayContainer) {
+	  const containerWidth = milkyWayContainer.offsetWidth;
+	  const containerHeight = milkyWayContainer.offsetHeight;
+
+	  if (containerWidth > 0 && containerHeight > 0) {
+		for (let i = 0; i < numberOfStars; i++) {
+		  const star = document.createElement('div');
+		  const size = Math.random() * 1.5 + 0.5; 
+		  const baseOpacity = Math.random() * 0.5 + 0.2;
+		  const duration = Math.random() * 3 + 2;
+		  const delay = Math.random() * 5;
+
+
+		  star.style.position = 'absolute';
+		  star.style.width = `${size}px`;
+		  star.style.height = `${size}px`;
+	
+		  star.style.setProperty('--star-base-opacity', baseOpacity.toString());
+		  star.style.backgroundColor = `rgba(64, 223, 132, 1)`;
+		  star.style.borderRadius = '50%';
+		  star.style.left = `${Math.random() * 100}%`;
+		  star.style.top = `${Math.random() * 100}%`;
+		  star.style.animation = `shine ${duration}s ease-in-out ${delay}s infinite`;
+
+		  milkyWayContainer.appendChild(star);
+		}
+	  } 
+	}
+  </script>
 
   {
     /* <section aria-labelledby="about-title">
@@ -338,4 +480,3 @@ import { Action } from "@/components/ui/action";
 	  </div>
 	</footer> */
 }
-
