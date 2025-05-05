@@ -34,8 +34,8 @@
   --primary-500: #0bad67;
 
   /* Indexes */
-  --z-layout-navigation: 1;
-  --z-layout-mobile-navigation: 2;
+  --z-layout-navigation: 5;
+  --z-layout-mobile-navigation: 6;
 
   /* Typography - Font Family */
   --font-main: "Aspekta", ui-sans-serif, system-ui, sans-serif,
