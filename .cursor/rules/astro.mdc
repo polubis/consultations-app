@@ -1,0 +1,18 @@
+---
+description: 
+globs: *.astro
+alwaysApply: false
+---
+# Guidelines for Astro
+
+## Accessibility instructions
+
+- Focus on semantic HTML structure
+- Attach correct aria attributes for passed HTML node
+- Add missing title and aria-roles
+- Make sure generated HTML is readable for screen readers
+- Make sure that tab navigation is working correctly
+- Elements as `input` and `button` and other that has `type` property should have always explicitly defined type
+- Use colors from defined palette inside @global.css
+
+- Use polish language to describe accessibility roles, placeholders, titles, ...etc
