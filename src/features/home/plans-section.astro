@@ -10,12 +10,7 @@ import PlanTile from "./plan-tile.astro";
     Wybierz plan nauki i umów się na spotkanie lub kup materiały
   </h2>
 
-  <div class="relative flex gap-3">
-    <div
-      class="absolute bg-[rgba(21,214,131,0.08)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full -z-1"
-      aria-hidden="true"
-    >
-    </div>
+  <div class="relative flex flex-wrap justify-center gap-3">
     <PlanTile
       button={{
         label: "Zobacz materiały",
@@ -46,6 +41,10 @@ import PlanTile from "./plan-tile.astro";
         ],
       }}
     >
+      <Fragment slot="flare">
+        <div class="radial-flare size-20 bottom-0 left-0" aria-hidden="true">
+        </div>
+      </Fragment>
       <Fragment slot="icon">
         <svg
           width="68"
@@ -135,13 +134,17 @@ import PlanTile from "./plan-tile.astro";
         ],
       }}
     >
+    <Fragment slot="flare">
+      <div class="radial-flare size-20 bottom-[40%] left-[50%]" aria-hidden="true">
+      </div>
+    </Fragment>
       <Fragment slot="icon">
         <svg
           width="64"
           height="64"
           viewBox="0 0 64 64"
           fill="none"
-            aria-labelledby="senior-1-year-icon"
+          aria-labelledby="senior-1-year-icon"
           xmlns="http://www.w3.org/2000/svg"
         >
           <title id="senior-1-year-icon">Ikona rakiety</title>
@@ -222,6 +225,10 @@ import PlanTile from "./plan-tile.astro";
         ],
       }}
     >
+    <Fragment slot="flare">
+      <div class="radial-flare size-20 top-0 right-0" aria-hidden="true">
+      </div>
+    </Fragment>
       <Fragment slot="icon">
         <svg
           width="68"

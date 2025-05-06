@@ -34,44 +34,40 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
   aria-describedby={heading.description.id}
 >
   <div
-    class="flex h-full flex-col items-center px-6 pt-8 pb-6 bg-[#060807] rounded-xl relative before:rounded-full before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-[30%] before:h-[1px] before:bg-gradient-to-r before:from-[#191A19] before:via-[#0CC776] before:to-[#191A19]"
+    class="flex h-full overflow-hidden flex-col items-center px-6 pt-8 pb-6 bg-[#060807] rounded-xl relative before:rounded-full before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-[30%] before:h-[1px] before:bg-gradient-to-r before:from-[#191A19] before:via-[#0CC776] before:to-[#191A19]"
   >
+    <slot name="flare" />
+
     <header class="flex flex-col items-center">
       <figure>
-        <slot name="icon"></slot>
+        <slot name="icon" />
       </figure>
 
       <h3 id={heading.title.id} class="text-h4 font-550 mt-2 mb-2">
         {heading.title.label}
       </h3>
-      <p
-        id={heading.description.id}
-        class="text-small font-450 text-[#676767]"
-      >
+      <p id={heading.description.id} class="text-small font-450 text-[#676767]">
         {heading.description.label}
       </p>
     </header>
 
-    <ul aria-label={benefits.title} class="mt-6 flex flex-col gap-2 mb-12">
-      {benefits.items.map((item) => (
-        <li class="flex items-start gap-2 text-left">
-          <span aria-hidden="true">•</span>
-          <span class="text-regular font-400">{item}</span>
-        </li>
-      ))}
+    <ul aria-label={benefits.title} class="mt-6 flex flex-col gap-2 mb-14">
+      {
+        benefits.items.map((item) => (
+          <li class="flex items-start gap-2 text-left">
+            <span aria-hidden="true">•</span>
+            <span class="text-regular font-400">{item}</span>
+          </li>
+        ))
+      }
     </ul>
 
     <footer class="flex flex-col justify-center mt-auto">
       <div aria-labelledby={price.id}>
         <p>
-          <strong id={price.id} class="text-h4 font-550"
-            >{price.label}</strong
-          >
+          <strong id={price.id} class="text-h4 font-550">{price.label}</strong>
         </p>
-        <p
-          aria-describedby={price.id}
-          class="text-small font-450 mt-2 mb-4"
-        >
+        <p aria-describedby={price.id} class="text-small font-450 mt-2 mb-4">
           {price.description}
         </p>
         <a
