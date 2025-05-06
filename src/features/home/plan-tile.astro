@@ -1,0 +1,87 @@
+---
+type PlanTileProps = {
+  button: {
+    label: string;
+    href: string;
+    title: string;
+  };
+  price: {
+    label: string;
+    description: string;
+    id: string;
+  };
+  heading: {
+    title: {
+      label: string;
+      id: string;
+    };
+    description: {
+      label: string;
+      id: string;
+    };
+  };
+  benefits: {
+    title: string;
+    items: string[];
+  };
+};
+const { button, price, heading, benefits } = Astro.props as PlanTileProps;
+---
+
+<article
+  class="p-[1px] max-w-[324px] rounded-xl bg-gradient-to-r from-[#081811] to-[#010F09]"
+  aria-labelledby={heading.title.id}
+  aria-describedby={heading.description.id}
+>
+  <div
+    class="flex h-full flex-col items-center px-6 pt-8 pb-6 bg-[#060807] rounded-xl relative before:rounded-full before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-[30%] before:h-[1px] before:bg-gradient-to-r before:from-[#191A19] before:via-[#0CC776] before:to-[#191A19]"
+  >
+    <header class="flex flex-col items-center">
+      <figure>
+        <slot name="icon"></slot>
+      </figure>
+
+      <h3 id={heading.title.id} class="text-h4 font-550 mt-2 mb-2">
+        {heading.title.label}
+      </h3>
+      <p
+        id={heading.description.id}
+        class="text-small font-450 text-[#676767]"
+      >
+        {heading.description.label}
+      </p>
+    </header>
+
+    <ul aria-label={benefits.title} class="mt-6 flex flex-col gap-2 mb-12">
+      {benefits.items.map((item) => (
+        <li class="flex items-start gap-2 text-left">
+          <span aria-hidden="true">•</span>
+          <span class="text-regular font-400">{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    <footer class="flex flex-col justify-center mt-auto">
+      <div aria-labelledby={price.id}>
+        <p>
+          <strong id={price.id} class="text-h4 font-550"
+            >{price.label}</strong
+          >
+        </p>
+        <p
+          aria-describedby={price.id}
+          class="text-small font-450 mt-2 mb-4"
+        >
+          {price.description}
+        </p>
+        <a
+          href={button.href}
+          class="primary-button block text-center px-6 py-2.5"
+          title={button.title}
+        >
+          {button.label}
+        </a>
+      </div>
+    </footer>
+  </div>
+</article>

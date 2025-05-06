@@ -112,12 +112,12 @@ const formatDate = (dateString: string): string => {
 const PublicationsSection = () => {
   return (
     <section
-      className="min-h-[300px] flex flex-col justify-center"
+      className="full-section flex flex-col justify-center"
       aria-labelledby="activity-title"
     >
-      <header className="fluid flex items-center justify-between w-full mb-8">
+      <header className="fluid flex items-center justify-between w-full mb-6">
         <h2 id="activity-title" className="text-h5 font-500">
-          Publikacje
+          Twórczość
         </h2>
         <span className="text-h5 font-500 text-[#2B2B2B]" aria-hidden="true">
           /{currentYear}
@@ -136,7 +136,7 @@ const PublicationsSection = () => {
           <ol
             className={cn(
               styles["infinite-scroll"],
-              "flex items-center gap-4 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4",
+              "flex items-center gap-4 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4 py-2",
             )}
             aria-label="Lista publikacji do przeczytania"
             aria-roledescription="carousel"
