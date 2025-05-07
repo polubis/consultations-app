@@ -1,0 +1,3 @@
+const websiteMeta = {};
+
+export { websiteMeta };

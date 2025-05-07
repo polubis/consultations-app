@@ -6,17 +6,21 @@ import CategoriesSection from "@/features/home/categories-section.astro";
 import AboutSection from "@/features/home/about-section.astro";
 import { PublicationsSection } from "@/features/home/publications-section";
 import PlansSection from "@/features/home/plans-section.astro";
-import MeetingSection from "@/features/home/meeting-section.astro";
+import { MeetingSection } from "@/features/home/meeting-section";
+import { TestimonialsSection } from "@/features/home/testimonials-section";
 ---
 <MainLayout>
   <LayoutNavigation client:load />
   <main>
     <HeroSection />
     <CategoriesSection />
-    <AboutSection />
-    <PublicationsSection />
+	<div class="full-section">
+		<AboutSection />
+		<PublicationsSection />
+	</div>
 	<PlansSection />
-	<MeetingSection />
+	<MeetingSection  client:load />
+	<TestimonialsSection client:load />
   </main>
   {
     /* 

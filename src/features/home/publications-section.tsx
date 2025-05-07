@@ -1,6 +1,3 @@
-import { cn } from "@/lib/utils";
-import styles from "./publications-section.module.css";
-
 const ratingCategories = ["ugly", "bad", "decent", "good", "perfect"] as const;
 
 type RatingCategory = (typeof ratingCategories)[number];
@@ -112,7 +109,7 @@ const formatDate = (dateString: string): string => {
 const PublicationsSection = () => {
   return (
     <section
-      className="full-section flex flex-col justify-center"
+      className="flex flex-col justify-center"
       aria-labelledby="activity-title"
     >
       <header className="fluid flex items-center justify-between w-full mb-6">
@@ -129,15 +126,12 @@ const PublicationsSection = () => {
           aria-hidden="true"
         />
         <div
-          className="absolute top-0 right-0 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
+          className="absolute top-0 -right-2 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
           aria-hidden="true"
         />
         <div className="overflow-hidden">
           <ol
-            className={cn(
-              styles["infinite-scroll"],
-              "flex items-center gap-4 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4 py-2",
-            )}
+            className="infinite-scroll-x flex items-center gap-4 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4 py-2"
             aria-label="Lista publikacji do przeczytania"
             aria-roledescription="carousel"
           >
