@@ -8,6 +8,7 @@ import { PublicationsSection } from "@/features/home/publications-section";
 import PlansSection from "@/features/home/plans-section.astro";
 import { MeetingSection } from "@/features/home/meeting-section";
 import { TestimonialsSection } from "@/features/home/testimonials-section";
+import { FaqSection } from "@/features/home/faq-section";
 ---
 <MainLayout>
   <LayoutNavigation client:load />
@@ -21,6 +22,7 @@ import { TestimonialsSection } from "@/features/home/testimonials-section";
 	<PlansSection />
 	<MeetingSection  client:load />
 	<TestimonialsSection client:load />
+	<FaqSection client:load />
   </main>
   {
     /* 

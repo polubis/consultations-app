@@ -126,7 +126,7 @@ const PublicationsSection = () => {
           aria-hidden="true"
         />
         <div
-          className="absolute top-0 -right-2 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
+          className="absolute top-0 right-0 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
           aria-hidden="true"
         />
         <div className="overflow-hidden">
