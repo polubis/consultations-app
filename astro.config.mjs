@@ -9,15 +9,19 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   output: "server",
-  integrations: [react()],
-
+  adapter: cloudflare(),
   devToolbar: {
     enabled: false,
   },
-
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: import.meta.env.PROD
+        ? {
+            "react-dom/server": "react-dom/server.edge",
+          }
+        : {},
+    },
   },
-
-  adapter: cloudflare(),
 });

@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules/**", ".astro/**"]
+    "ignore": ["node_modules/**", ".astro/**", "dist/**"]
   },
   "formatter": {
     "enabled": true,
