@@ -73,7 +73,7 @@ const MaterialsSection = () => {
         aria-label="Lista dostępnych materiałów"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr"
       >
-        {MATERIALS_MOCK.map((material) => (
+        {MATERIALS_MOCK.map((material, index) => (
           <li
             key={material.id}
             className="p-[1px] overflow-hidden relative rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
@@ -86,8 +86,8 @@ const MaterialsSection = () => {
               <div
                 className="radial-flare size-20"
                 style={{
-                  top: `${Math.random() * 100}%`,
-                  right: `${Math.random() * 100}%`,
+                  top: `${((index * 25) % 75) + 10}%`,
+                  right: `${((index * 30) % 70) + 15}%`,
                 }}
                 aria-hidden="true"
               />

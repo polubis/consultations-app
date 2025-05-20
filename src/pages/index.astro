@@ -19,6 +19,7 @@ import { MeetingSection } from "@/features/home/meeting-section";
 import { TestimonialsSection } from "@/features/home/testimonials-section";
 import { FaqSection } from "@/features/home/faq-section";
 import { MaterialsSection } from "@/features/home/materials-section";
+import Footer from "@/features/home/footer.astro";
 ---
 <MainLayout>
   <LayoutNavigation client:load />
@@ -31,51 +32,10 @@ import { MaterialsSection } from "@/features/home/materials-section";
 		<PublicationsSection />
 	</div>
 	<PlansSection />
-	<MeetingSection client:visible />
-	<MaterialsSection client:visible />
-	<TestimonialsSection client:visible />
-	<FaqSection client:visible />
+    <MeetingSection client:visible />
+    <MaterialsSection client:visible />
+    <TestimonialsSection client:visible />
+    <FaqSection client:visible />
+    <Footer />
   </main>
 </MainLayout>
-	<!-- <footer>
-	  <div>
-		<nav aria-label="Footer navigation">
-		  <div>
-			<h3>Mentoring</h3>
-			<ul>
-			  <li>
-				<a href="/specjalizacje">Specjalizacje</a>
-			  </li>
-			  <li>
-				<a href="/konsultacje">Konsultacje</a>
-			  </li>
-			  <li>
-				<a href="/materialy">Materiały</a>
-			  </li>
-			</ul>
-		  </div>
-		  <div>
-			<h3>Informacje</h3>
-			<ul>
-			  <li>
-				<a href="/o-mnie">O mnie</a>
-			  </li>
-			  <li>
-				<a href="/opinie">Opinie</a>
-			  </li>
-			  <li>
-				<a href="/faq">FAQ</a>
-			  </li>
-			  <li>
-				<a href="/kontakt">Kontakt</a>
-			  </li>
-			</ul>
-		  </div>
-		</nav>
-		<div aria-label="Social media links">Social media icons/links</div>
-	  </div>
-	  <div>
-		<p>Powered by GreenOn Software © 2025</p>
-		<p>Design by Małgo Kruszyńska</p>
-	  </div>
-	</footer>  -->
