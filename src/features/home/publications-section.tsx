@@ -137,7 +137,7 @@ const PublicationsSection = () => {
           >
             {publicationsMock.map((publication) => (
               <li
-                className="p-[1px] rounded-xl bg-gradient-to-r from-[#081811] to-[#010F09]"
+                className="p-[1px] rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
                 key={publication.id}
                 aria-roledescription="slide"
               >

@@ -7,7 +7,7 @@ Astro.response.headers.set(
 const currentTime = new Date().toLocaleString("pl-PL", {
   timeZone: "Europe/Warsaw",
 });
-
+// https://pagespeed.web.dev/analysis/https-consultations-app-production-pages-dev/gv86sq0zh6?form_factor=mobile
 import MainLayout from "@/layouts/main.astro";
 import { LayoutNavigation } from "@/components/layout/layout-navigation";
 import HeroSection from "@/features/home/hero-section.astro";
@@ -18,6 +18,7 @@ import PlansSection from "@/features/home/plans-section.astro";
 import { MeetingSection } from "@/features/home/meeting-section";
 import { TestimonialsSection } from "@/features/home/testimonials-section";
 import { FaqSection } from "@/features/home/faq-section";
+import { MaterialsSection } from "@/features/home/materials-section";
 ---
 <MainLayout>
   <LayoutNavigation client:load />
@@ -30,147 +31,13 @@ import { FaqSection } from "@/features/home/faq-section";
 		<PublicationsSection />
 	</div>
 	<PlansSection />
-	<MeetingSection  client:load />
-	<TestimonialsSection client:load />
-	<FaqSection client:load />
+	<MeetingSection client:visible />
+	<MaterialsSection client:visible />
+	<TestimonialsSection client:visible />
+	<FaqSection client:visible />
   </main>
-  {
-    /* 
-	  <section aria-labelledby="publications-title">
-		<header>
-		  <h2 id="publications-title">Publikacje</h2>
-		  <span>/2024</span>
-		</header>
-		<section aria-label="Karuzela publikacji">
-		  <article>
-			<h3>Jak zostać Senior Developerem</h3>
-			<p>Kompleksowy przewodnik po ścieżce awansu w branży IT</p>
-		  </article>
-		  <article>
-			<h3>Trendy technologiczne 2024</h3>
-			<p>Analiza kluczowych technologii, które zdominują rynek</p>
-		  </article>
-		</section>
-	  </section>
-
-	  <section aria-labelledby="pricing-title">
-		<h2 id="pricing-title">
-		  Wybierz plan nauki i umów się na spotkanie lub kup materiały
-		</h2>
-		<div>
-		  <article>
-			<h3>SAMOUK</h3>
-			<p>Pakiet materiałów edukacyjnych dla samodzielnych learnerów</p>
-			<ul>
-			  <li>Dostęp do 10 autorskich kursów</li>
-			  <li>Materiały wideo i tekstowe</li>
-			  <li>Prywatna grupa wsparcia</li>
-			</ul>
-			<p>od 50 zł</p>
-			<a href="/materials">Zobacz materiały</a>
-		  </article>
-		  <article>
-			<h3>MENTORING INDYWIDUALNY</h3>
-			<p>Spersonalizowane wsparcie w rozwoju kariery</p>
-			<ul>
-			  <li>Indywidualne konsultacje</li>
-			  <li>Plan rozwoju dopasowany do Twoich celów</li>
-			  <li>Analiza portfolio i code review</li>
-			</ul>
-			<p>od 200 zł</p>
-			<a href="/konsultacje">Umów się</a>
-		  </article>
-		</div>
-	  </section>
-
-	  <section aria-labelledby="booking-title">
-		<h2 id="booking-title">Umów spotkanie</h2>
-		<div>
-		  <div>
-			<blockquote>
-			  "Adrian pomógł mi przejść z poziomu juniora do mid-developera w zaledwie 6 miesięcy. Jego wskazówki i strategia nauki były kluczowe w moim rozwoju."
-			  <footer>
-				<img src="/path-to-image.jpg" alt="" />
-				<cite>Anna - Junior Frontend Developer</cite>
-			  </footer>
-			</blockquote>
-		  </div>
-		  <form aria-label="Formularz rezerwacji">
-			<input type="text" placeholder="Imię" required />
-			<input type="email" placeholder="Email" required />
-			<select>
-			  <option>Konsultacja online</option>
-			  <option>Konsultacja stacjonarna</option>
-			</select>
-			<textarea placeholder="Krótki opis Twoich celów" />
-			<button type="submit">Zarezerwuj spotkanie</button>
-		  </form>
-		</div>
-	  </section>
-
-	  <section aria-labelledby="materials-title">
-		<header>
-		  <h2 id="materials-title">Materiały</h2>
-		  <a href="/materials">Wszystkie materiały</a>
-		</header>
-		<div>
-		  <article>
-			<h3>Kurs React od podstaw</h3>
-			<p>Kompleksowy przewodnik po nowoczesnym frameworku</p>
-		  </article>
-		  <article>
-			<h3>Architektura mikroserwisów</h3>
-			<p>Zaawansowane techniki projektowania systemów rozproszonych</p>
-		  </article>
-		</div>
-	  </section>
-
-	  <section aria-labelledby="testimonials-title">
-		<h2 id="testimonials-title">
-		  Opinie osób, które osiągnęły swój cel, dzięki mojemu wsparciu
-		</h2>
-		<section aria-label="Karuzela opinii">
-		  <blockquote>
-			"Dzięki mentoringowi Adrian pomógł mi zrozumieć zawiłości architektury frontendowej i awansować w mojej firmie."
-			<footer>
-			  <cite>Michał - Frontend Developer</cite>
-			</footer>
-		  </blockquote>
-		  <blockquote>
-			"Indywidualne podejście i praktyczne wskazówki sprawiły, że moja wiedza z zakresu backend developmentu znacząco wzrosła."
-			<footer>
-			  <cite>Piotr - Backend Developer</cite>
-			</footer>
-		  </blockquote>
-		</section>
-	  </section>
-
-	  <section aria-labelledby="faq-title">
-		<h2 id="faq-title">FAQ</h2>
-		<div>
-		  <form aria-label="Formularz kontaktowy">
-			<input type="text" placeholder="Imię" required />
-			<input type="email" placeholder="Email" required />
-			<textarea placeholder="Twoje pytanie" />
-			<button type="submit">Wyślij pytanie</button>
-		  </form>
-		  <div>
-			<details>
-			  <summary>Jak długo trwa mentoring?</summary>
-			  <p>Czas trwania mentoringu jest indywidualnie dopasowany do Twoich celów i postępów. Standardowo proces trwa od 3 do 12 miesięcy.</p>
-			</details>
-			<details>
-			  <summary>Czy oferujesz konsultacje online?</summary>
-			  <p>Tak, wszystkie konsultacje mogą odbywać się zdalnie za pośrednictwem platform takich jak Zoom, Google Meet lub Microsoft Teams.</p>
-			</details>
-		  </div>
-		</div>
-	  </section> */
-  }
 </MainLayout>
-{
-  /* 
-	<footer>
+	<!-- <footer>
 	  <div>
 		<nav aria-label="Footer navigation">
 		  <div>
@@ -211,5 +78,4 @@ import { FaqSection } from "@/features/home/faq-section";
 		<p>Powered by GreenOn Software © 2025</p>
 		<p>Design by Małgo Kruszyńska</p>
 	  </div>
-	</footer> */
-}
+	</footer>  -->
