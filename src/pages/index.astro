@@ -1,5 +1,4 @@
 ---
-// https://pagespeed.web.dev/analysis/https-consultations-app-production-pages-dev/gv86sq0zh6?form_factor=mobile
 import MainLayout from "@/layouts/main.astro";
 import { LayoutNavigation } from "@/components/layout/layout-navigation";
 import HeroSection from "@/features/home/hero-section.astro";
@@ -11,8 +10,23 @@ import { TestimonialsSection } from "@/features/home/testimonials-section";
 import { FaqSection } from "@/features/home/faq-section";
 import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
+
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+const domain = Astro.site!.toString();
+const imageUrl = `${domain}/author.webp`;
 ---
-<MainLayout>
+<MainLayout
+  siteName="Konsultacje i mentoring IT - Adrian Połubiński"
+  url="/"
+  twitterCreator="@polubis"
+  imageAlt="Adrian Połubiński"
+  twitterSite="@polubis"
+  domain={domain}
+  imageUrl={imageUrl}
+  keywords="zostań juniorem, zostań midem, zostań seniorem, jak zostać seniorem, jak zostać midem, jak zostać juniorem, mentoring IT, awans na seniora, rozwój kariery IT, programowanie, konsultacje IT, wywiad techniczny, przygotowanie do rozmowy, Adrian Połubiński, nauka programowania, roadmapa rozwoju, Frontend, Backend, Fullstack, DevOps, AI, Soft Skills, Bazy danych, Algorytmy i struktury danych, greenonsoftware, 4markdown, IT Mentor Polska"
+  title="Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery"
+  description="Chcesz awansować na Seniora w rok? Zdobądź kluczowe umiejętności i wiedzę z doświadczonym Front-end Tech Leadem, Adrianem Połubińskim. Oferuję mentoring IT, przygotowanie do rozmów technicznych, spersonalizowane plany rozwoju oraz darmowe materiały edukacyjne z Frontend, Backend, DevOps, AI i innych obszarów. Rozwijaj się świadomie i osiągnij swoje cele w IT."
+>
   <LayoutNavigation client:load />
   <main>
     <HeroSection />

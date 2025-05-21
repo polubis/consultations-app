@@ -331,7 +331,7 @@ const formatDate = (dateString: string): string => {
   >
     <header class="fluid flex items-center justify-between w-full mb-6">
       <h2 id="activity-title" class="text-h5 font-500">Twórczość</h2>
-      <span class="text-h5 font-500 text-[#2B2B2B]" aria-hidden="true">
+      <span class="text-h5 font-500 text-foreground-secondary" aria-hidden="true">
         /{currentYear}
       </span>
     </header>
@@ -368,7 +368,7 @@ const formatDate = (dateString: string): string => {
                   <article class="flex flex-col rounded-xl p-4 mbl:p-6 bg-[#060807] w-[280px] mbl:w-[387px] ">
                     <header class="flex flex-col gap-2">
                       <time
-                        class="text-small text-[#676767]"
+                        class="text-small text-foreground-secondary"
                         datetime={publication.cdate}
                       >
                         {formatDate(publication.cdate)}

@@ -57,7 +57,7 @@ const MeetingSection = () => {
           wybrać datę i czas spotkania.
         </p>
         <Select defaultValue="default">
-          <SelectTrigger className="w-[280px] mt-8">
+          <SelectTrigger aria-label="Pokaż plany" className="w-[280px] mt-8">
             <SelectValue placeholder="Wybierz plan" />
           </SelectTrigger>
           <SelectContent>
@@ -73,7 +73,7 @@ const MeetingSection = () => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <p className="text-regular mt-3 font-300 text-[#676767]">
+        <p className="text-regular mt-3 font-300 text-foreground-secondary">
           Po rezerwacji terminu po prostu dołącz do spotkania w wybranym dniu i
           godzinie. Komunikacja będzie odbywać się mailowo.
         </p>

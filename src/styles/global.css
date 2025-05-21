@@ -41,6 +41,7 @@
   --foreground: #d7d8d9;
   --primary-400: #0dd97d;
   --primary-500: #0bad67;
+  --foreground-secondary: #888888;
 
   /* Indexes */
   --z-layout-navigation: 5;
@@ -114,7 +115,7 @@
   --color-foreground: var(--foreground);
   --color-primary-400: var(--primary-400);
   --color-primary-500: var(--primary-500);
-
+  --color-foreground-secondary: var(--foreground-secondary);
   /* Typography - Font Family */
   --font-main: var(--font-main);
 

@@ -138,7 +138,12 @@ const LayoutNavigation = () => {
           aria-label="Nawigacja mobilna"
         >
           <div className="h-16 mbl:h-18 tbt:h-20 flex items-center justify-end px-4 mbl:px-6 tbt:px-10">
-            <button type="button" title="Zamknij menu" onClick={menu.toggle}>
+            <button
+              type="button"
+              aria-label="Zamknij menu"
+              title="Zamknij menu"
+              onClick={menu.toggle}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
