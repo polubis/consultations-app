@@ -1,40 +1,27 @@
 ---
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, s-maxage=60, stale-while-revalidate=300",
-);
-
-const currentTime = new Date().toLocaleString("pl-PL", {
-  timeZone: "Europe/Warsaw",
-});
 // https://pagespeed.web.dev/analysis/https-consultations-app-production-pages-dev/gv86sq0zh6?form_factor=mobile
 import MainLayout from "@/layouts/main.astro";
 import { LayoutNavigation } from "@/components/layout/layout-navigation";
 import HeroSection from "@/features/home/hero-section.astro";
 import CategoriesSection from "@/features/home/categories-section.astro";
 import AboutSection from "@/features/home/about-section.astro";
-import { PublicationsSection } from "@/features/home/publications-section";
 import PlansSection from "@/features/home/plans-section.astro";
 import { MeetingSection } from "@/features/home/meeting-section";
 import { TestimonialsSection } from "@/features/home/testimonials-section";
 import { FaqSection } from "@/features/home/faq-section";
-import { MaterialsSection } from "@/features/home/materials-section";
+import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
 ---
 <MainLayout>
   <LayoutNavigation client:load />
   <main>
-    <p>Strona wygenerowana o: {currentTime}</p>
     <HeroSection />
     <CategoriesSection />
-	<div class="full-section">
-		<AboutSection />
-		<PublicationsSection />
-	</div>
-	<PlansSection />
+    <AboutSection />
+    <PlansSection />
     <MeetingSection client:visible />
-    <MaterialsSection client:visible />
     <TestimonialsSection client:visible />
+    <MaterialsSection />
     <FaqSection client:visible />
     <Footer />
   </main>

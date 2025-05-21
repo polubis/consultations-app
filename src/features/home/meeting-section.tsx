@@ -1,3 +1,4 @@
+import { appConfig } from "@/core/config";
 import { Testimonial } from "./testimonial";
 import {
   Select,
@@ -14,6 +15,7 @@ const MeetingSection = () => {
       className="fluid full-section flex justify-between max-w-xl dsp:max-w-6xl gap-12 flex-col dsp:flex-row dsp:items-center"
       aria-labelledby="meeting-title"
       aria-describedby="meeting-description"
+      id={appConfig.contactSection.id}
     >
       <div className="w-full">
         <h2 id="meeting-title" className="text-h2 font-500">
@@ -60,11 +62,14 @@ const MeetingSection = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="default">Wybierz plan</SelectItem>
-              <SelectItem value="senior">Senior w rok</SelectItem>
-              <SelectItem value="junior">Junior w rok</SelectItem>
-              <SelectItem value="mid">Mid w rok</SelectItem>
-              <SelectItem value="custom">Plan niestandardowy</SelectItem>
+              <SelectItem key="default" value="default">
+                Wybierz plan
+              </SelectItem>
+              {Object.values(appConfig.plansSection.plans).map((plan) => (
+                <SelectItem key={plan.label} value={plan.label}>
+                  {plan.label}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -74,7 +79,7 @@ const MeetingSection = () => {
         </p>
         <a
           className="primary-button px-6 py-2.5 mt-8 w-fit block"
-          href="https://calendar.app.google/V3L9sjvYJsJATzbL7"
+          href={appConfig.contactSection.calendarLink}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Zarezerwuj spotkanie"

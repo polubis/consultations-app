@@ -29,7 +29,7 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
 ---
 
 <article
-  class="p-[1px] max-w-[324px] rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
+  class="p-[1px] max-w-[400px] rounded-xl bg-gradient-to-r relative from-[#111311] via-[#08140f] to-[#010F09] before:rounded-full before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-[30%] before:h-[1px] before:bg-gradient-to-r before:from-[#191A19] before:via-[#0CC776] before:to-[#191A19]"
   aria-labelledby={heading.title.id}
   aria-describedby={heading.description.id}
 >
@@ -67,13 +67,15 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
         <p>
           <strong id={price.id} class="text-h4 font-550">{price.label}</strong>
         </p>
-        <p aria-describedby={price.id} class="text-small font-450 mt-2 mb-4">
+        <p aria-describedby={price.id} class="text-small font-450 mt-2 mb-6">
           {price.description}
         </p>
         <a
           href={button.href}
           class="primary-button block text-center px-6 py-2.5"
           title={button.title}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {button.label}
         </a>

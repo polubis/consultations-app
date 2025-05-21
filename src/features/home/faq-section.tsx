@@ -4,12 +4,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { appConfig } from "@/core/config";
 
 const FaqSection = () => {
   return (
     <section
       className="fluid full-section flex justify-between max-w-xl dsp:max-w-6xl gap-12 flex-col dsp:flex-row dsp:items-center"
       aria-labelledby="faq-title"
+      id={appConfig.faqSection.id}
       aria-describedby="faq-description"
     >
       <div className="w-full">
@@ -21,7 +23,7 @@ const FaqSection = () => {
           się ze mną.
         </p>
         <a
-          href="https://www.linkedin.com/in/adrian-po%C5%82ubi%C5%84ski-281ab2172/"
+          href={appConfig.contactSection.linkedInLink}
           target="_blank"
           rel="noreferrer"
           title="Skontaktuj się ze mną"
@@ -51,10 +53,21 @@ const FaqSection = () => {
             cele?
           </AccordionTrigger>
           <AccordionContent>
-            Czas trwania procesu mentoringowego zależy od indywidualnych celów.
-            Typowo trwa od 3 do 6 miesięcy, z regularnymi sesjami. Konkretne
-            umiejętności można rozwinąć w krótszym czasie, natomiast kompleksowy
-            rozwój wymaga dłuższej współpracy.
+            <span>
+              Czas trwania procesu mentoringowego zależy od wybranego planu i
+              preferencji klienta. Jeżeli masz inną sytuację życiową, to możemy
+              dostosować go do Twoich indywidualnych preferencji.
+            </span>
+            <a
+              href={appConfig.contactSection.linkedInLink}
+              target="_blank"
+              rel="noreferrer"
+              title="Skontaktuj się ze mną"
+              aria-label="Skontaktuj się ze mną"
+              className="block mt-6 w-fit bg-background border-foreground border rounded-full px-6 py-2.5"
+            >
+              Zapraszam do kontaktu
+            </a>
           </AccordionContent>
         </AccordionItem>
 
@@ -64,11 +77,28 @@ const FaqSection = () => {
             programistów?
           </AccordionTrigger>
           <AccordionContent>
-            Stosuję podejście oparte na małych sukcesach, code review z
-            konstruktywną informacją zwrotną, praktyczne zadania dostosowane do
-            poziomu umiejętności oraz regularne retrospektywy postępów. Kluczowe
-            jest stworzenie bezpiecznej przestrzeni do eksperymentowania i nauki
-            na błędach.
+            <span className="block">
+              Stosuję podejście oparte na małych sukcesach, code review z
+              konstruktywną informacją zwrotną, praktyczne zadania dostosowane
+              do poziomu umiejętności oraz regularne retrospektywy postępów.
+              Kluczowe jest stworzenie bezpiecznej przestrzeni do
+              eksperymentowania i nauki na błędach.
+            </span>
+            <span className="block my-2">
+              Dodatkowo, wykorzystujemy naukowo potwierdzone metody wspólnej
+              nauki i priorytetyzacji zadań (jak tablica Eisenhowera, „Świadomy
+              dzień”, planowanie strategiczne i taktyczne), aby osiągnąć efekty
+              jak najszybciej. Więcej o tym, jak działamy w mentoringu możesz
+              przeczytać w artykule:
+            </span>
+            <a
+              href="https://4markdown.com/how-to-be-productive-as-a-software-engineer/"
+              className="underline block"
+              target="_blank"
+              rel="noreferrer"
+            >
+              How to be productive as a software engineer
+            </a>
           </AccordionContent>
         </AccordionItem>
 

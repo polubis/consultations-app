@@ -1,4 +1,5 @@
 ---
+import { appConfig } from "@/core/config";
 import GlassGraphic from "../../../public/glass.svg";
 import PlanetGraphic from "../../../public/planet.svg";
 ---
@@ -33,7 +34,7 @@ import PlanetGraphic from "../../../public/planet.svg";
       opacity: 0.4;
     }
     50% {
-      transform: scale(0.8);
+      transform: scale(0.6);
       opacity: 0.5;
     }
     100% {
@@ -98,7 +99,7 @@ import PlanetGraphic from "../../../public/planet.svg";
     </p>
     <a
       class="relative flex items-center pl-13.5 pr-6.5 w-fit h-11 group mt-7"
-      href="#paths"
+      href={`#${appConfig.plansSection.id}`}
       aria-label="Wybierz ścieżkę rozwoju"
     >
       <div
@@ -132,7 +133,7 @@ import PlanetGraphic from "../../../public/planet.svg";
       <span
         class="text-regular-bold font-500 drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-[#091610]"
       >
-        Wybierz ścieżkę
+        Wybierz plan
       </span>
     </a>
   </div>

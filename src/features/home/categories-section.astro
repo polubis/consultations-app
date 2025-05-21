@@ -1,13 +1,17 @@
+---
+import { appConfig } from "@/core/config";
+---
+
 <section
   class="fluid full-section flex flex-col justify-center items-center text-center"
   aria-labelledby="progress-title"
+  id={appConfig.specializationsSection.id}
 >
   <h2 id="progress-title" class="text-h2 font-500 max-w-xl">
     Stoisz w miejscu i nie wiesz jak zrobić kolejny krok?
   </h2>
   <p class="text-regular font-300 mt-8 mb-13">
-    Pomogę Ci rozwinąć umiejętności i poszerzyć wiedzę w wielu dziedzinach
-    IT.
+    Pomogę Ci rozwinąć umiejętności i poszerzyć wiedzę w wielu dziedzinach IT.
   </p>
   <div class="relative">
     <div
@@ -17,57 +21,58 @@
     </div>
     <ul
       aria-label="Kategorie specjalizacji"
-      role="list"
       class="flex flex-wrap justify-center gap-6 max-w-[600px] relative"
     >
       <li
         class="before:animate-fade-in-out before:delay-[4s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         Frontend
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[11s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         Backend
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[22s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         AI
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[13s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         Sofware Development
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[5s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         Soft Skills
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[2s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         Fullstack
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[15s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
         DevOps
       </li>
       <li
         class="before:animate-fade-in-out before:delay-[30s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
-        role="listitem"
       >
-        QA
+        Q&A
+      </li>
+      <li
+        class="before:animate-fade-in-out before:delay-[2s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+      >
+        Bazy danych
+      </li>
+      <li
+        class="before:animate-fade-in-out before:delay-[4s] before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
+      >
+        Algorytmy i struktury danych
       </li>
     </ul>
   </div>
-</section> 
+</section>

@@ -1,3 +1,4 @@
+import { appConfig } from "@/core/config";
 import { Testimonial, type TestimonialProps } from "./testimonial";
 
 const testimonialsMock: TestimonialProps[] = [
@@ -128,6 +129,7 @@ const TestimonialsSection = () => {
     <section
       className="full-section flex justify-center flex-col"
       aria-labelledby="testimonials-title"
+      id={appConfig.opinionsSection.id}
     >
       <h2
         id="testimonials-title"
@@ -137,7 +139,7 @@ const TestimonialsSection = () => {
       </h2>
       <div className="relative" aria-label="Opinie uczestników konsultacji">
         <div
-          className="absolute bg-[rgba(21,214,131,0.10)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full -z-1"
+          className="absolute bg-[rgba(21,214,131,0.14)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full -z-1"
           aria-hidden="true"
         />
         <div

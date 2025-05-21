@@ -161,6 +161,10 @@
   body {
     @apply bg-background text-foreground font-main;
   }
+
+  html {
+    @apply scroll-smooth;
+  }
 }
 
 @layer components {
@@ -169,15 +173,7 @@
   }
 
   .full-section {
-    @apply min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] py-10 tbt:py-12;
-  }
-
-  .layout-navigation {
-    @apply h-16 mbl:h-18 tbt:h-20 ltp:pt-6 ltp:pb-4 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black;
-  }
-
-  .layout-mobile-navigation {
-    @apply fixed inset-0 z-[var(--z-layout-mobile-navigation)] backdrop-blur-[24px] bg-[#000100]/10 ltp:hidden animate-in fade-in-0 duration-200;
+    @apply min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] py-10 tbt:py-20;
   }
 
   .primary-button {

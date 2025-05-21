@@ -1,3 +1,4 @@
+import { appConfig } from "@/core/config";
 import { useSimpleFeature } from "@/lib/dk/use-simple-feature";
 
 const LayoutNavigation = () => {
@@ -5,7 +6,10 @@ const LayoutNavigation = () => {
 
   return (
     <>
-      <header className="layout-navigation" aria-label="Główna nawigacja">
+      <header
+        className="h-16 mbl:h-18 tbt:h-20 ltp:pt-6 ltp:pb-4 sticky z-[var(--z-layout-navigation)] top-0 backdrop-blur-[24px] bg-[#000100]/10 border-b-2 border-black"
+        aria-label="Główna nawigacja"
+      >
         <nav className="fluid flex items-center h-full">
           <a href="/">
             <svg
@@ -28,19 +32,29 @@ const LayoutNavigation = () => {
             </svg>
           </a>
 
-          <ul className="gap-8 ml-auto ltp:flex hidden">
+          <ul className="gap-6 ltp:gap-8 ml-auto ltp:flex hidden">
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
-                href="/specjalizacje"
+                href={`#${appConfig.faqSection.id}`}
               >
-                Specjalizacje
+                FAQ
               </a>
             </li>
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
-                href="/materialy"
+                href={appConfig.contactSection.linkedInLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Kontakt
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                href={`#${appConfig.materialsSection.id}`}
               >
                 Materiały
               </a>
@@ -48,7 +62,7 @@ const LayoutNavigation = () => {
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
-                href="/o-mnie"
+                href={`#${appConfig.aboutSection.id}`}
               >
                 O mnie
               </a>
@@ -56,7 +70,7 @@ const LayoutNavigation = () => {
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
-                href="/opinie"
+                href={`#${appConfig.opinionsSection.id}`}
               >
                 Opinie
               </a>
@@ -64,16 +78,24 @@ const LayoutNavigation = () => {
             <li>
               <a
                 className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
-                href="/faq"
+                href={`#${appConfig.plansSection.id}`}
               >
-                FAQ
+                Plany
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                href={`#${appConfig.specializationsSection.id}`}
+              >
+                Specjalizacje
               </a>
             </li>
           </ul>
 
           <a
             className="primary-button text-center px-6 py-2.5 ml-16 ltp:inline hidden"
-            href="/konsultacje"
+            href={`#${appConfig.contactSection.id}`}
           >
             Umów konsultację
           </a>
@@ -112,15 +134,11 @@ const LayoutNavigation = () => {
 
       {menu.isOn && (
         <nav
-          className="layout-mobile-navigation"
+          className="fixed grid grid-rows-[auto_1fr] inset-0 z-[var(--z-layout-mobile-navigation)] backdrop-blur-[24px] bg-[#000100]/10 ltp:hidden animate-in fade-in-0 duration-200"
           aria-label="Nawigacja mobilna"
         >
-          <div className="absolute top-0 right-0 left-0 h-16 mbl:h-18 tbt:h-20 flex items-center justify-end px-4 mbl:px-6 tbt:px-10">
-            <button
-              aria-label="Zamknij menu"
-              type="button"
-              onClick={menu.toggle}
-            >
+          <div className="h-16 mbl:h-18 tbt:h-20 flex items-center justify-end px-4 mbl:px-6 tbt:px-10">
+            <button type="button" title="Zamknij menu" onClick={menu.toggle}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -132,7 +150,6 @@ const LayoutNavigation = () => {
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 role="img"
-                aria-labelledby="mobileMenuIconTitle"
               >
                 <path d="M18 6 6 18" />
                 <path d="m6 6 12 12" />
@@ -142,72 +159,70 @@ const LayoutNavigation = () => {
               </svg>
             </button>
           </div>
-          <div className="flex flex-col items-center justify-center h-full">
-            <ul className="space-y-4" role="menu">
-              <li
-                className="text-center animate-jump-top-bottom opacity-0"
-                role="presentation"
-              >
+          <div className="flex flex-col items-center justify-center">
+            <ul className="space-y-4">
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-100">
                 <a
                   className="hover:text-white font-500 text-h4"
-                  href="/specjalizacje"
-                  role="menuitem"
-                >
-                  Specjalizacje
-                </a>
-              </li>
-              <li
-                className="text-center animate-jump-top-bottom opacity-0 delay-100"
-                role="presentation"
-              >
-                <a
-                  className="hover:text-white font-500 text-h4"
-                  href="/materialy"
-                  role="menuitem"
-                >
-                  Materiały
-                </a>
-              </li>
-              <li
-                className="text-center animate-jump-top-bottom opacity-0 delay-200"
-                role="presentation"
-              >
-                <a
-                  className="hover:text-white font-500 text-h4"
-                  href="/o-mnie"
-                  role="menuitem"
-                >
-                  O mnie
-                </a>
-              </li>
-              <li
-                className="text-center animate-jump-top-bottom opacity-0 delay-300"
-                role="presentation"
-              >
-                <a
-                  className="hover:text-white font-500 text-h4"
-                  href="/opinie"
-                  role="menuitem"
-                >
-                  Opinie
-                </a>
-              </li>
-              <li
-                className="text-center animate-jump-top-bottom opacity-0 delay-400"
-                role="presentation"
-              >
-                <a
-                  className="hover:text-white font-500 text-h4"
-                  href="/faq"
-                  role="menuitem"
+                  href={`#${appConfig.faqSection.id}`}
                 >
                   FAQ
                 </a>
               </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-200">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={appConfig.contactSection.linkedInLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Kontakt
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-300">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={`#${appConfig.materialsSection.id}`}
+                >
+                  Materiały
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-400">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={`#${appConfig.aboutSection.id}`}
+                >
+                  O mnie
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-500">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={`#${appConfig.opinionsSection.id}`}
+                >
+                  Opinie
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-600">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={`#${appConfig.plansSection.id}`}
+                >
+                  Plany
+                </a>
+              </li>
+              <li className="text-center animate-jump-top-bottom opacity-0 delay-700">
+                <a
+                  className="hover:text-white font-500 text-h4"
+                  href={`#${appConfig.specializationsSection.id}`}
+                >
+                  Specjalizacje
+                </a>
+              </li>
             </ul>
             <a
-              className="primary-button text-center px-6 py-2.5 mt-8 animate-jump-top-bottom opacity-0 delay-500"
-              href="/konsultacje"
+              className="primary-button text-center px-6 py-2.5 mt-10 animate-jump-top-bottom opacity-0 delay-800"
+              href={`#${appConfig.contactSection.id}`}
             >
               Umów konsultację
             </a>
