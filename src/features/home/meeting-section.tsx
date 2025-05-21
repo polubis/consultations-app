@@ -42,7 +42,7 @@ const MeetingSection = () => {
         aria-describedby="meeting-form-description"
         className="w-full"
       >
-        <h3 id="meeting-form-title" className="text-h3 font-550">
+        <h3 id="meeting-form-title" className="text-h3 font-500">
           Wybierz plan
         </h3>
         <p
@@ -51,9 +51,9 @@ const MeetingSection = () => {
         >
           Wybierz plan, który najbardziej odpowiada Twoim potrzebom. Po
           kliknięciu w przycisk{" "}
-          <strong className="font-550">Zarezerwuj spotkanie</strong>, zostaniesz
+          <strong className="font-500">Zarezerwuj spotkanie</strong>, zostaniesz
           przekierowany do{" "}
-          <strong className="font-550">kalendarza Google</strong>, gdzie możesz
+          <strong className="font-500">kalendarza Google</strong>, gdzie możesz
           wybrać datę i czas spotkania.
         </p>
         <Select defaultValue="default">

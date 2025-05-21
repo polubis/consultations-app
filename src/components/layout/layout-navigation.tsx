@@ -35,7 +35,7 @@ const LayoutNavigation = () => {
           <ul className="gap-6 ltp:gap-8 ml-auto ltp:flex hidden">
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.faqSection.id}`}
               >
                 FAQ
@@ -43,7 +43,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={appConfig.contactSection.linkedInLink}
                 target="_blank"
                 rel="noreferrer"
@@ -53,7 +53,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.materialsSection.id}`}
               >
                 Materiały
@@ -61,7 +61,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.aboutSection.id}`}
               >
                 O mnie
@@ -69,7 +69,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.opinionsSection.id}`}
               >
                 Opinie
@@ -77,7 +77,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.plansSection.id}`}
               >
                 Plany
@@ -85,7 +85,7 @@ const LayoutNavigation = () => {
             </li>
             <li>
               <a
-                className="text-regular hover:text-white transition-colors font-300 duration-300 ease-in-out"
+                className="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
                 href={`#${appConfig.specializationsSection.id}`}
               >
                 Specjalizacje

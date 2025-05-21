@@ -43,10 +43,10 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
         <slot name="icon" />
       </figure>
 
-      <h3 id={heading.title.id} class="text-h4 font-550 mt-2 mb-2">
+      <h3 id={heading.title.id} class="text-h4 font-500 mt-2 mb-2">
         {heading.title.label}
       </h3>
-      <p id={heading.description.id} class="text-small font-450 text-foreground-secondary">
+      <p id={heading.description.id} class="text-small font-400 text-foreground-secondary">
         {heading.description.label}
       </p>
     </header>
@@ -65,9 +65,9 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
     <footer class="flex flex-col justify-center mt-auto">
       <div aria-labelledby={price.id}>
         <p>
-          <strong id={price.id} class="text-h4 font-550">{price.label}</strong>
+          <strong id={price.id} class="text-h4 font-500">{price.label}</strong>
         </p>
-        <p aria-describedby={price.id} class="text-small font-450 mt-2 mb-6">
+        <p aria-describedby={price.id} class="text-small font-400 mt-2 mb-6">
           {price.description}
         </p>
         <a
