@@ -1,6 +1,5 @@
 <style>
   .glass-effect {
-    border-radius: 50%;
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.02);
     box-shadow:
@@ -14,7 +13,7 @@
 </style>
 
 <div
-  class:list={["glass-effect", Astro.props.class]}
+  class:list={["glass-effect rounded-full", Astro.props.class]}
   aria-hidden="true"
   role="presentation"
 >

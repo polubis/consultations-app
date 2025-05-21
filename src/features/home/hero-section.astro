@@ -1,19 +1,10 @@
 ---
 import { appConfig } from "@/core/config";
-import PlanetGraphic from "../../../public/planet.svg";
+import PlanetGraphic from "./planet.astro";
 import GlassGraphic from "./glass.astro";
 ---
 
-<style>
-  @keyframes eclipse {
-    0% {
-      transform: translate(-160px, 160px);
-    }
-    100% {
-      transform: translate(0px, 0px);
-    }
-  }
-
+<style is:global>
   @keyframes nova-boom {
     0% {
       transform: scale(0.4);
@@ -43,19 +34,19 @@ import GlassGraphic from "./glass.astro";
     }
   }
 
-  @keyframes shine {
-    0%,
-    100% {
-      opacity: var(--star-base-opacity, 0.3);
-    }
-    50% {
-      opacity: 1;
-    }
+  @keyframes eclipse {
+  0% {
+    transform: translate(-160px, 160px);
   }
-
-  .planet-graphic {
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+  
+  .move-eclipse {
     animation: eclipse 10s linear forwards;
   }
+
 
   .nova-boom,
   .nova-pulse {
@@ -151,7 +142,7 @@ import GlassGraphic from "./glass.astro";
     >
     </div>
     <PlanetGraphic
-      class="absolute inset-0 m-auto size-full planet-graphic"
+      class="absolute inset-0 m-auto size-[60%] move-eclipse"
     />
     <GlassGraphic class="absolute inset-0 m-auto size-[80%]" />
   </div>
@@ -170,8 +161,6 @@ import GlassGraphic from "./glass.astro";
         const star = document.createElement("div");
         const size = Math.random() * 1.5 + 0.5;
         const baseOpacity = Math.random() * 0.5 + 0.2;
-        const duration = Math.random() * 3 + 2;
-        const delay = Math.random() * 5;
 
         star.style.position = "absolute";
         star.style.width = `${size}px`;
@@ -182,7 +171,6 @@ import GlassGraphic from "./glass.astro";
         star.style.borderRadius = "50%";
         star.style.left = `${Math.random() * 100}%`;
         star.style.top = `${Math.random() * 100}%`;
-        star.style.animation = `shine ${duration}s ease-in-out ${delay}s infinite`;
 
         milkyWayContainer.appendChild(star);
       }
