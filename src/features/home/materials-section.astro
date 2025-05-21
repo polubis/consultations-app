@@ -82,11 +82,11 @@ const MATERIALS_MOCK: Material[] = [
   >
     {MATERIALS_MOCK.map((material, index) => (
       <li
-        class="p-[1px] overflow-hidden relative rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
+        class="p-[1px] relative rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
       >
         <a
           href={material.url}
-          class="p-6 flex flex-col h-full rounded-xl bg-background relative"
+          class="p-6 flex flex-col h-full overflow-hidden rounded-xl bg-background relative"
           target="_blank"
           rel="noopener noreferrer"
           aria-describedby={`description-${material.id}`}

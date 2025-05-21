@@ -11,6 +11,11 @@ import { FaqSection } from "@/features/home/faq-section";
 import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
 
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=14400, s-maxage=14400, must-revalidate",
+);
+
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString();
 const imageUrl = `${domain}/author.webp`;
