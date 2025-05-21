@@ -29,8 +29,11 @@
   0% {
     transform: translateX(0);
   }
-  100% {
+  50% {
     transform: translateX(calc(-1920px / 4));
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

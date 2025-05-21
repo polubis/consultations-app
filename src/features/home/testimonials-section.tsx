@@ -1,5 +1,11 @@
 import { appConfig } from "@/core/config";
 import { Testimonial, type TestimonialProps } from "./testimonial";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const testimonialsMock: TestimonialProps[] = [
   {
@@ -139,30 +145,38 @@ const TestimonialsSection = () => {
       </h2>
       <div className="relative" aria-label="Opinie uczestników konsultacji">
         <div
-          className="absolute bg-[rgba(21,214,131,0.14)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full -z-1"
+          className="absolute bg-[rgba(21,214,131,0.14)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full"
           aria-hidden="true"
         />
-        <div
-          className="absolute top-0 right-0 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
-          aria-hidden="true"
-        />
-        <div className="overflow-hidden">
-          <ol
-            className="infinite-scroll-x flex items-center gap-20 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4 py-2"
-            aria-label="Lista opinii"
-            aria-roledescription="carousel"
-          >
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 5000,
+            }),
+          ]}
+        >
+          <CarouselContent>
             {testimonialsMock.map((testimonial) => (
-              <li
+              <CarouselItem
+                className="mbl:basis-1/2 ltp:basis-1/3"
                 key={testimonial.name}
-                aria-roledescription="slide"
-                className="shrink-0"
               >
-                <Testimonial {...testimonial} />
-              </li>
+                <Testimonial
+                  className="px-4 mbl:px-6 tbt:px-10"
+                  {...testimonial}
+                />
+              </CarouselItem>
             ))}
-          </ol>
-        </div>
+          </CarouselContent>
+          <div
+            className="absolute top-0 right-0 h-full w-4 mbl:w-20 tbt:w-40 bg-gradient-to-r from-transparent to-background"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute top-0 left-0 h-full w-4 mbl:w-20 tbt:w-40 bg-gradient-to-r from-background to-transparent"
+            aria-hidden="true"
+          />
+        </Carousel>
       </div>
     </section>
   );

@@ -35,18 +35,17 @@ import GlassGraphic from "./glass.astro";
   }
 
   @keyframes eclipse {
-  0% {
-    transform: translate(-160px, 160px);
+    0% {
+      transform: translate(-160px, 160px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
   }
-  100% {
-    transform: translate(0px, 0px);
-  }
-}
-  
+
   .move-eclipse {
     animation: eclipse 10s linear forwards;
   }
-
 
   .nova-boom,
   .nova-pulse {
@@ -141,15 +140,15 @@ import GlassGraphic from "./glass.astro";
       class="nova-pulse absolute opacity-0 inset-0 m-auto size-full rounded-full"
     >
     </div>
-    <PlanetGraphic
-      class="absolute inset-0 m-auto size-[60%] move-eclipse"
-    />
+    <PlanetGraphic class="absolute inset-0 m-auto size-[60%] move-eclipse" />
     <GlassGraphic class="absolute inset-0 m-auto size-[80%]" />
   </div>
 </section>
 
-<script is:inline>
-  const milkyWayContainer = document.querySelector(".milky-way");
+<script>
+  const milkyWayContainer = document.querySelector(
+    ".milky-way"
+  ) as HTMLElement | null;
   const numberOfStars = 150;
 
   if (milkyWayContainer) {
@@ -160,13 +159,11 @@ import GlassGraphic from "./glass.astro";
       for (let i = 0; i < numberOfStars; i++) {
         const star = document.createElement("div");
         const size = Math.random() * 1.5 + 0.5;
-        const baseOpacity = Math.random() * 0.5 + 0.2;
 
         star.style.position = "absolute";
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
 
-        star.style.setProperty("--star-base-opacity", baseOpacity.toString());
         star.style.backgroundColor = `rgba(64, 223, 132, 1)`;
         star.style.borderRadius = "50%";
         star.style.left = `${Math.random() * 100}%`;
@@ -176,4 +173,4 @@ import GlassGraphic from "./glass.astro";
       }
     }
   }
-</script> 
+</script>

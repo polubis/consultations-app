@@ -1,6 +1,6 @@
 ---
 import MainLayout from "@/layouts/main.astro";
-import { LayoutNavigation } from "@/components/layout/layout-navigation";
+import LayoutNavigation from "@/components/layout/layout-navigation.astro";
 import HeroSection from "@/features/home/hero-section.astro";
 import CategoriesSection from "@/features/home/categories-section.astro";
 import AboutSection from "@/features/home/about-section.astro";
@@ -32,7 +32,7 @@ const imageUrl = `${domain}/author.webp`;
   title="Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery"
   description="Chcesz awansować na Seniora w rok? Zdobądź kluczowe umiejętności i wiedzę z doświadczonym Front-end Tech Leadem, Adrianem Połubińskim. Oferuję mentoring IT, przygotowanie do rozmów technicznych, spersonalizowane plany rozwoju oraz darmowe materiały edukacyjne z Frontend, Backend, DevOps, AI i innych obszarów. Rozwijaj się świadomie i osiągnij swoje cele w IT."
 >
-  <LayoutNavigation client:load />
+  <LayoutNavigation />
   <main>
     <HeroSection />
     <CategoriesSection />

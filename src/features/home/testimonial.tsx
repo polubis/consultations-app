@@ -1,5 +1,3 @@
-import type { FC } from "react";
-
 type TestimonialProps = {
   content: string;
   avatar: {
@@ -7,18 +5,20 @@ type TestimonialProps = {
     title: string;
     alt: string;
   };
+  className?: string;
   name: string;
   position: string;
 };
 
-const Testimonial: FC<TestimonialProps> = ({
+const Testimonial = ({
   content,
   avatar,
   name,
   position,
-}) => {
+  className,
+}: TestimonialProps) => {
   return (
-    <figure className="max-w-md w-full">
+    <figure className={className}>
       <blockquote>
         <svg
           width="21"

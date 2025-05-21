@@ -1,3 +1,0 @@
-const websiteMeta = {};
-
-export { websiteMeta };
