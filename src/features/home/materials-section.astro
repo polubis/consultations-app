@@ -5,49 +5,54 @@ type Material = {
   id: string;
   title: string;
   description: string;
-  price: number;
+  price: string;
   url: string;
 };
 
 const MATERIALS_MOCK: Material[] = [
   {
-    id: "senior-developer",
-    title: "Senior Developer Starter Pack",
-    description:
-      "Code review tools, and problem-solving essentials to help you excel.",
-    price: 200,
-    url: "/materials/senior-developer",
+    id: "react-hooks-spellbook",
+    title: "React hooks spellbook",
+    description: "Kurs skupiający się na tworzeniu Reactowych hooków.",
+    price: "FREE",
+    url: "https://greenonsoftware.com/courses/react-hooks-spellbook/",
   },
   {
-    id: "better-code",
-    title: "Better code pack",
+    id: "react-testing-spellbook",
+    title: "React testing spellbook",
     description:
-      "Code review tools, and problem-solving essentials to help you excel.",
-    price: 50,
-    url: "/materials/better-code",
+      "Kurs o tym jak testować Reactowe aplikacje (unit/integration/e2e).",
+    price: "FREE",
+    url: "https://greenonsoftware.com/courses/react-testing-spellbook/",
   },
   {
-    id: "cloud",
-    title: "Cloud",
-    description: "Essential tools for scalable development.",
-    price: 120,
-    url: "/materials/cloud",
+    id: "modern-gatsby5-ecosystem-project-setup",
+    title: "Modern Gatsby5 ecosystem project setup",
+    description: "100% guide na temat tworzenia idealnego projektu w Gatsby5.",
+    price: "FREE",
+    url: "https://greenonsoftware.com/courses/modern-gatsby5-ecosystem-project-setup/",
   },
   {
-    id: "faster-coding-1",
-    title: "Faster coding",
-    description:
-      "Automation scripts and best practices to accelerate development.",
-    price: 80,
-    url: "/materials/faster-coding-1",
+    id: "education-zone",
+    title: "Education zone",
+    description: "Zestaw kilkudziesięciu artykułów z różnych obszarów IT.",
+    price: "FREE",
+    url: appConfig.materialsSection.link,
   },
   {
-    id: "faster-coding-2",
-    title: "Faster coding",
+    id: "blog-pack",
+    title: "Blog pack",
+    description: "Zestaw kilkudziesięciu artykułów o programowaniu.",
+    price: "FREE",
+    url: "https://greenonsoftware.com/articles/",
+  },
+  {
+    id: "up2date",
+    title: "Up 2 date",
     description:
-      "Code review tools, and problem-solving essentials to help you excel.",
-    price: 299,
-    url: "/materials/faster-coding-2",
+      "Mój profil na LinkedIn z codzienną dawką skondensowanej wiedzy.",
+    price: "FREE",
+    url: appConfig.contactSection.linkedInLink,
   },
 ];
 ---
@@ -82,6 +87,8 @@ const MATERIALS_MOCK: Material[] = [
         <a
           href={material.url}
           class="p-6 flex flex-col h-full rounded-xl bg-background relative"
+          target="_blank"
+          rel="noopener noreferrer"
           aria-describedby={`description-${material.id}`}
         >
           <div
@@ -107,9 +114,8 @@ const MATERIALS_MOCK: Material[] = [
             <footer class="mt-auto pt-6">
               <p
                 class="text-h5 font-550"
-                aria-label={`Cena: ${material.price} złotych`}
               >
-                {material.price} zł
+                {material.price}
               </p>
             </footer>
           </article>

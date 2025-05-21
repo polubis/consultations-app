@@ -151,7 +151,7 @@ const formatDate = (dateString: string): string => {
       class="max-w-[354px] w-full flex flex-col mbl:flex-row items-center mbl:gap-12 gap-6"
     >
       <img
-        src="/author.png"
+        src="/author.webp"
         alt="Adrian - IT Mentor"
         height="283"
         width="283"
@@ -283,7 +283,11 @@ const formatDate = (dateString: string): string => {
     </div>
   </section>
 
-  <div aria-hidden="true" class="fluid max-w-6xl mx-auto flex flex-wrap gap-4">
+  <section
+    aria-labelledby="achievements-title"
+    class="fluid max-w-6xl mx-auto flex flex-wrap gap-4"
+  >
+    <h2 id="achievements-title" class="sr-only">Osiągnięcia</h2>
     <span
       class="block before:animate-fade-in-out before:delay-[2s] w-fit before:opacity-0 text-regular-bold font-500 px-4 py-2 rounded-xl relative border border-[#212923] bg-black/2 before:absolute before:top-[-1px] before:mx-auto before:left-0 before:right-0 before:w-6 before:h-[1px] before:bg-gradient-to-r before:from-[#373838] before:via-[#0CC776] before:to-[#383838]"
     >
@@ -319,7 +323,7 @@ const formatDate = (dateString: string): string => {
     >
       ~ 300 pasjonatów na Discord
     </span>
-  </div>
+  </section>
 
   <section
     class="flex flex-col justify-center mt-20"
