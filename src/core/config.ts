@@ -16,24 +16,24 @@ const appConfig = {
     id: "plans-section",
     plans: {
       seniorInYear: {
-        cost: "2460",
+        cost: "4920",
         currency: "PLN",
-        label: "SENIOR W ROK",
+        label: "Senior w rok",
       },
       mockedTechInterview: {
         cost: "369",
         currency: "PLN",
-        label: "MOCKED TECHNICAL INTERVIEW",
+        label: "Mocked Technical Interview",
       },
       quickCall: {
         cost: "123",
         currency: "PLN",
-        label: "KONSULTACJA 1H",
+        label: "Konsultacja 1h",
       },
       custom: {
         cost: "Do ustalenia",
         currency: "PLN",
-        label: "WŁASNY PLAN",
+        label: "Własny plan",
       },
     },
   },

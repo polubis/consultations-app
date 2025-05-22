@@ -51,8 +51,12 @@ import GlassGraphic from "./glass.astro";
           <li>
             <a
               class="text-regular font-400 hover:text-white transition-colors duration-300 ease-in-out"
-              href={`#${appConfig.contactSection.id}`}>Kontakt</a
+              href={appConfig.contactSection.linkedInLink}
+              target="_blank"
+              rel="noopener noreferrer"
             >
+              Kontakt
+            </a>
           </li>
           <li>
             <a
