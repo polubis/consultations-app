@@ -12,7 +12,7 @@ import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
-const domain = Astro.site!.toString();
+const domain = Astro.site!.toString().replace(/\/$/, "");
 const imageUrl = `${domain}/adrian-512.webp`;
 ---
 
