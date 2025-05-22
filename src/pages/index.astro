@@ -1,5 +1,4 @@
 ---
-export const prerender = false;
 import MainLayout from "@/layouts/main.astro";
 import LayoutNavigation from "@/components/layout/layout-navigation.astro";
 import HeroSection from "@/features/home/hero-section.astro";
@@ -15,12 +14,6 @@ import Footer from "@/features/home/footer.astro";
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString();
 const imageUrl = `${domain}/author.webp`;
-
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, max-age=14400, s-maxage=14400, must-revalidate",
-);
-Astro.response.headers.set("CDN-Cache-Control", "public, max-age=14400");
 ---
 
 <MainLayout
@@ -35,7 +28,6 @@ Astro.response.headers.set("CDN-Cache-Control", "public, max-age=14400");
   title="Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery"
   description="Chcesz awansować na Seniora w rok? Zdobądź kluczowe umiejętności i wiedzę z doświadczonym Front-end Tech Leadem, Adrianem Połubińskim. Oferuję mentoring IT, przygotowanie do rozmów technicznych, spersonalizowane plany rozwoju oraz darmowe materiały edukacyjne z Frontend, Backend, DevOps, AI i innych obszarów. Rozwijaj się świadomie i osiągnij swoje cele w IT."
 >
-  <span>Test: {new Date().toISOString()}</span>
   <LayoutNavigation />
   <main>
     <HeroSection />
