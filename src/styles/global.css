@@ -25,18 +25,6 @@
   }
 }
 
-@keyframes infinite-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(calc(-1920px / 4));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 /* Check for more info "ui-spec.md" file */
 :root {
   /* Colors */
@@ -146,6 +134,7 @@
   --breakpoint-ltp: 1024px;
   --breakpoint-tbt: 768px;
   --breakpoint-mbl: 640px;
+  --breakpoint-sbl: 480px;
 
   /* Typography - Font Weights */
   --font-weight-500: var(--font-weight-500);
@@ -182,11 +171,5 @@
 
   .radial-flare {
     @apply absolute bg-[#00ff9144] rounded-full blur-3xl;
-  }
-
-  .infinite-scroll-x {
-    @apply translate-z-0 backface-hidden will-change-transform;
-    animation: infinite-scroll 30s linear infinite;
-    -webkit-font-smoothing: antialiased;
   }
 }

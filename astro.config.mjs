@@ -9,7 +9,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   adapter: cloudflare(),
-  site: "https://consultations-app-production.pages.dev",
+  site: "https://polubinski.dev",
   devToolbar: {
     enabled: false,
   },

@@ -1,109 +1,6 @@
 ---
 import { appConfig } from "@/core/config";
-
-const ratingCategories = ["ugly", "bad", "decent", "good", "perfect"] as const;
-
-type RatingCategory = (typeof ratingCategories)[number];
-
-type Publication = {
-  cdate: string;
-  name: string;
-  url: string;
-  id: string;
-  rating: Record<RatingCategory, number>;
-};
-
-const publicationsMock: Publication[] = [
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74-492584bdec6b",
-  },
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74d2-435b-ab584bdec6b",
-  },
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74d2-435b-ab2584bdec6b",
-  },
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74d2-4358-492584bdec6b",
-  },
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74d2-435ba8-492584bdec6b",
-  },
-  {
-    cdate: "2025-04-01T12:52:32.109Z",
-    name: "Full Tutorial on Updating Dependencies in JS Projects",
-    url: "https://4markdown.com/full-tutorial-on-updating-dependencies-in-js-projects/",
-    rating: {
-      ugly: 0,
-      bad: 0,
-      decent: 1,
-      good: 1,
-      perfect: 1,
-    },
-    id: "81054519-74d2-435b-aba8-492584b",
-  },
-];
-
-const currentYear = new Date().getFullYear();
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("pl-PL", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-};
+import { ArticlesSection } from "./articles-section";
 ---
 
 <div class="full-section" id={appConfig.aboutSection.id}>
@@ -111,52 +8,50 @@ const formatDate = (dateString: string): string => {
     class="fluid max-w-6xl mb-10 gap-6 flex items-center justify-between flex-col ltp:flex-row"
     aria-labelledby="about-title"
   >
-    <div class="max-w-[484px] w-full">
+    <div class="max-w-[512px] w-full">
       <h2 class="text-h2 font-500" id="about-title">Działam w IT od 10 lat</h2>
       <p class="text-regular font-300 pt-8 pb-2">
-        Mam na imię Adrian, jestem pasjonatem programowania i uwielbiam dzielić
-        się swoją wiedzą z innymi. Robię to od wielu lat. Aktualnie pracuje jako <strong
-          class="font-500">Front-end Tech Lead</strong
-        >. Po więcej o mojej karierze odsyłam na mój profil <a
+        Cześć, jestem Adrian. Programuję i chętnie dzielę się wiedzą. Pracuję
+        jako <strong class="font-500">Front-end Tech Lead</strong>. Więcej o
+        mojej karierze znajdziesz na moim profilu <a
           href={appConfig.contactSection.linkedInLink}
           target="_blank"
           class="underline"
           rel="noopener noreferrer">LinkedIn</a
-        > gdzie regularnie publikuję posty dotyczące programowania i zdobyłem pokaźną
-        sumę 4 milionów wyświetleń (w rok) oraz 20k obserwujących.
+        >, gdzie regularnie piszę o programowaniu. Moje posty osiągnęły 4
+        miliony wyświetleń w rok i mam 20k obserwujących.
       </p>
       <p class="text-regular font-300 pb-2">
-        Chcę wykorzystać zdobyte doświadczenie, aby wesprzeć innych w rozwijaniu
-        swoich umiejętności i osiąganiu kolejnych etapów w karierze. Wierzę w
-        świadome planowanie rozwoju oraz w to, że ukierunkowane działania są
-        kluczem do sukcesu w świecie IT.
+        Swoim doświadczeniem wspieram innych w rozwoju umiejętności i kariery w
+        IT. Uważam, że świadome planowanie i działanie to klucz do sukcesu.
       </p>
       <p class="text-regular font-300">
-        W wolnej chwili pracuję nad <a
+        W wolnym czasie rozwijam <a
           href="https://greenonsoftware.com"
           target="_blank"
           class="underline"
           rel="noopener noreferrer">greenonsoftware.com</a
-        >, stroną, na której dzielę się swoją wiedzą z innymi, oraz rozwijam CMS
-        oparty na plikach Markdown – <a
+        >, gdzie dzielę się wiedzą, oraz <a
           href="https://4markdown.com"
           target="_blank"
           class="underline"
           rel="noopener noreferrer">4markdown.com</a
-        >, który jest hubem do tworzenia notatek i roadmap, wykorzystującym AI.
+        > – CMS oparty na plikach Markdown z AI, służący do tworzenia notatek i roadmap.
       </p>
     </div>
 
     <div
       class="max-w-[354px] w-full flex flex-col mbl:flex-row items-center mbl:gap-12 gap-6"
     >
-      <img
-        src="/author.webp"
-        alt="Adrian - IT Mentor"
-        height="283"
-        width="283"
-        loading="lazy"
-      />
+      <div class="size-[284px]">
+        <img
+          src="/adrian-284.webp"
+          alt="Adrian - IT Mentor"
+          height="284"
+          width="284"
+          loading="lazy"
+        />
+      </div>
       <ul
         class="flex mbl:flex-col gap-4"
         aria-label="Linki do mediów społecznościowych"
@@ -325,65 +220,5 @@ const formatDate = (dateString: string): string => {
     </span>
   </section>
 
-  <section
-    class="flex flex-col justify-center mt-20"
-    aria-labelledby="activity-title"
-  >
-    <header class="fluid flex items-center justify-between w-full mb-6">
-      <h2 id="activity-title" class="text-h5 font-500">Twórczość</h2>
-      <span class="text-h5 font-500 text-foreground-secondary" aria-hidden="true">
-        /{currentYear}
-      </span>
-    </header>
-    <div class="relative" aria-label="Lista publikacji">
-      <div
-        class="absolute bg-[rgba(21,214,131,0.10)] blur-3xl size-[60%] aspect-square inset-0 m-auto rounded-full -z-1"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="absolute top-0 right-0 h-full w-20 mbl:w-40 bg-gradient-to-r from-transparent to-background z-1"
-        aria-hidden="true"
-      >
-      </div>
-      <div class="overflow-hidden">
-        <ol
-          class="infinite-scroll-x flex items-center gap-4 [&>li:first-child]:ml-4 [&>li:last-child]:mr-4 py-2"
-          aria-label="Lista publikacji do przeczytania"
-          aria-roledescription="carousel"
-        >
-          {
-            publicationsMock.map((publication: Publication) => (
-              <li
-                class="p-[1px] rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
-                aria-roledescription="slide"
-              >
-                <a
-                  href={publication.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="rounded-xl"
-                  aria-label={`Przeczytaj publikację: ${publication.name}`}
-                >
-                  <article class="flex flex-col rounded-xl p-4 mbl:p-6 bg-[#060807] w-[280px] mbl:w-[387px] ">
-                    <header class="flex flex-col gap-2">
-                      <time
-                        class="text-small text-foreground-secondary"
-                        datetime={publication.cdate}
-                      >
-                        {formatDate(publication.cdate)}
-                      </time>
-                      <h3 class="text-h5 font-500 text-[#D7D8D9] line-clamp-2">
-                        {publication.name}
-                      </h3>
-                    </header>
-                  </article>
-                </a>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </div>
-  </section>
+  <ArticlesSection client:load />
 </div>

@@ -71,12 +71,13 @@ import GlassGraphic from "./glass.astro";
   class="relative fluid full-section flex flex-col items-center gap-12 ltp:flex-row"
   aria-labelledby="hero-title"
 >
-  <div
-    class="milky-way absolute inset-0 size-full overflow-hidden rounded-full"
-    aria-hidden="true"
-  >
-  </div>
   <div class="shrink-0">
+    <div
+      id="hero-milky-way"
+      class="absolute inset-0 size-full overflow-hidden rounded-full"
+      aria-hidden="true"
+    >
+    </div>
     <h1 id="hero-title" class="text-h1 font-500">
       Chcesz awansować <br /> na seniora w rok?
       <span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true"
@@ -145,31 +146,7 @@ import GlassGraphic from "./glass.astro";
 </section>
 
 <script>
-  const milkyWayContainer = document.querySelector(
-    ".milky-way"
-  ) as HTMLElement | null;
-  const numberOfStars = 150;
+  import { createMilkyWay } from "./milky-way";
 
-  if (milkyWayContainer) {
-    const containerWidth = milkyWayContainer.offsetWidth;
-    const containerHeight = milkyWayContainer.offsetHeight;
-
-    if (containerWidth > 0 && containerHeight > 0) {
-      for (let i = 0; i < numberOfStars; i++) {
-        const star = document.createElement("div");
-        const size = Math.random() * 1.5 + 0.5;
-
-        star.style.position = "absolute";
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-
-        star.style.backgroundColor = `rgba(64, 223, 132, 1)`;
-        star.style.borderRadius = "50%";
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-
-        milkyWayContainer.appendChild(star);
-      }
-    }
-  }
+  createMilkyWay("#hero-milky-way");
 </script>
