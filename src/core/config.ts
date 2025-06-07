@@ -18,7 +18,7 @@ const appConfig = {
       seniorInYear: {
         cost: "4920",
         currency: "PLN",
-        label: "Senior w rok",
+        label: "Kurs Senior w rok",
       },
       mockedTechInterview: {
         cost: "369",

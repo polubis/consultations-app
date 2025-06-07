@@ -10,6 +10,7 @@ import { MeetingSection } from "@/features/home/meeting-section";
 import { FaqSection } from "@/features/home/faq-section";
 import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
+import { appConfig } from "@/core/config";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString().replace(/\/$/, "");
@@ -28,6 +29,24 @@ const imageUrl = `${domain}/adrian-512.webp`;
   title="Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery"
   description="Chcesz awansować na Seniora w rok? Zdobądź kluczowe umiejętności i wiedzę z doświadczonym Front-end Tech Leadem, Adrianem Połubińskim. Oferuję mentoring IT, przygotowanie do rozmów technicznych, spersonalizowane plany rozwoju oraz darmowe materiały edukacyjne z Frontend, Backend, DevOps, AI i innych obszarów. Rozwijaj się świadomie i osiągnij swoje cele w IT."
 >
+  <div
+    class="bg-gradient-to-r relative from-[#111311] via-[#08140f] to-[#010F09]"
+    role="banner"
+    aria-label="Informacja o kursie senior w rok"
+  >
+    <p class="fluid text-center py-3 text-regular font-300">
+      Chcesz awansować na <strong class="font-500">Seniora</strong> w rok? <br
+        class="md:hidden"
+      />
+      <a
+        href={`#${appConfig.plansSection.id}`}
+        class="underline"
+        aria-label="Przejdź do sekcji z programem kursu senior w rok"
+      >
+        Sprawdź program kursu
+      </a>
+    </p>
+  </div>
   <LayoutNavigation />
   <main>
     <HeroSection />
