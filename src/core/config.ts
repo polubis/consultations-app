@@ -1,6 +1,6 @@
 const routing = {
   home: "/",
-  seniorInYear: "/plany/kurs-senior-web-developer-w-rok/",
+  seniorInYear: "/kurs-senior-w-rok/",
 } as const;
 
 const appConfig = {
