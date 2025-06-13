@@ -1,0 +1,27 @@
+---
+import MainLayout from "@/layouts/main.astro";
+import LayoutNavigation from "@/components/layout/layout-navigation.astro";
+import Footer from "@/features/home/footer.astro";
+import { routing } from "@/core/config";
+
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+const domain = Astro.site!.toString().replace(/\/$/, "");
+const imageUrl = `${domain}/adrian-512.webp`;
+---
+
+<MainLayout
+  siteName="Senior Web Developer w Rok – Mentoring IT"
+  url={routing.seniorInYear}
+  twitterCreator="@polubis"
+  twitterSite="@polubis"
+  imageUrl={imageUrl}
+  imageAlt="Adrian Połubiński – Front-end Tech Lead i Mentor IT"
+  domain={domain}
+  title="Zostań Senior Web Developerem w Rok | Kompleksowy Kurs z Adrianem Połubińskim"
+  description="Zrealizuj plan awansu na Senior Web Developera w 12 miesięcy. Skorzystaj z mentoringu IT z Adrianem Połubińskim – Front-end Tech Leadem z wieloletnim doświadczeniem. Pracuj na planie rozwoju, rozwijaj umiejętności techniczne (Frontend, Backend, DevOps, AI) i przygotuj się do rozmów rekrutacyjnych."
+  keywords="senior web developer, jak zostać seniorem, awans IT, mentoring IT, senior w rok, frontend mentor, adrian połubiński"
+>
+  <LayoutNavigation />
+  <main></main>
+  <Footer />
+</MainLayout>

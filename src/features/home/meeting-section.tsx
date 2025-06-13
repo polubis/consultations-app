@@ -1,19 +1,56 @@
-import { appConfig } from "@/core/config";
+import { appConfig, routing } from "@/core/config";
 // import { Testimonial } from "./testimonial";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+
+type PlanType = keyof typeof appConfig.plansSection.plans | "default";
+
+const paths: Record<
+  PlanType,
+  { href: string; label: string; target?: "_blank" }
+> = {
+  seniorInYear: {
+    href: routing.seniorInYear,
+    label: "Szczegóły kursu",
+  },
+  mockedTechInterview: {
+    href: appConfig.contactSection.calendarLink,
+    target: "_blank",
+    label: "Umów spotkanie",
+  },
+  quickCall: {
+    href: appConfig.contactSection.calendarLink,
+    target: "_blank",
+    label: "Umów spotkanie",
+  },
+  custom: {
+    href: appConfig.contactSection.linkedInLink,
+    target: "_blank",
+    label: "Dogadajmy się",
+  },
+  default: {
+    href: appConfig.contactSection.linkedInLink,
+    target: "_blank",
+    label: "Dowiedz się więcej",
+  },
+};
+
+const defaultSelectedPlan: PlanType = "default";
 
 const MeetingSection = () => {
+  const [selectedPlan, setSelectedPlan] =
+    useState<PlanType>(defaultSelectedPlan);
+
   return (
     // gap-12
     <section
-      className="fluid full-section flex justify-between max-w-xl dsp:max-w-6xl gap-6 dsp:gap-12 flex-col dsp:flex-row dsp:items-center"
+      className="fluid page-section flex justify-between max-w-xl dsp:max-w-6xl gap-6 dsp:gap-12 flex-col dsp:flex-row dsp:items-center"
       aria-labelledby="meeting-title"
       aria-describedby="meeting-description"
       id={appConfig.contactSection.id}
@@ -58,21 +95,23 @@ const MeetingSection = () => {
           <strong className="font-500">kalendarza Google</strong>, gdzie możesz
           wybrać datę i czas spotkania.
         </p>
-        <Select defaultValue="default">
-          <SelectTrigger aria-label="Pokaż plany" className="w-[280px] mt-8">
+        <Select
+          value={selectedPlan}
+          onValueChange={(value) => setSelectedPlan(value as PlanType)}
+        >
+          <SelectTrigger
+            aria-label="Pokaż plany"
+            className="max-w-[320px] mt-8"
+          >
             <SelectValue placeholder="Wybierz plan" />
           </SelectTrigger>
           <SelectContent>
-            <SelectGroup>
-              <SelectItem key="default" value="default">
-                Wybierz plan
+            <SelectItem value={defaultSelectedPlan}>Wybierz plan</SelectItem>
+            {Object.entries(appConfig.plansSection.plans).map(([key, plan]) => (
+              <SelectItem key={key} value={key}>
+                {plan.label}
               </SelectItem>
-              {Object.values(appConfig.plansSection.plans).map((plan) => (
-                <SelectItem key={plan.label} value={plan.label}>
-                  {plan.label}
-                </SelectItem>
-              ))}
-            </SelectGroup>
+            ))}
           </SelectContent>
         </Select>
         <p className="text-regular mt-3 font-300 text-foreground-secondary">
@@ -81,13 +120,13 @@ const MeetingSection = () => {
         </p>
         <a
           className="primary-button px-6 py-2.5 mt-8 w-fit block"
-          href={appConfig.contactSection.calendarLink}
-          target="_blank"
+          href={paths[selectedPlan].href}
+          target={paths[selectedPlan].target}
           rel="noopener noreferrer"
           aria-label="Zarezerwuj spotkanie"
           title="Zarezerwuj spotkanie"
         >
-          Zarezerwuj spotkanie
+          {paths[selectedPlan].label}
         </a>
       </section>
     </section>

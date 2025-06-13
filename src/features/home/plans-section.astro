@@ -1,10 +1,10 @@
 ---
 import PlanTile from "./plan-tile.astro";
-import { appConfig } from "@/core/config";
+import { appConfig, routing } from "@/core/config";
 ---
 
 <section
-  class="fluid full-section flex flex-col text-center justify-center items-center"
+  class="fluid page-section flex flex-col text-center justify-center items-center"
   aria-labelledby="plans-title"
   id={appConfig.plansSection.id}
 >
@@ -18,6 +18,7 @@ import { appConfig } from "@/core/config";
         label: "Umów spotkanie",
         href: appConfig.contactSection.calendarLink,
         title: "Umów spotkanie konsultacyjne w ramach Szybkiej Pomocy",
+        target: "_blank",
       }}
       price={{
         id: "quick-help-price",
@@ -113,6 +114,7 @@ import { appConfig } from "@/core/config";
         label: "Umów spotkanie",
         href: appConfig.contactSection.calendarLink,
         title: "Umów spotkanie Mocked Technical Interview",
+        target: "_blank",
       }}
       price={{
         id: "mocked-technical-interview-price",
@@ -212,7 +214,7 @@ import { appConfig } from "@/core/config";
     <PlanTile
       button={{
         label: "Szczegóły kursu",
-        href: appConfig.contactSection.calendarLink,
+        href: routing.seniorInYear,
         title: "Dowiedz się więcej o kursie Senior w rok",
       }}
       price={{
@@ -241,7 +243,7 @@ import { appConfig } from "@/core/config";
           "Nielimitowany kontakt przez cały rok na Discord",
           "Miesiąc na wycofanie się (jeżeli kurs nie spełnia Twoich oczekiwań)",
           "Certyfikat ukończenia kursu",
-          "Możliwość rozłożenia na raty"
+          "Możliwość rozłożenia na raty",
         ],
       }}
     >
@@ -312,6 +314,7 @@ import { appConfig } from "@/core/config";
         label: "Dogadajmy się",
         href: appConfig.contactSection.linkedInLink,
         title: "Stwórz własny plan",
+        target: "_blank",
       }}
       price={{
         id: "own-plan-price",
@@ -334,12 +337,15 @@ import { appConfig } from "@/core/config";
           "Na początek poznajmy się",
           "Określimy reguły gry, cenę oraz czas",
           "Wybierzemy stack, projekt oraz stworzymy odpowiedni program pod Ciebie",
-          "Osiągniemy dowolny cel"
+          "Osiągniemy dowolny cel",
         ],
       }}
     >
       <Fragment slot="flare">
-        <div class="radial-flare size-40 top-0 left-0 right-0 m-auto bottom-0" aria-hidden="true">
+        <div
+          class="radial-flare size-40 top-0 left-0 right-0 m-auto bottom-0"
+          aria-hidden="true"
+        >
         </div>
       </Fragment>
       <Fragment slot="icon">

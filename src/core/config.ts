@@ -1,19 +1,24 @@
+const routing = {
+  home: "/",
+  seniorInYear: "/plany/kurs-senior-web-developer-w-rok/",
+} as const;
+
 const appConfig = {
   aboutSection: {
-    id: "about-section",
+    id: "omnie",
   },
   opinionsSection: {
-    id: "opinions-section",
+    id: "opinie",
   },
   faqSection: {
-    id: "faq-section",
+    id: "faq",
   },
   materialsSection: {
-    id: "materials-section",
+    id: "materiały",
     link: "https://4markdown.com/education-zone/",
   },
   plansSection: {
-    id: "plans-section",
+    id: "plany",
     plans: {
       seniorInYear: {
         cost: "4920",
@@ -38,14 +43,14 @@ const appConfig = {
     },
   },
   specializationsSection: {
-    id: "specializations-section",
+    id: "specjalizacje",
   },
   contactSection: {
-    id: "contact-section",
+    id: "kontakt",
     calendarLink: "https://calendar.app.google/unoaL2rV1MhKvVvZ8",
     linkedInLink:
       "https://www.linkedin.com/in/adrian-po%C5%82ubi%C5%84ski-281ab2172/",
   },
 } as const;
 
-export { appConfig };
+export { appConfig, routing };

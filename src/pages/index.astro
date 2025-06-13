@@ -10,7 +10,7 @@ import { MeetingSection } from "@/features/home/meeting-section";
 import { FaqSection } from "@/features/home/faq-section";
 import MaterialsSection from "@/features/home/materials-section.astro";
 import Footer from "@/features/home/footer.astro";
-import { appConfig } from "@/core/config";
+import { routing } from "@/core/config";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString().replace(/\/$/, "");
@@ -19,15 +19,15 @@ const imageUrl = `${domain}/adrian-512.webp`;
 
 <MainLayout
   siteName="Konsultacje i mentoring IT - Adrian Połubiński"
-  url="/"
+  url={routing.home}
   twitterCreator="@polubis"
   imageAlt="Adrian Połubiński"
   twitterSite="@polubis"
   domain={domain}
   imageUrl={imageUrl}
   keywords="zostań juniorem, zostań midem, zostań seniorem, jak zostać seniorem, jak zostać midem, jak zostać juniorem, mentoring IT, awans na seniora, rozwój kariery IT, programowanie, konsultacje IT, wywiad techniczny, przygotowanie do rozmowy, Adrian Połubiński, nauka programowania, roadmapa rozwoju, Frontend, Backend, Fullstack, DevOps, AI, Soft Skills, Bazy danych, Algorytmy i struktury danych, greenonsoftware, 4markdown, IT Mentor Polska"
-  title="Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery"
-  description="Chcesz awansować na Seniora w rok? Zdobądź kluczowe umiejętności i wiedzę z doświadczonym Front-end Tech Leadem, Adrianem Połubińskim. Oferuję mentoring IT, przygotowanie do rozmów technicznych, spersonalizowane plany rozwoju oraz darmowe materiały edukacyjne z Frontend, Backend, DevOps, AI i innych obszarów. Rozwijaj się świadomie i osiągnij swoje cele w IT."
+  title="Mentoring IT - Konsultacje i Rozwój Kariery | Adrian Połubiński"
+  description="Mentoring IT – rozwijaj karierę programisty, przygotuj się do rozmów rekrutacyjnych i ucz się świadomie => uzyskaj awans"
 >
   <div
     class="bg-gradient-to-r relative from-[#111311] via-[#08140f] to-[#010F09]"
@@ -39,7 +39,7 @@ const imageUrl = `${domain}/adrian-512.webp`;
         class="md:hidden"
       />
       <a
-        href={`#${appConfig.plansSection.id}`}
+        href={routing.seniorInYear}
         class="underline"
         aria-label="Przejdź do sekcji z programem kursu senior w rok"
       >
@@ -57,6 +57,6 @@ const imageUrl = `${domain}/adrian-512.webp`;
     <!-- <TestimonialsSection client:visible /> -->
     <MaterialsSection />
     <FaqSection client:visible />
-    <Footer />
   </main>
+  <Footer />
 </MainLayout>

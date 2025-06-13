@@ -133,7 +133,7 @@ const testimonialsMock: TestimonialProps[] = [
 const TestimonialsSection = () => {
   return (
     <section
-      className="full-section flex justify-center flex-col"
+      className="page-section flex justify-center flex-col"
       aria-labelledby="testimonials-title"
       id={appConfig.opinionsSection.id}
     >

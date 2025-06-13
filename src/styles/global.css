@@ -161,8 +161,8 @@
     @apply max-w-fluid mx-auto px-4 mbl:px-6 tbt:px-10;
   }
 
-  .full-section {
-    @apply min-h-[calc(100vh-64px)] mbl:min-h-[calc(100vh-72px)] tbt:min-h-[calc(100vh-80px)] py-10 tbt:py-20;
+  .page-section {
+    @apply py-10 tbt:py-20;
   }
 
   .primary-button {
