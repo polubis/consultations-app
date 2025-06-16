@@ -23,7 +23,7 @@ const appConfig = {
       seniorInYear: {
         cost: "4920",
         currency: "PLN",
-        label: "Kurs Senior w rok",
+        label: "Kurs Senior w Rok",
       },
       mockedTechInterview: {
         cost: "369",
@@ -38,7 +38,7 @@ const appConfig = {
       custom: {
         cost: "Do ustalenia",
         currency: "PLN",
-        label: "Własny plan",
+        label: "Własny Plan",
       },
     },
   },

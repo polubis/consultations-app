@@ -2,12 +2,21 @@
 import MainLayout from "@/layouts/main.astro";
 import LayoutNavigation from "@/components/layout/layout-navigation.astro";
 import Footer from "@/features/home/footer.astro";
-import { routing } from "@/core/config";
+import { routing, appConfig } from "@/core/config";
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString().replace(/\/$/, "");
 const imageUrl = `${domain}/adrian-512.webp`;
 ---
+
+<style>
+  .eclipse-overlap-circle {
+    background: linear-gradient(135deg, #000000 70%, #0a1a12 85%, #0b2817 100%);
+    box-shadow:
+      0 0 20px rgba(0, 0, 0, 0.8),
+      inset 0 0 60px 10px rgba(11, 40, 23, 0.15);
+  }
+</style>
 
 <MainLayout
   siteName="Kurs Senior w Rok - Przyśpieszony Rozwój Kariery w IT | Adrian Połubiński"
@@ -18,10 +27,86 @@ const imageUrl = `${domain}/adrian-512.webp`;
   imageAlt="Adrian Połubiński – Front-end Tech Lead i Mentor IT"
   domain={domain}
   title="Kurs Senior w Rok - Przyśpieszony Rozwój Kariery w IT | Adrian Połubiński"
-  description="Zrealizuj plan awansu na Senior Web Developera w 12 miesięcy. Skorzystaj z mentoringu IT z Adrianem Połubińskim – Front-end Tech Leadem z wieloletnim doświadczeniem. Pracuj na planie rozwoju, rozwijaj umiejętności techniczne (Frontend, Backend, DevOps, AI) i przygotuj się do rozmów rekrutacyjnych."
-  keywords="senior web developer, jak zostać seniorem, awans IT, mentoring IT, senior w rok, frontend mentor, adrian połubiński"
+  description="Zostań Senior Web Developerem w 12 miesięcy. Nasz program to holistyczny rozwój, który łączy zaawansowane umiejętności techniczne z kompetencjami miękkimi. Zyskaj pewność siebie i kompleksową wiedzę pod okiem doświadczonego mentora."
+  keywords="senior web developer, jak zostać seniorem, awans IT, mentoring IT, senior w rok, full-stack, umiejętności miękkie, kompetencje liderskie, adrian połubiński"
 >
   <LayoutNavigation />
-  <main></main>
-  <Footer />
+  <main>
+    <section
+      class="relative fluid page-section grid grid-rows-[auto_auto] items-center gap-12 ltp:gap-24 ltp:grid-cols-2 ltp:grid-rows-1"
+      aria-labelledby="hero-title"
+    >
+      <div class="max-w-2xl">
+        <h1 id="hero-title" class="text-h1 w-full font-500 text-shadow-2xs">
+          {appConfig.plansSection.plans.seniorInYear.label}
+        </h1>
+        <p class="text-regular mt-6 font-300">
+          Osiągnij poziom Seniora w 12 miesięcy dzięki programowi, który
+          holistycznie rozwija Twoje umiejętności techniczne i miękkie. Nauczysz
+          się myśleć jak ekspert, podejmować strategiczne decyzje i pewnie
+          poruszać się w świecie nowoczesnych technologii.
+        </p>
+        <p class="text-regular mt-2 font-300">
+          Wykorzystaj sprawdzony, <strong class="font-500"
+            >autorski program 4x12</strong
+          >, aby stać się kompletnym i cenionym specjalistą.
+        </p>
+        <p class="text-regular mt-2 font-300">
+          Zapisz się na listę oczekujących, by jako pierwsza osoba dowiedzieć
+          się o starcie. To do niczego nie zobowiązuje!
+        </p>
+        <a
+          class="relative flex items-center pl-13.5 pr-6.5 w-fit h-11 group my-7"
+          href={`#${appConfig.plansSection.id}`}
+          aria-label="Zapisz się na listę oczekujących na kurs Senior w Rok"
+        >
+          <div
+            class="absolute left-0 top-0 bottom-0 my-auto bg-primary-500 size-11 rounded-full border border-primary-400 transition-all shadow-[0_0_16px_2px_rgba(1,120,70,0.6)] group-hover:w-full group-hover:shadow-[0_0_16px_2px_rgba(1,120,70,0.9)]"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="absolute transition-transform flex justify-center items-center left-0 top-0 bottom-0 my-auto size-11 text-[#091610] text-regular-bold font-500 group-hover:translate-x-3.5"
+            aria-hidden="true"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </div>
+          <span
+            class="text-regular-bold font-500 drop-shadow-[0_0_11.9px_rgba(0,131,74,0.9)] transition-colors group-hover:text-[#091610]"
+          >
+            Dołącz do oczekujących
+          </span>
+        </a>
+        <p class="text-small font-300 text-foreground-secondary">
+          Kurs jest obecnie w zamkniętej fazie beta. Razem z pierwszą grupą
+          dopracowujemy program, by mieć pewność, że zdobędziesz nie tylko
+          wiedzę techniczną, ale i cenne umiejętności liderskie. Dołącz do
+          listy, aby otrzymać informacje na bieżąco. <strong class="font-500"
+            >Planujemy wystartować na początku 2026 roku.</strong
+          >
+        </p>
+      </div>
+      <div class="relative aspect-square" aria-hidden="true">
+        <div class="radial-flare inset-0 size-[80%] m-auto"></div>
+        <div
+          class="eclipse-overlap-circle absolute rounded-full size-[80%] ltp:size-full inset-0 m-auto"
+        >
+        </div>
+      </div>
+    </section>
+  </main>
 </MainLayout>
