@@ -4,6 +4,7 @@ type PlanTileProps = {
     label: string;
     href: string;
     title: string;
+    target?: "_blank";
   };
   price: {
     label: string;
@@ -46,7 +47,10 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
       <h3 id={heading.title.id} class="text-h4 font-500 mt-2 mb-2 uppercase">
         {heading.title.label}
       </h3>
-      <p id={heading.description.id} class="text-small font-400 text-foreground-secondary">
+      <p
+        id={heading.description.id}
+        class="text-small font-400 text-foreground-secondary"
+      >
         {heading.description.label}
       </p>
     </header>
@@ -74,7 +78,7 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
           href={button.href}
           class="primary-button block text-center px-6 py-2.5"
           title={button.title}
-          target="_blank"
+          target={button.target}
           rel="noopener noreferrer"
         >
           {button.label}

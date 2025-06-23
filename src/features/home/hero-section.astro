@@ -36,7 +36,7 @@ import GlassGraphic from "./glass.astro";
 
   @keyframes eclipse {
     0% {
-      transform: translate(-120px, 120px);
+      transform: translate(-100px, 100px);
     }
     100% {
       transform: translate(0px, 0px);
@@ -68,18 +68,18 @@ import GlassGraphic from "./glass.astro";
 </style>
 
 <section
-  class="relative fluid full-section grid items-center gap-12 grid-rows-[auto_auto] justify-center ltp:grid-cols-2 ltp:grid-rows-1"
+  class="relative fluid page-section grid items-center gap-12 grid-rows-[auto_auto] justify-center ltp:grid-cols-2 ltp:grid-rows-1"
   aria-labelledby="hero-title"
 >
   <div>
     <div
       id="hero-milky-way"
-      class="absolute inset-0 size-full overflow-hidden rounded-full"
+      class="absolute inset-0 size-full overflow-hidden rounded-full -z-1"
       aria-hidden="true"
     >
     </div>
-    <h1 id="hero-title" class="text-h1 font-500">
-      Chcesz awansować <br /> na Seniora w rok?
+    <h1 id="hero-title" class="text-h1 font-500 max-w-lg mbl:max-w-xl tbt:max-w-2xl">
+      Zagubiony w świecie IT? Naprawmy to!
       <span class="bg-primary-500 h-1.5 w-7 inline-block" aria-hidden="true"
       ></span>
     </h1>
@@ -141,7 +141,7 @@ import GlassGraphic from "./glass.astro";
     </a>
   </div>
 
-  <div class="relative aspect-square" aria-hidden="true">
+  <div class="relative aspect-square mx-4" aria-hidden="true">
     <div
       class="nova-boom absolute opacity-0 inset-0 m-auto size-full rounded-full"
     >
@@ -150,8 +150,8 @@ import GlassGraphic from "./glass.astro";
       class="nova-pulse absolute opacity-0 inset-0 m-auto size-full rounded-full"
     >
     </div>
-    <PlanetGraphic class="absolute inset-0 m-auto size-[60%] move-eclipse" />
-    <GlassGraphic class="absolute inset-0 m-auto size-[80%]" />
+    <PlanetGraphic class="absolute inset-0 m-auto size-[70%] move-eclipse" />
+    <GlassGraphic class="absolute inset-0 m-auto size-[90%]" />
   </div>
 </section>
 

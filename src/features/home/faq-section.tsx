@@ -9,7 +9,7 @@ import { appConfig } from "@/core/config";
 const FaqSection = () => {
   return (
     <section
-      className="fluid full-section flex justify-between max-w-xl dsp:max-w-6xl gap-12 flex-col dsp:flex-row dsp:items-center"
+      className="fluid page-section flex justify-between max-w-xl dsp:max-w-6xl gap-12 flex-col dsp:flex-row dsp:items-center"
       aria-labelledby="faq-title"
       id={appConfig.faqSection.id}
       aria-describedby="faq-description"

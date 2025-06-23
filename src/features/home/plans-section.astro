@@ -1,10 +1,10 @@
 ---
 import PlanTile from "./plan-tile.astro";
-import { appConfig } from "@/core/config";
+import { appConfig, routing } from "@/core/config";
 ---
 
 <section
-  class="fluid full-section flex flex-col text-center justify-center items-center"
+  class="fluid page-section flex flex-col text-center justify-center items-center"
   aria-labelledby="plans-title"
   id={appConfig.plansSection.id}
 >
@@ -18,6 +18,7 @@ import { appConfig } from "@/core/config";
         label: "Umów spotkanie",
         href: appConfig.contactSection.calendarLink,
         title: "Umów spotkanie konsultacyjne w ramach Szybkiej Pomocy",
+        target: "_blank",
       }}
       price={{
         id: "quick-help-price",
@@ -113,6 +114,7 @@ import { appConfig } from "@/core/config";
         label: "Umów spotkanie",
         href: appConfig.contactSection.calendarLink,
         title: "Umów spotkanie Mocked Technical Interview",
+        target: "_blank",
       }}
       price={{
         id: "mocked-technical-interview-price",
@@ -211,9 +213,10 @@ import { appConfig } from "@/core/config";
 
     <PlanTile
       button={{
-        label: "Szczegóły kursu",
+        label: "Umów spotkanie",
         href: appConfig.contactSection.calendarLink,
-        title: "Dowiedz się więcej o kursie Senior w rok",
+        target: "_blank",
+        title: "Dowiedz się więcej o planie Senior w rok",
       }}
       price={{
         id: "senior-price",
@@ -226,22 +229,22 @@ import { appConfig } from "@/core/config";
           id: "senior-title",
         },
         description: {
-          label: "Kurs Senior w rok to 12 miesięcy nauki i rozwoju",
+          label: "Senior w rok to 12 miesięcy nauki i rozwoju",
           id: "senior-description",
         },
       }}
       benefits={{
-        title: `Korzyści kursu ${appConfig.plansSection.plans.seniorInYear.label}`,
+        title: `Korzyści planu ${appConfig.plansSection.plans.seniorInYear.label}`,
         items: [
-          "Startujemy 05.01.2026!",
-          "Zapisz się na listę oczekujących",
-          "Otrzymuj informacje na bieżąco wraz z pre-materiałami",
-          "Kurs na cały rok z dopieszczoną zawartością",
-          "Jeden grupowy event tygodniowo (live-coding, lekcje, ...etc)",
-          "Nielimitowany kontakt przez cały rok na Discord",
-          "Miesiąc na wycofanie się (jeżeli kurs nie spełnia Twoich oczekiwań)",
-          "Certyfikat ukończenia kursu",
-          "Możliwość rozłożenia na raty"
+          "Na początek Mocked Technical Interview (2h) w cenie",
+          "Określamy Twój poziom, stack oraz kierunek rozwoju",
+          "Spersonalizowany plan nauki na cały rok z materiałami edukacyjnymi i roadmapą",
+          "Jedno godzinne spotkanie tygodniowo",
+          "Nielimitowany kontakt przez cały rok",
+          "Miesiąc na wycofanie się (jeżeli spotkania nie spełniają Twoich oczekiwań)",
+          "Certyfikat ukończenia mentoringu",
+          "Możliwość rozłożenia na raty",
+          "Podejście holistyczne z prowadzeniem za rączkę",
         ],
       }}
     >
@@ -312,6 +315,7 @@ import { appConfig } from "@/core/config";
         label: "Dogadajmy się",
         href: appConfig.contactSection.linkedInLink,
         title: "Stwórz własny plan",
+        target: "_blank",
       }}
       price={{
         id: "own-plan-price",
@@ -334,12 +338,15 @@ import { appConfig } from "@/core/config";
           "Na początek poznajmy się",
           "Określimy reguły gry, cenę oraz czas",
           "Wybierzemy stack, projekt oraz stworzymy odpowiedni program pod Ciebie",
-          "Osiągniemy dowolny cel"
+          "Osiągniemy dowolny cel",
         ],
       }}
     >
       <Fragment slot="flare">
-        <div class="radial-flare size-40 top-0 left-0 right-0 m-auto bottom-0" aria-hidden="true">
+        <div
+          class="radial-flare size-40 top-0 left-0 right-0 m-auto bottom-0"
+          aria-hidden="true"
+        >
         </div>
       </Fragment>
       <Fragment slot="icon">

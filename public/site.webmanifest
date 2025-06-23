@@ -1,7 +1,7 @@
 {
   "name": "polubinski.dev",
   "short_name": "polubinski.dev",
-  "description": "Mentoring IT: Awansuj na Seniora w Rok | Adrian Połubiński - Konsultacje i Rozwój Kariery",
+  "description": "Mentoring IT - Mentoring/Konsultacje i Rozwój Kariery | Adrian Połubiński",
   "start_url": "/",
   "lang": "pl-PL",
   "icons": [
@@ -18,7 +18,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#d4fff5",
-  "background_color": "#fcfcfc",
+  "theme_color": "#0bad67",
+  "background_color": "#000100",
   "display": "standalone"
 }

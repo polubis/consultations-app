@@ -1,3 +1,7 @@
+const routing = {
+  home: "/",
+} as const;
+
 const appConfig = {
   aboutSection: {
     id: "about-section",
@@ -18,7 +22,7 @@ const appConfig = {
       seniorInYear: {
         cost: "4920",
         currency: "PLN",
-        label: "Kurs Senior w rok",
+        label: "Senior w Rok",
       },
       mockedTechInterview: {
         cost: "369",
@@ -33,7 +37,7 @@ const appConfig = {
       custom: {
         cost: "Do ustalenia",
         currency: "PLN",
-        label: "Własny plan",
+        label: "Własny Plan",
       },
     },
   },
@@ -48,4 +52,4 @@ const appConfig = {
   },
 } as const;
 
-export { appConfig };
+export { appConfig, routing };
