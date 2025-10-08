@@ -2,60 +2,70 @@ import type { SVGProps } from "react";
 
 export const ConstellationLines = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <svg viewBox="0 0 400 300" aria-label="Constellation Lines" {...props}>
+    <svg
+      width="500"
+      height="400"
+      viewBox="0 0 500 400"
+      aria-label="Constellation Lines"
+      {...props}
+    >
       <title>Constellation Lines</title>
       <line
-        x1="40"
-        y1="260"
-        x2="120"
-        y2="160"
+        x1="75"
+        y1="345"
+        x2="135"
+        y2="240"
         stroke="#00ff88"
-        strokeWidth="1"
+        strokeWidth="2"
       />
       <line
-        x1="120"
-        y1="160"
-        x2="190"
-        y2="150"
+        x1="135"
+        y1="240"
+        x2="230"
+        y2="235"
         stroke="#00ff88"
-        strokeWidth="1"
+        strokeWidth="2"
       />
       <line
-        x1="190"
-        y1="150"
-        x2="250"
-        y2="120"
+        x1="230"
+        y1="235"
+        x2="315"
+        y2="210"
         stroke="#00ff88"
-        strokeWidth="1"
+        strokeWidth="2"
       />
       <line
-        x1="250"
-        y1="120"
-        x2="320"
-        y2="70"
+        x1="315"
+        y1="210"
+        x2="385"
+        y2="135"
         stroke="#00ff88"
-        strokeWidth="1"
+        strokeWidth="2"
       />
       <line
-        x1="320"
-        y1="70"
-        x2="370"
-        y2="40"
+        x1="385"
+        y1="135"
+        x2="465"
+        y2="95"
         stroke="#00ff88"
-        strokeWidth="1"
+        strokeWidth="2"
       />
-      <circle cx="40" cy="260" r="6" fill="#00ff88" />
-      <circle cx="120" cy="160" r="5" fill="#00ff88" />
-      <circle cx="190" cy="150" r="5" fill="#00ff88" />
-      <circle cx="250" cy="120" r="5" fill="#00ff88" />
-      <circle cx="320" cy="70" r="5" fill="#00ff88" />
-      <circle cx="370" cy="40" r="6" fill="#00ff88" />
-      <circle cx="40" cy="260" r="6" fill="#00ff88" opacity="0.3" />
-      <circle cx="120" cy="160" r="5" fill="#00ff88" opacity="0.3" />
-      <circle cx="190" cy="150" r="5" fill="#00ff88" opacity="0.3" />
-      <circle cx="250" cy="120" r="5" fill="#00ff88" opacity="0.3" />
-      <circle cx="320" cy="70" r="5" fill="#00ff88" opacity="0.3" />
-      <circle cx="370" cy="40" r="6" fill="#00ff88" opacity="0.3" />
+
+      {/* Circles at each node - smaller sizes to match image */}
+      <circle cx="75" cy="345" r="5" fill="#00ff88" />
+      <circle cx="135" cy="240" r="4" fill="#00ff88" />
+      <circle cx="230" cy="235" r="4" fill="#00ff88" />
+      <circle cx="315" cy="210" r="4" fill="#00ff88" />
+      <circle cx="385" cy="135" r="4" fill="#00ff88" />
+      <circle cx="465" cy="95" r="5" fill="#00ff88" />
+
+      {/* Subtle glow effect for circles */}
+      <circle cx="75" cy="345" r="8" fill="#00ff88" opacity="0.2" />
+      <circle cx="135" cy="240" r="7" fill="#00ff88" opacity="0.2" />
+      <circle cx="230" cy="235" r="7" fill="#00ff88" opacity="0.2" />
+      <circle cx="315" cy="210" r="7" fill="#00ff88" opacity="0.2" />
+      <circle cx="385" cy="135" r="7" fill="#00ff88" opacity="0.2" />
+      <circle cx="465" cy="95" r="8" fill="#00ff88" opacity="0.2" />
     </svg>
   );
 };
