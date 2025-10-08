@@ -1,6 +1,6 @@
 const routing = {
   home: "/",
-  courses: (slug: string) => `/courses/${slug}/`,
+  mentoring: (slug: string) => `/mentoring/${slug}/`,
 } as const;
 
 const appConfig = {

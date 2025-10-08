@@ -16,18 +16,18 @@ import Breadcrumbs from "@/components/layout/breadcrumbs.astro";
 import HeroSection from "@/features/mentoring/hero-section.astro";
 
 export async function getStaticPaths() {
-  const courses = ["senior-w-js"];
+  const mentoring = ["senior-w-js"];
 
-  return courses.map((courseSlug) => {
+  return mentoring.map((mentoringlug) => {
     return {
-      params: { slug: courseSlug },
+      params: { slug: mentoringlug },
     };
   });
 }
 
 const { slug } = Astro.params;
 
-const filePath = path.join(process.cwd(), "public", "courses", `${slug}.md`);
+const filePath = path.join(process.cwd(), "public", "mentoring", `${slug}.md`);
 const markdownContent = await fs.readFile(filePath, "utf-8");
 
 const breadcrumbItems = [
@@ -42,7 +42,7 @@ const imageUrl = `${domain}/adrian-512.webp`;
 
 <MainLayout
 siteName="Mentoring IT - Konsultacje i Rozwój Kariery | Adrian Połubiński"
-url={routing.courses(slug) as `/${string}/`}
+url={routing.mentoring(slug) as `/${string}/`}
 twitterCreator="@polubis"
 imageAlt="Adrian Połubiński"
 twitterSite="@polubis"

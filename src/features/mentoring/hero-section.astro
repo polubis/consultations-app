@@ -1,29 +1,62 @@
 ---
 import { appConfig } from "@/core/config";
+import { ConstellationLines } from "./constellation-lines";
 ---
 
-<section class="fluid page-section"
-aria-labelledby="hero-title"
->
-<div>
+<section class="fluid page-section pb-80 tbt:pb-20" aria-labelledby="hero-title">
+  <div class="relative">
     <div
-    id="hero-milky-way"
-    class="absolute inset-0 size-full overflow-hidden rounded-full -z-1"
-    aria-hidden="true"
-  >
-  </div>
-    <h1 id="hero-title" class="text-h1 font-500 max-w-md mbl:max-w-xl tbt:max-w-2xl">
-        Senior Developer w rok
-    
+      id="hero-milky-way"
+      class="absolute inset-0 -z-1 size-full transition-transform translate-y-[80%] tbt:translate-y-0"
+      aria-hidden="true"
+    >
+      <ConstellationLines
+        client:visible
+        className="absolute -bottom-1/4 left-1/2 w-full max-w-lg -translate-x-1/2"
+      />
+    </div>
+    <h1 id="hero-title" class="text-h1 font-500 mbl:max-w-xl tbt:max-w-2xl max-w-md">
+      Senior Developer w rok
     </h1>
-    <p class="text-regular mt-6 font-300 sbl:max-w-xl">
-        Spersonalizowany, 12-miesięczny  program mentoringowy, dzięki któremu osiągniesz poziom seniora, pracując nad realnymi projektami.
+    <p class="text-regular sbl:max-w-xl mt-6 font-300">
+      Spersonalizowany, 12-miesięczny program mentoringowy, dzięki któremu
+      osiągniesz poziom seniora, pracując nad realnymi projektami.
     </p>
+    <div class="mt-4 flex items-center">
+      <div class="flex items-center gap-1">
+        <p class="text-primary-500 font-500 text-regular">9.4/10</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-primary-500"
+          aria-label="Gwiazdka oceny"
+        >
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          >
+          </polygon>
+        </svg>
+      </div>
+      <p class="ml-3 text-regular-bold font-500">(100 opinii)</p>
+    </div>
     <a
-      class="primary-button inline-block mt-7 text-center px-6 py-2.5"
+      class="primary-button inline-block px-6 py-2.5 mt-7 text-center"
       href={`#${appConfig.contactSection.id}`}
     >
       Umów spotkanie
     </a>
   </div>
 </section>
+
+<script>
+  import { createMilkyWay } from "../home/milky-way";
+
+  createMilkyWay("#hero-milky-way");
+</script>
