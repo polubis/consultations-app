@@ -1,0 +1,38 @@
+---
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+
+type TBreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+interface Props {
+  items: TBreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<Breadcrumb client:load>
+  <BreadcrumbList>
+    {items.map((item, index) => (
+      <>
+        <BreadcrumbItem className="text-[#676767] font-[450]">
+          {item.href ? (
+            <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+          ) : (
+            <BreadcrumbPage>{item.label}</BreadcrumbPage>
+          )}
+        </BreadcrumbItem>
+        {index < items.length - 1 && <BreadcrumbSeparator className="text-[#676767] font-[450]" />}
+      </>
+    ))}
+  </BreadcrumbList>
+</Breadcrumb>

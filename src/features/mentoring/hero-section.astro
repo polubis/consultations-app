@@ -1,0 +1,29 @@
+---
+import { appConfig } from "@/core/config";
+---
+
+<section class="fluid page-section"
+aria-labelledby="hero-title"
+>
+<div>
+    <div
+    id="hero-milky-way"
+    class="absolute inset-0 size-full overflow-hidden rounded-full -z-1"
+    aria-hidden="true"
+  >
+  </div>
+    <h1 id="hero-title" class="text-h1 font-500 max-w-md mbl:max-w-xl tbt:max-w-2xl">
+        Senior Developer w rok
+    
+    </h1>
+    <p class="text-regular mt-6 font-300 sbl:max-w-xl">
+        Spersonalizowany, 12-miesięczny  program mentoringowy, dzięki któremu osiągniesz poziom seniora, pracując nad realnymi projektami.
+    </p>
+    <a
+      class="primary-button inline-block mt-7 text-center px-6 py-2.5"
+      href={`#${appConfig.contactSection.id}`}
+    >
+      Umów spotkanie
+    </a>
+  </div>
+</section>

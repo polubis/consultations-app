@@ -2,7 +2,18 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import MainLayout from "@/layouts/main.astro";
-import { routing } from "@/core/config";
+import { appConfig, routing } from "@/core/config";
+import LayoutNavigation from "@/components/layout/layout-navigation.astro";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+import Breadcrumbs from "@/components/layout/breadcrumbs.astro";
+import HeroSection from "@/features/mentoring/hero-section.astro";
 
 export async function getStaticPaths() {
   const courses = ["senior-w-js"];
@@ -18,6 +29,11 @@ const { slug } = Astro.params;
 
 const filePath = path.join(process.cwd(), "public", "courses", `${slug}.md`);
 const markdownContent = await fs.readFile(filePath, "utf-8");
+
+const breadcrumbItems = [
+  { label: "Home", href: routing.home },
+  { label: "Mentoring", href: "/" },
+];
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString().replace(/\/$/, "");
@@ -36,8 +52,30 @@ keywords="zostań juniorem, zostań midem, zostań seniorem, jak zostać seniore
 title="Mentoring IT - Konsultacje i Rozwój Kariery | Adrian Połubiński"
 description="Mentoring IT – rozwijaj karierę programisty, przygotuj się do rozmów rekrutacyjnych i ucz się świadomie => uzyskaj awans"
 >
-    <main class="fluid page-section">
-      <h1 class="text-h1 mb-8">Zawartość pliku: {slug}.md</h1>
-      <pre class="bg-white/5 p-4 rounded-md whitespace-pre-wrap">{markdownContent}</pre>
-    </main>
+<div
+class="bg-gradient-to-r relative from-[#111311] via-[#08140f] to-[#010F09]"
+role="banner"
+aria-label="Informacja o kursie senior w rok"
+>
+<p class="fluid text-center py-3 text-regular font-300">
+  Chcesz awansować na <strong class="font-500">Seniora</strong> w rok? <br
+    class="md:hidden"
+  />
+  <a
+    href={`#${appConfig.plansSection.id}`}
+    class="underline"
+    aria-label="Przejdź do sekcji z programem senior w rok"
+  >
+    Sprawdź program
+  </a>
+</p>
+</div>
+<LayoutNavigation />
+<div class="fluid pt-[32px]">
+  <Breadcrumbs items={breadcrumbItems} />
+</div>
+<main>
+<HeroSection />
+</main>
+
   </MainLayout>
