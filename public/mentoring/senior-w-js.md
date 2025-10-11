@@ -87,11 +87,11 @@ gallery:
     alt: "Programowanie w praktyce 5"
 ---
 
-# Do seniora w 12 miesięcy
+## Do seniora w 12 miesięcy
 
 Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
 
-## Programu kursu
+### Programu kursu
 
 Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
 
