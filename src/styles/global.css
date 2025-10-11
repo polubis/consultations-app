@@ -25,6 +25,24 @@
   }
 }
 
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
 /* Check for more info "ui-spec.md" file */
 :root {
   /* Colors */
@@ -144,6 +162,8 @@
   /* Animation */
   --animate-jump-top-bottom: jump-top-bottom 0.4s ease-in-out forwards;
   --animate-fade-in-out: fade-in-out 4s ease-in-out infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
 @layer base {

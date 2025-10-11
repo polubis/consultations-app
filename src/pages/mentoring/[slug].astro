@@ -13,7 +13,8 @@ import {
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import Breadcrumbs from "@/components/layout/breadcrumbs.astro";
-import HeroSection from "@/features/mentoring/hero-section.astro";
+import MentorHeroSection from "@/features/mentoring/mentor-hero-section.astro";
+import MentorWhySection from "@/features/mentoring/mentor-why-section.astro";
 
 export async function getStaticPaths() {
   const mentoring = ["senior-w-js"];
@@ -75,7 +76,8 @@ aria-label="Informacja o kursie senior w rok"
   <Breadcrumbs items={breadcrumbItems} />
 </div>
 <main>
-<HeroSection />
+<MentorHeroSection />
+<MentorWhySection />
 </main>
 
   </MainLayout>
