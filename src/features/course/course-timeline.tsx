@@ -4,6 +4,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 type TimelineMonth = {
   month: number;
@@ -40,31 +41,30 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
   const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
 
   return (
-    <div className="mb-[48px] tbt:mb-[64px] w-full max-w-full overflow-x-hidden">
+    <div className="mb-[48px] tbt:mb-[64px]">
       <Carousel
+        aria-label="Opinie uczestników konsultacji"
         opts={{
-          align: "start",
-          loop: false,
-          slidesToScroll: 1,
-          containScroll: "trimSnaps",
+          loop: true,
         }}
-        className="w-full"
+        // plugins={[
+        //   AutoScroll({
+        //     playOnInit: true,
+        //     speed: 0.5,
+        //   }),
+        // ]}
       >
-        <CarouselContent className="-ml-4">
+        <CarouselContent className="">
           {timelineData.map((month) => {
             const isHovered = hoveredMonth === month.month;
 
             return (
-              <CarouselItem
-                key={month.month}
-                className="pl-4 basis-1/7 min-w-[120px] shrink"
-              >
+              <CarouselItem key={month.month} className="basis-1/7 -ml-10">
                 <div
                   className="flex flex-col items-start"
                   onMouseEnter={() => setHoveredMonth(month.month)}
                   onMouseLeave={() => setHoveredMonth(null)}
                 >
-                  {/* Roman numeral */}
                   <span
                     className={`text-small font-450 transition-colors duration-300 mb-[16px] ${
                       isHovered
@@ -75,7 +75,6 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                     {month.roman}
                   </span>
 
-                  {/* Ticks for this month - 1 long + 11 short */}
                   <div className="flex items-start gap-[10px] mb-[24px]">
                     {Array.from({ length: 12 }).map((_, index) => {
                       const isFirstTick = index === 0;
@@ -94,7 +93,6 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                     })}
                   </div>
 
-                  {/* Icon */}
                   <div
                     className={`transition-all duration-300 ${
                       isHovered ? "scale-110" : ""
