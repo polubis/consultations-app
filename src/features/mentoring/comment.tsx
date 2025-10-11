@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Avatar,
   AvatarImage,
@@ -11,6 +10,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../../components/ui/accordion";
+import type { ReactionType } from "./use-comments";
 
 type CommentProps = {
   id: string;
@@ -30,6 +30,10 @@ type CommentProps = {
   replies?: CommentProps[];
   onComment?: (commentId: string, content: string) => void;
   isReply?: boolean;
+  showInput?: boolean;
+  onToggleInput?: () => void;
+  onToggleReaction?: (commentId: string, reactionType: ReactionType) => void;
+  isReactionActive?: (commentId: string, reactionType: ReactionType) => boolean;
 };
 
 function Comment({
@@ -41,13 +45,12 @@ function Comment({
   replies,
   onComment,
   isReply = false,
+  showInput = false,
+  onToggleInput,
+  onToggleReaction,
+  isReactionActive,
 }: CommentProps) {
-  const [showInput, setShowInput] = useState(false);
   const hasReplies = replies && replies.length > 0;
-
-  const handleCommentClick = () => {
-    setShowInput(!showInput);
-  };
 
   return (
     <div className={isReply ? "mt-4" : "mt-8"}>
@@ -102,6 +105,7 @@ function Comment({
           {reactions.fire && reactions.fire > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "fire")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.fire} reakcji ogień`}
             >
@@ -109,7 +113,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "fire") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -128,6 +132,7 @@ function Comment({
           {reactions.heart && reactions.heart > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "heart")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.heart} polubień`}
             >
@@ -135,7 +140,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "heart") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -154,6 +159,7 @@ function Comment({
           {reactions.lightbulb && reactions.lightbulb > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "lightbulb")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.lightbulb} reakcji żarówka`}
             >
@@ -161,7 +167,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "lightbulb") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -182,6 +188,7 @@ function Comment({
           {reactions.thumbsUp && reactions.thumbsUp > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "thumbsUp")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.thumbsUp} kciuków w górę`}
             >
@@ -189,7 +196,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "thumbsUp") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -219,7 +226,7 @@ function Comment({
           {/* Comment Button */}
           <button
             type="button"
-            onClick={handleCommentClick}
+            onClick={onToggleInput}
             className="text-foreground hover:text-white transition-colors text-regular font-400"
             aria-label="Dodaj komentarz"
           >
@@ -232,6 +239,7 @@ function Comment({
           {reactions.fire && reactions.fire > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "fire")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.fire} reakcji ogień`}
             >
@@ -239,7 +247,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "fire") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -258,6 +266,7 @@ function Comment({
           {reactions.heart && reactions.heart > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "heart")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.heart} polubień`}
             >
@@ -265,7 +274,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "heart") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -284,6 +293,7 @@ function Comment({
           {reactions.lightbulb && reactions.lightbulb > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "lightbulb")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.lightbulb} reakcji żarówka`}
             >
@@ -291,7 +301,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "lightbulb") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -312,6 +322,7 @@ function Comment({
           {reactions.thumbsUp && reactions.thumbsUp > 0 && (
             <button
               type="button"
+              onClick={() => onToggleReaction?.(id, "thumbsUp")}
               className="flex items-center gap-1.5 text-foreground hover:text-white transition-colors"
               aria-label={`${reactions.thumbsUp} kciuków w górę`}
             >
@@ -319,7 +330,7 @@ function Comment({
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                fill="none"
+                fill={isReactionActive?.(id, "thumbsUp") ? "white" : "none"}
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
@@ -359,7 +370,6 @@ function Comment({
                 const value = formData.get("comment") as string;
                 if (value.trim() && onComment) {
                   onComment(id, value);
-                  setShowInput(false);
                   e.currentTarget.reset();
                 }
               }}
@@ -406,6 +416,10 @@ function Comment({
             {...replies[0]}
             onComment={onComment}
             isReply={true}
+            showInput={false}
+            onToggleInput={onToggleInput}
+            onToggleReaction={onToggleReaction}
+            isReactionActive={isReactionActive}
           />
         </div>
       )}
@@ -425,6 +439,10 @@ function Comment({
                     {...reply}
                     onComment={onComment}
                     isReply={true}
+                    showInput={false}
+                    onToggleInput={onToggleInput}
+                    onToggleReaction={onToggleReaction}
+                    isReactionActive={isReactionActive}
                   />
                 ))}
               </div>

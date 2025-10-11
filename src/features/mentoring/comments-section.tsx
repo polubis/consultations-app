@@ -1,120 +1,94 @@
-import { Comment, type CommentProps } from "@/features/mentoring/comment";
+import { Comment } from "@/features/mentoring/comment";
+import { useComments } from "@/features/mentoring/use-comments";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 
-type CommentsSectionProps = {
-  comments?: CommentProps[];
-  onComment?: (commentId: string, content: string) => void;
-};
+function CommentsSection() {
+  const {
+    comments,
+    toggleInput,
+    isInputOpen,
+    addComment,
+    addNewComment,
+    toggleReaction,
+    isReactionActive,
+  } = useComments();
 
-// Mock data
-const mockComments: CommentProps[] = [
-  {
-    id: "1",
-    rating: "9/10",
-    content:
-      "Mentoring przerósł moje oczekiwania! Zaczynałem od zera, a teraz pracuję jako junior frontend developer. Mentor w przystępny sposób tłumaczył nawet najtrudniejsze zagadnienia, a do tego miał ogromną cierpliwość. Dzięki jego wsparciu nie tylko nauczyłam się programować, ale też uwierzyłam w siebie!",
-    author: {
-      name: "Anna",
-      avatar: "/adrian-284.webp",
-      fallback: "A",
-    },
-    reactions: {
-      fire: 2,
-      heart: 19,
-      lightbulb: 4,
-      thumbsUp: 4,
-    },
-    replies: [
-      {
-        id: "1-1",
-        content: "Zgadzam się!",
-        author: {
-          name: "Tomek",
-          avatar: "/adrian-284.webp",
-          fallback: "T",
-        },
-        reactions: {
-          fire: 2,
-          heart: 19,
-          lightbulb: 4,
-          thumbsUp: 4,
-        },
-      },
-      {
-        id: "1-2",
-        content: "Bardzo pomocna opinia, dziękuję za podzielenie się!",
-        author: {
-          name: "Kasia",
-          avatar: "/adrian-284.webp",
-          fallback: "K",
-        },
-        reactions: {
-          fire: 1,
-          heart: 5,
-          lightbulb: 2,
-          thumbsUp: 3,
-        },
-      },
-      {
-        id: "1-3",
-        content: "Też rozważam rozpoczęcie mentoringu po przeczytaniu tego!",
-        author: {
-          name: "Michał",
-          avatar: "/adrian-284.webp",
-          fallback: "M",
-        },
-        reactions: {
-          heart: 8,
-          thumbsUp: 6,
-        },
-      },
-    ],
-  },
-  {
-    id: "2",
-    rating: "10/10",
-    content:
-      "Najlepsza inwestycja w moją karierę! Po 3 miesiącach mentoringu dostałem awans na mid-level developera. Mentor nie tylko uczył technologii, ale także pokazał jak myśleć jak senior developer i podchodzić do problemów strategicznie.",
-    author: {
-      name: "Paweł",
-      avatar: "/adrian-284.webp",
-      fallback: "P",
-    },
-    reactions: {
-      fire: 5,
-      heart: 24,
-      lightbulb: 8,
-      thumbsUp: 12,
-    },
-    replies: [
-      {
-        id: "2-1",
-        content: "Gratuluję awansu! Motywujesz mnie do działania!",
-        author: {
-          name: "Ola",
-          avatar: "/adrian-284.webp",
-          fallback: "O",
-        },
-        reactions: {
-          heart: 6,
-          thumbsUp: 4,
-        },
-      },
-    ],
-  },
-];
+  const handleNewComment = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const value = formData.get("new-comment") as string;
+    if (value.trim()) {
+      addNewComment(value);
+      e.currentTarget.reset();
+    }
+  };
 
-function CommentsSection({
-  comments = mockComments,
-  onComment,
-}: CommentsSectionProps) {
   return (
     <div>
-      {comments.map((comment) => (
-        <Comment key={comment.id} {...comment} onComment={onComment} />
+      {comments.map((comment, index) => (
+        <div key={comment.id}>
+          <Comment
+            {...comment}
+            onComment={addComment}
+            showInput={isInputOpen(comment.id)}
+            onToggleInput={() => toggleInput(comment.id)}
+            onToggleReaction={toggleReaction}
+            isReactionActive={isReactionActive}
+          />
+          {index < comments.length - 1 && (
+            <div className="py-[32px]">
+              <div className="w-full h-[1px] bg-[#1A1A1A]" aria-hidden="true" />
+            </div>
+          )}
+        </div>
       ))}
+
+      {/* Separator przed inputem */}
+      <div className="py-[32px]">
+        <div className="w-full h-[1px] bg-[#1A1A1A]" aria-hidden="true" />
+      </div>
+
+      {/* Input do dodawania nowej opinii */}
+      <div className="flex items-center gap-3">
+        <Avatar className="shrink-0">
+          <AvatarImage src="/adrian-284.webp" alt="Twój avatar" />
+          <AvatarFallback>U</AvatarFallback>
+        </Avatar>
+        <form onSubmit={handleNewComment} className="flex-1 relative">
+          <Input
+            type="text"
+            name="new-comment"
+            placeholder="Dodaj komentarz..."
+            className="bg-[rgba(255,255,255,0.02)] border-[rgba(255,255,255,0.02)] text-foreground placeholder:text-foreground-secondary"
+            aria-label="Dodaj nową opinię"
+          />
+          <button
+            type="submit"
+            className="absolute right-[24px] top-1/2 -translate-y-1/2"
+            aria-label="Wyślij opinię"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M18.3337 1.66797L9.16699 10.8346M18.3337 1.66797L12.5003 18.3346L9.16699 10.8346M18.3337 1.66797L1.66699 7.5013L9.16699 10.8346"
+                stroke="#0BAD67"
+                strokeWidth="1.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
 
 export { CommentsSection };
-export type { CommentsSectionProps };
