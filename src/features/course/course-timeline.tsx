@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 type TimelineMonth = {
   month: number;
@@ -10,77 +15,102 @@ type CourseTimelineProps = {
   timelineData: TimelineMonth[];
 };
 
-function CourseTimeline({ timelineData }: CourseTimelineProps) {
-  const [activeMonth, setActiveMonth] = useState(1);
+const ChatIcon = () => (
+  <svg
+    width="20"
+    height="21"
+    viewBox="0 0 20 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title>Ikona miesięcy</title>
+    <g opacity="0.2">
+      <path
+        d="M17.5 10.3822C17.5029 11.4821 17.2459 12.5671 16.75 13.5489C16.162 14.7253 15.2581 15.7148 14.1395 16.4066C13.021 17.0983 11.7319 17.465 10.4167 17.4655C9.31678 17.4684 8.23176 17.2114 7.25 16.7155L2.5 18.2989L4.08333 13.5489C3.58744 12.5671 3.33047 11.4821 3.33333 10.3822C3.33384 9.06698 3.70051 7.77789 4.39227 6.65931C5.08402 5.54073 6.07355 4.63682 7.25 4.04885C8.23176 3.55296 9.31678 3.29598 10.4167 3.29885H10.8333C12.5703 3.39468 14.2109 4.12782 15.441 5.3579C16.671 6.58798 17.4042 8.22856 17.5 9.96552V10.3822Z"
+        stroke="currentColor"
+        strokeWidth="1.66667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </g>
+  </svg>
+);
 
-  const activeMonthData = timelineData.find((m) => m.month === activeMonth);
+function CourseTimeline({ timelineData }: CourseTimelineProps) {
+  const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
 
   return (
-    <div className="mb-[48px] tbt:mb-[64px] dsp:hidden">
-      <div className="mb-[32px]">
-        {/* Timeline ruler */}
-        <div className="relative">
-          {/* Blue progress line */}
-          <div
-            className="absolute top-0 left-0 h-[2px] bg-primary-500 transition-all duration-300"
-            style={{ width: `${(activeMonth / timelineData.length) * 100}%` }}
-          />
+    <div className="mb-[48px] tbt:mb-[64px] w-full max-w-full overflow-x-hidden">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: false,
+          slidesToScroll: 1,
+          containScroll: "trimSnaps",
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-4">
+          {timelineData.map((month) => {
+            const isHovered = hoveredMonth === month.month;
 
-          {/* Gray background line */}
-          <div className="h-[2px] bg-[rgba(255,255,255,0.1)] mb-[24px]" />
-
-          {/* Month markers */}
-          <div className="relative flex justify-between items-center px-[8px]">
-            {timelineData.map((month) => (
-              <button
+            return (
+              <CarouselItem
                 key={month.month}
-                type="button"
-                onClick={() => setActiveMonth(month.month)}
-                className={`flex flex-col items-center gap-[8px] transition-colors ${
-                  activeMonth === month.month
-                    ? "text-primary-500"
-                    : "text-foreground-secondary"
-                }`}
-                aria-label={`Miesiąc ${month.roman}`}
+                className="pl-4 basis-1/7 min-w-[120px] shrink"
               >
-                {/* Tick mark */}
-                <div className="w-px h-[12px] bg-current" />
-
-                {/* Roman numeral */}
-                <span className="text-small font-450">{month.roman}</span>
-
-                {/* Circle indicator */}
                 <div
-                  className={`w-[8px] h-[8px] rounded-full border-2 transition-all ${
-                    activeMonth === month.month
-                      ? "border-primary-500 bg-primary-500"
-                      : "border-current bg-transparent"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+                  className="flex flex-col items-start"
+                  onMouseEnter={() => setHoveredMonth(month.month)}
+                  onMouseLeave={() => setHoveredMonth(null)}
+                >
+                  {/* Roman numeral */}
+                  <span
+                    className={`text-small font-450 transition-colors duration-300 mb-[16px] ${
+                      isHovered
+                        ? "text-primary-500"
+                        : "text-foreground-secondary"
+                    }`}
+                  >
+                    {month.roman}
+                  </span>
 
-      {/* Active month content */}
-      {activeMonthData && (
-        <div className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[12px] p-[24px]">
-          <h3 className="text-h4 font-500 text-foreground mb-[16px]">
-            Miesiąc {activeMonthData.roman}
-          </h3>
-          <ul className="space-y-[12px]">
-            {activeMonthData.modules.map((module) => (
-              <li key={module} className="flex items-start gap-[12px]">
-                <span className="text-primary-500 text-regular font-500 mt-[2px]">
-                  •
-                </span>
-                <span className="text-regular text-foreground">{module}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                  {/* Ticks for this month - 1 long + 11 short */}
+                  <div className="flex items-start gap-[10px] mb-[24px]">
+                    {Array.from({ length: 12 }).map((_, index) => {
+                      const isFirstTick = index === 0;
+                      return (
+                        <div
+                          key={`${month.month}-tick-${index}`}
+                          className={`transition-colors duration-300 rounded-[14px] ${
+                            isHovered
+                              ? "bg-primary-500"
+                              : "bg-[rgba(255,255,255,0.2)]"
+                          } ${
+                            isFirstTick ? "w-[2px] h-[32px]" : "w-px h-[16px]"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* Icon */}
+                  <div
+                    className={`transition-all duration-300 ${
+                      isHovered ? "scale-110" : ""
+                    }`}
+                    style={{
+                      color: isHovered ? "#38C775" : "#D7D8D9",
+                    }}
+                  >
+                    <ChatIcon />
+                  </div>
+                </div>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 }
