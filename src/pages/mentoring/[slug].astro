@@ -15,6 +15,7 @@ import {
 import Breadcrumbs from "@/components/layout/breadcrumbs.astro";
 import MentorHeroSection from "@/features/mentoring/mentor-hero-section.astro";
 import MentorWhySection from "@/features/mentoring/mentor-why-section.astro";
+import MentorCtaSection from "@/features/mentoring/mentor-cta-section.astro";
 
 export async function getStaticPaths() {
   const mentoring = ["senior-w-js"];
@@ -78,6 +79,7 @@ aria-label="Informacja o kursie senior w rok"
 <main>
 <MentorHeroSection />
 <MentorWhySection />
+<MentorCtaSection />
 </main>
 
   </MainLayout>
