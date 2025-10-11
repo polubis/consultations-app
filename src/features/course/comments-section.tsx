@@ -1,7 +1,7 @@
 // /src/features/mentoring/comments-section.tsx
-import { Comment } from "@/features/mentoring/comment";
-import { useComments } from "@/features/mentoring/use-comments";
-import { CommentInput } from "@/features/mentoring/comment-input";
+import { Comment } from "@/features/course/comment";
+import { useComments } from "@/features/course/use-comments";
+import { CommentInput } from "@/features/course/comment-input";
 
 function CommentsSection() {
   const {
