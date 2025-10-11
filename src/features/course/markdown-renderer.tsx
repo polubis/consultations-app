@@ -1,91 +1,171 @@
-import React from "react";
-import ReactMarkdown, { type Options } from "react-markdown";
+import React, { useMemo } from "react";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { CourseTable } from "./course-table";
 import { CourseTimeline, type TimelineMonth } from "./course-timeline";
 import { CourseGallery, type GalleryImage } from "./course-gallery";
+import { remarkCustomComponents } from "./remark-custom-components";
+import type { Components } from "react-markdown";
 
 type MarkdownRendererProps = {
   content: string;
   timeline?: TimelineMonth[];
   gallery?: GalleryImage[];
-  headingIds?: Record<string, string>;
+  headingIds: Record<string, string>;
 };
+
+/**
+ * Component registry pattern for dynamic component rendering
+ */
+const COMPONENT_MAP = {
+  "component-timeline": CourseTimeline,
+  "component-gallery": CourseGallery,
+} as const;
+
+type ComponentType = keyof typeof COMPONENT_MAP;
+
+/**
+ * Type guard to check if a string is a valid component type
+ */
+function isValidComponentType(type: string): type is ComponentType {
+  return type in COMPONENT_MAP;
+}
+
+/**
+ * Helper function to extract text content from React children
+ * Handles various children types: string, number, array, React elements
+ *
+ * @param children - React children prop
+ * @returns Extracted text content as string
+ *
+ * @example
+ * extractTextFromChildren("Simple text") // "Simple text"
+ * extractTextFromChildren(["Text ", "parts"]) // "Text parts"
+ * extractTextFromChildren(<span>Element</span>) // "Element"
+ * extractTextFromChildren(123) // "123"
+ */
+function extractTextFromChildren(children: React.ReactNode): string {
+  if (typeof children === "string") {
+    return children;
+  }
+
+  if (typeof children === "number") {
+    return String(children);
+  }
+
+  if (Array.isArray(children)) {
+    return children.map((child) => extractTextFromChildren(child)).join("");
+  }
+
+  if (React.isValidElement(children)) {
+    const props = children.props as { children?: React.ReactNode };
+    if (props.children) {
+      return extractTextFromChildren(props.children);
+    }
+  }
+
+  return "";
+}
+
+/**
+ * Helper function to extract language identifier from className
+ *
+ * @param className - Class name string (e.g., "language-typescript")
+ * @returns Language identifier or null if not found
+ *
+ * @example
+ * extractLanguageFromClassName("language-typescript") // "typescript"
+ * extractLanguageFromClassName("language-component-timeline") // "component-timeline"
+ * extractLanguageFromClassName("some-class") // null
+ */
+function extractLanguageFromClassName(className?: string): string | null {
+  if (!className) return null;
+  const match = /language-(\S+)/.exec(className);
+  return match ? match[1] : null;
+}
+
+/**
+ * Helper function to render custom component based on language type
+ * Handles component registry lookup and data validation
+ *
+ * @param language - Language identifier from code block
+ * @param timeline - Timeline data array
+ * @param gallery - Gallery images array
+ * @returns Custom component or null
+ */
+function renderCustomComponent(
+  language: string | null,
+  timeline: TimelineMonth[],
+  gallery: GalleryImage[],
+): React.ReactNode {
+  if (!language || !isValidComponentType(language)) {
+    return null;
+  }
+
+  if (language === "component-timeline") {
+    if (!timeline || timeline.length === 0) {
+      console.warn("Timeline component used but no timeline data provided");
+      return null;
+    }
+    return <CourseTimeline timelineData={timeline} />;
+  }
+
+  if (language === "component-gallery") {
+    if (!gallery || gallery.length === 0) {
+      console.warn("Gallery component used but no gallery data provided");
+      return null;
+    }
+    return <CourseGallery images={gallery} />;
+  }
+
+  return null;
+}
 
 function MarkdownRenderer({
   content,
   timeline = [],
   gallery = [],
-  headingIds = {},
+  headingIds,
 }: MarkdownRendererProps) {
-  const options: Options = {
-    remarkPlugins: [remarkGfm],
-    components: {
-      // Headings
+  const components: Components = useMemo(
+    () => ({
       h1: ({ children }) => (
         <h1 className="text-h1 font-500 text-foreground mb-[24px] tbt:mb-[32px]">
           {children}
         </h1>
       ),
       h2: ({ children }) => {
-        const text = String(children);
+        const text = extractTextFromChildren(children);
         const id = headingIds[text] || undefined;
+
         return (
           <h2
             id={id}
-            className="text-h2 font-500 text-foreground mb-[16px] tbt:mb-[24px] mt-[32px] tbt:mt-[64px] first:mt-0"
+            className="text-h2 font-500 text-foreground mb-[16px] tbt:mb-[24px] mt-[48px] tbt:mt-[64px] first:mt-0 scroll-mt-[80px]"
           >
             {children}
           </h2>
         );
       },
       h3: ({ children }) => (
-        <h3 className="text-h3 font-500 text-foreground mb-[8px] tbt:mb-[16px] mt-[32px] tbt:mt-[40px]">
+        <h3 className="text-h3 font-500 text-foreground mb-[12px] tbt:mb-[16px] mt-[32px] tbt:mt-[40px]">
           {children}
         </h3>
       ),
 
-      // Paragraphs
-      p: ({ children }) => (
-        <p className="text-regular text-foreground leading-[150%] mb-[16px] tbt:mb-[24px]">
-          {children}
-        </p>
-      ),
-
-      // Code - handles both inline code and code blocks
-      code: ({ children, className }) => {
-        // Check if it's a code block (has language class)
-        if (className) {
-          const language = className.replace("language-", "");
-          const code = String(children).trim();
-
-          // Custom component markers
-          if (language === "timeline" && code === "RENDER_TIMELINE") {
-            return <CourseTimeline timelineData={timeline} />;
-          }
-          if (language === "gallery" && code === "RENDER_GALLERY") {
-            return <CourseGallery images={gallery} />;
-          }
-
-          // Regular code block
-          return (
-            <pre className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-[16px] rounded-[8px] mb-[24px] tbt:mb-[32px] overflow-x-auto">
-              <code className="text-small font-400 text-foreground">
-                {children}
-              </code>
-            </pre>
-          );
+      p: ({ children }) => {
+        if (React.isValidElement(children)) {
+          return <>{children}</>;
         }
 
-        // Inline code
         return (
-          <code className="bg-[rgba(255,255,255,0.05)] px-[6px] py-[2px] rounded-[4px] text-small font-400 text-primary-400">
+          <p className="text-regular text-foreground leading-[150%] mb-[16px] tbt:mb-[24px]">
             {children}
-          </code>
+          </p>
         );
       },
 
-      // Lists
       ul: ({ children }) => (
         <ul className="space-y-[12px] mb-[24px] tbt:mb-[32px]">{children}</ul>
       ),
@@ -103,39 +183,51 @@ function MarkdownRenderer({
         </li>
       ),
 
-      // Tables
       table: ({ children }) => (
         <CourseTable>
-          <table className="min-w-full divide-y divide-[rgba(255,255,255,0.05)]">
-            {children}
-          </table>
+          <table className="min-w-full border-collapse">{children}</table>
         </CourseTable>
       ),
-      thead: ({ children }) => (
-        <thead className="bg-[rgba(255,255,255,0.02)]">{children}</thead>
-      ),
-      tbody: ({ children }) => (
-        <tbody className="divide-y divide-[rgba(255,255,255,0.05)] bg-background">
-          {children}
-        </tbody>
-      ),
-      tr: ({ children }) => (
-        <tr className="hover:bg-[rgba(255,255,255,0.02)] transition-colors">
-          {children}
-        </tr>
-      ),
+      thead: ({ children }) => <thead>{children}</thead>,
+      tbody: ({ children }) => <tbody>{children}</tbody>,
+      tr: ({ children }) => <tr>{children}</tr>,
       th: ({ children }) => (
-        <th className="px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-left text-small tbt:text-regular font-500 text-foreground">
+        <th className="course-table-cell px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-left text-small tbt:text-regular font-500 text-foreground">
           {children}
         </th>
       ),
       td: ({ children }) => (
-        <td className="px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-small tbt:text-regular text-foreground">
+        <td className="course-table-cell px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-small tbt:text-regular text-foreground">
           {children}
         </td>
       ),
 
-      // Links
+      pre: ({ children }) => {
+        if (React.isValidElement(children)) {
+          const childProps = children.props as { className?: string };
+          const language = extractLanguageFromClassName(childProps.className);
+          const customComponent = renderCustomComponent(
+            language,
+            timeline,
+            gallery,
+          );
+
+          if (customComponent) {
+            return customComponent;
+          }
+        }
+
+        return <pre>{children}</pre>;
+      },
+
+      code: ({ children }) => {
+        return (
+          <code className="block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-[16px] rounded-[8px] text-small font-400 text-foreground overflow-x-auto">
+            {children}
+          </code>
+        );
+      },
+
       a: ({ children, href }) => (
         <a
           href={href}
@@ -147,21 +239,36 @@ function MarkdownRenderer({
         </a>
       ),
 
-      // Blockquote
       blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-primary-500 pl-[16px] tbt:pl-[24px] py-[8px] my-[24px] tbt:my-[32px] text-foreground-secondary italic">
           {children}
         </blockquote>
       ),
 
-      // Horizontal rule
       hr: () => (
         <hr className="border-t border-[rgba(255,255,255,0.05)] my-[32px] tbt:my-[48px]" />
       ),
-    },
-  };
+    }),
+    [timeline, gallery, headingIds],
+  );
 
-  return <ReactMarkdown {...options}>{content}</ReactMarkdown>;
+  /**
+   * Memoized rendered content for better performance
+   */
+  const renderedContent = useMemo(
+    () => (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkCustomComponents]}
+        rehypePlugins={[rehypeRaw]}
+        components={components}
+      >
+        {content}
+      </ReactMarkdown>
+    ),
+    [content, components],
+  );
+
+  return renderedContent;
 }
 
 export { MarkdownRenderer };

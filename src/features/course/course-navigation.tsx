@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 type NavigationItem = {
   id: string;
@@ -14,42 +14,79 @@ function CourseNavigation({ items }: CourseNavigationProps) {
     items[0]?.id || "",
   );
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        }
-      },
-      {
-        rootMargin: "-20% 0px -80% 0px",
-        threshold: 0,
-      },
-    );
+  // Find which section is currently visible
+  const findActiveSection = useCallback(() => {
+    const scrollPosition = window.scrollY + 150; // offset from top
 
-    // Observe all sections
-    for (const item of items) {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
+    for (let i = items.length - 1; i >= 0; i--) {
+      const element = document.getElementById(items[i].id);
+      if (element && element.offsetTop <= scrollPosition) {
+        return items[i].id;
       }
     }
 
-    return () => observer.disconnect();
+    return items[0]?.id || "";
+  }, [items]);
+
+  useEffect(() => {
+    // Set initial active section after mount
+    const timer = setTimeout(() => {
+      const active = findActiveSection();
+      if (active) {
+        setActiveSection(active);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [findActiveSection]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+
+        if (visibleEntries.length > 0) {
+          const mostVisible = visibleEntries.reduce((prev, current) =>
+            current.intersectionRatio > prev.intersectionRatio ? current : prev,
+          );
+          setActiveSection(mostVisible.target.id);
+        }
+      },
+      {
+        rootMargin: "-100px 0px -66% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    const timeoutId = setTimeout(() => {
+      for (const item of items) {
+        const element = document.getElementById(item.id);
+        if (element) {
+          observer.observe(element);
+        }
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, [items]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100;
+      const offset = 80; // Match scroll-mt-[80px] from h2
       const elementPosition =
         element.getBoundingClientRect().top + window.scrollY;
+
       window.scrollTo({
         top: elementPosition - offset,
         behavior: "smooth",
       });
+
+      // Immediately update active section (don't wait for observer)
+      setActiveSection(id);
     }
   };
 

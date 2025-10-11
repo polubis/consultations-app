@@ -192,4 +192,45 @@
   .radial-flare {
     @apply absolute bg-[#00ff9144] rounded-full blur-3xl;
   }
+
+  /* Course table gradient borders */
+  .course-table-cell {
+    position: relative;
+  }
+
+  /* Bottom gradient border for all cells */
+  .course-table-cell::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.098) 0%,
+      rgba(56, 199, 117, 0.094) 25%,
+      rgba(255, 255, 255, 0.104) 50%,
+      rgba(56, 199, 117, 0.106) 75%,
+      rgba(255, 255, 255, 0.116) 100%
+    );
+  }
+
+  /* Right gradient border for all cells except last in row */
+  .course-table-cell:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.098) 0%,
+      rgba(56, 199, 117, 0.094) 25%,
+      rgba(255, 255, 255, 0.104) 50%,
+      rgba(56, 199, 117, 0.106) 75%,
+      rgba(255, 255, 255, 0.116) 100%
+    );
+  }
 }

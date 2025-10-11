@@ -2,6 +2,7 @@
 import { MarkdownRenderer } from "./markdown-renderer";
 import { CourseNavigation } from "./course-navigation";
 import { processMarkdown } from "./markdown-processor";
+import { validateTimeline, validateGallery } from "./markdown-schemas";
 
 interface Props {
   markdownContent: string;
@@ -12,6 +13,15 @@ interface Props {
 }
 
 const { markdownContent, frontmatter } = Astro.props;
+
+// Validate frontmatter data with Zod schemas
+const validatedTimeline = frontmatter.timeline
+  ? validateTimeline(frontmatter.timeline)
+  : undefined;
+
+const validatedGallery = frontmatter.gallery
+  ? validateGallery(frontmatter.gallery)
+  : undefined;
 
 // Process markdown: extract headings and transform custom components
 const {
@@ -29,8 +39,8 @@ const {
     <div class="w-full">
       <MarkdownRenderer 
         content={processedContent} 
-        timeline={frontmatter.timeline} 
-        gallery={frontmatter.gallery}
+        timeline={validatedTimeline || undefined} 
+        gallery={validatedGallery || undefined}
         headingIds={headingIds}
         client:load 
       />
