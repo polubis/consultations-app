@@ -2,13 +2,23 @@
 import { MarkdownRenderer } from "./markdown-renderer";
 import { CourseNavigation } from "./course-navigation";
 import { processMarkdown } from "./markdown-processor";
-import { validateTimeline, validateGallery } from "./markdown-schemas";
+import {
+  validateTimeline,
+  validateGallery,
+  validateMindmap,
+} from "./markdown-schemas";
 
 interface Props {
   markdownContent: string;
   frontmatter: {
     timeline?: Array<{ month: number; roman: string; modules: string[] }>;
     gallery?: Array<{ src: string; alt: string }>;
+    mindmap?: Array<{
+      content: string;
+      description: string;
+      name: string;
+      path: string;
+    }>;
   };
 }
 
@@ -23,7 +33,10 @@ const validatedGallery = frontmatter.gallery
   ? validateGallery(frontmatter.gallery)
   : undefined;
 
-// Process markdown: extract headings and transform custom components
+const validatedMindmap = frontmatter.mindmap
+  ? validateMindmap(frontmatter.mindmap)
+  : undefined;
+
 const {
   content: processedContent,
   navigationItems,
@@ -37,13 +50,14 @@ const {
 
     <!-- Main Content -->
     <div class="w-full">
-      <MarkdownRenderer 
-        content={processedContent} 
-        timeline={validatedTimeline || undefined} 
-        gallery={validatedGallery || undefined}
-        headingIds={headingIds}
-        client:load 
-      />
+      <MarkdownRenderer
+      content={processedContent}
+      timeline={validatedTimeline || undefined}
+      gallery={validatedGallery || undefined}
+      mindmap={validatedMindmap || undefined}
+      headingIds={headingIds}
+      client:load
+    />
     </div>
   </div>
 </section>

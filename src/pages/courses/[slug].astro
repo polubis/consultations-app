@@ -5,19 +5,11 @@ import matter from "gray-matter";
 import MainLayout from "@/layouts/main.astro";
 import { appConfig, routing } from "@/core/config";
 import LayoutNavigation from "@/components/layout/layout-navigation.astro";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
 import Breadcrumbs from "@/components/layout/breadcrumbs.astro";
-import MentorHeroSection from "@/features/course/course-hero-section.astro";
-import MentorWhySection from "@/features/course/course-why-section.astro";
-import MentorCtaSection from "@/features/course/course-cta-section.astro";
-import MentorCourseSection from "@/features/course/course-section.astro";
+import CourseCtaSection from "@/features/course/course-cta-section.astro";
+import CourseHeroSection from "@/features/course/course-hero-section.astro";
+import CourseSection from "@/features/course/course-section.astro";
+import CourseWhySection from "@/features/course/course-why-section.astro";
 
 export async function getStaticPaths() {
   const mentoringDir = path.join(process.cwd(), "public", "mentoring");
@@ -92,10 +84,10 @@ aria-label="Informacja o kursie senior w rok"
   <Breadcrumbs items={breadcrumbItems} />
 </div>
 <main>
-<MentorHeroSection />
-<MentorCourseSection markdownContent={content} frontmatter={frontmatter} />
-<MentorWhySection />
-<MentorCtaSection />
+<CourseHeroSection />
+<CourseWhySection />
+<CourseSection markdownContent={content} frontmatter={frontmatter} />
+<CourseCtaSection />
 </main>
 
   </MainLayout>

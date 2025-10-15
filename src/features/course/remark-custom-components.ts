@@ -37,6 +37,11 @@ const COMPONENT_PATTERNS: ComponentConfig[] = [
     name: "Gallery",
   },
   {
+    pattern: /<Mindmap\s*\/>/i,
+    lang: "component-mindmap",
+    name: "Mindmap",
+  },
+  {
     pattern: /<CourseTable\s*>/i,
     lang: null,
     name: "CourseTable",
@@ -57,19 +62,16 @@ export const remarkCustomComponents: Plugin = () => {
         return;
       }
 
-      // Check each component pattern
       for (const component of COMPONENT_PATTERNS) {
         if (!component.pattern.test(node.value)) {
           continue;
         }
 
-        // Handle component removal (e.g., wrapper tags)
         if (component.remove) {
           if (parent && typeof index === "number") {
             const parentNode = parent as Parent;
             if (parentNode.children) {
               parentNode.children.splice(index, 1);
-              // Return index to continue visiting
               return index;
             }
           }

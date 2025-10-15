@@ -5,46 +5,31 @@ import rehypeRaw from "rehype-raw";
 import { CourseTable } from "./course-table";
 import { CourseTimeline, type TimelineMonth } from "./course-timeline";
 import { CourseGallery, type GalleryImage } from "./course-gallery";
+import { CourseMindmap } from "./course-mindmap";
 import { remarkCustomComponents } from "./remark-custom-components";
 import type { Components } from "react-markdown";
+import type { Mindmap } from "./markdown-schemas";
 
 type MarkdownRendererProps = {
   content: string;
   timeline?: TimelineMonth[];
   gallery?: GalleryImage[];
+  mindmap?: Mindmap;
   headingIds: Record<string, string>;
 };
 
-/**
- * Component registry pattern for dynamic component rendering
- */
 const COMPONENT_MAP = {
   "component-timeline": CourseTimeline,
   "component-gallery": CourseGallery,
+  "component-mindmap": CourseMindmap,
 } as const;
 
 type ComponentType = keyof typeof COMPONENT_MAP;
 
-/**
- * Type guard to check if a string is a valid component type
- */
 function isValidComponentType(type: string): type is ComponentType {
   return type in COMPONENT_MAP;
 }
 
-/**
- * Helper function to extract text content from React children
- * Handles various children types: string, number, array, React elements
- *
- * @param children - React children prop
- * @returns Extracted text content as string
- *
- * @example
- * extractTextFromChildren("Simple text") // "Simple text"
- * extractTextFromChildren(["Text ", "parts"]) // "Text parts"
- * extractTextFromChildren(<span>Element</span>) // "Element"
- * extractTextFromChildren(123) // "123"
- */
 function extractTextFromChildren(children: React.ReactNode): string {
   if (typeof children === "string") {
     return children;
@@ -68,36 +53,17 @@ function extractTextFromChildren(children: React.ReactNode): string {
   return "";
 }
 
-/**
- * Helper function to extract language identifier from className
- *
- * @param className - Class name string (e.g., "language-typescript")
- * @returns Language identifier or null if not found
- *
- * @example
- * extractLanguageFromClassName("language-typescript") // "typescript"
- * extractLanguageFromClassName("language-component-timeline") // "component-timeline"
- * extractLanguageFromClassName("some-class") // null
- */
 function extractLanguageFromClassName(className?: string): string | null {
   if (!className) return null;
   const match = /language-(\S+)/.exec(className);
   return match ? match[1] : null;
 }
 
-/**
- * Helper function to render custom component based on language type
- * Handles component registry lookup and data validation
- *
- * @param language - Language identifier from code block
- * @param timeline - Timeline data array
- * @param gallery - Gallery images array
- * @returns Custom component or null
- */
 function renderCustomComponent(
   language: string | null,
   timeline: TimelineMonth[],
   gallery: GalleryImage[],
+  mindmap?: Mindmap,
 ): React.ReactNode {
   if (!language || !isValidComponentType(language)) {
     return null;
@@ -119,6 +85,14 @@ function renderCustomComponent(
     return <CourseGallery images={gallery} />;
   }
 
+  if (language === "component-mindmap") {
+    if (!mindmap) {
+      console.warn("Mindmap component used but no mindmap data provided");
+      return null;
+    }
+    return <CourseMindmap mindmapData={mindmap} />;
+  }
+
   return null;
 }
 
@@ -126,6 +100,7 @@ function MarkdownRenderer({
   content,
   timeline = [],
   gallery = [],
+  mindmap,
   headingIds,
 }: MarkdownRendererProps) {
   const components: Components = useMemo(
@@ -210,6 +185,7 @@ function MarkdownRenderer({
             language,
             timeline,
             gallery,
+            mindmap,
           );
 
           if (customComponent) {
@@ -249,12 +225,9 @@ function MarkdownRenderer({
         <hr className="border-t border-[rgba(255,255,255,0.05)] my-[32px] tbt:my-[48px]" />
       ),
     }),
-    [timeline, gallery, headingIds],
+    [timeline, gallery, mindmap, headingIds],
   );
 
-  /**
-   * Memoized rendered content for better performance
-   */
   const renderedContent = useMemo(
     () => (
       <ReactMarkdown

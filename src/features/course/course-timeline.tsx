@@ -59,41 +59,46 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
             const isHovered = hoveredMonth === month.month;
 
             return (
-              <CarouselItem key={month.month} className="basis-1/7 -ml-10">
+              <CarouselItem key={month.month} className="basis-1/8 -ml-6">
                 <div
                   className="flex flex-col items-start"
                   onMouseEnter={() => setHoveredMonth(month.month)}
                   onMouseLeave={() => setHoveredMonth(null)}
                 >
-                  <span
-                    className={`text-small font-450 transition-colors duration-300 mb-[16px] ${
-                      isHovered
-                        ? "text-primary-500"
-                        : "text-foreground-secondary"
-                    }`}
-                  >
-                    {month.roman}
-                  </span>
-
-                  <div className="flex items-start gap-[10px] mb-[24px]">
-                    {Array.from({ length: 12 }).map((_, index) => {
-                      const isFirstTick = index === 0;
-                      return (
+                  <div className="flex gap-[10px] mb-[24px]">
+                    <div className="flex flex-col items-center">
+                      <span
+                        className={`text-small font-450 transition-colors duration-300 mb-[16px] ${
+                          isHovered
+                            ? "text-primary-500"
+                            : "text-foreground-secondary"
+                        }`}
+                      >
+                        {month.roman}
+                      </span>
+                      <div
+                        className={`transition-colors duration-300 rounded-[14px] ${
+                          isHovered
+                            ? "bg-primary-500"
+                            : "bg-[rgba(255,255,255,0.2)]"
+                        } w-[2px] h-[32px]`}
+                      />
+                    </div>
+                    <div className="flex items-start gap-[6px] pt-[calc(1em*1.2+16px)]">
+                      {Array.from({ length: 11 }).map((_, index) => (
                         <div
-                          key={`${month.month}-tick-${index}`}
+                          key={`${month.month}-tick-${index + 1}`}
                           className={`transition-colors duration-300 rounded-[14px] ${
                             isHovered
                               ? "bg-primary-500"
                               : "bg-[rgba(255,255,255,0.2)]"
-                          } ${
-                            isFirstTick ? "w-[2px] h-[32px]" : "w-px h-[16px]"
-                          }`}
+                          } w-[2px] h-[16px]`}
                         />
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
 
-                  <div
+                  {/* <div
                     className={`transition-all duration-300 ${
                       isHovered ? "scale-110" : ""
                     }`}
@@ -102,7 +107,7 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                     }}
                   >
                     <ChatIcon />
-                  </div>
+                  </div> */}
                 </div>
               </CarouselItem>
             );
