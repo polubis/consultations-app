@@ -15,7 +15,7 @@ type CourseTimelineProps = {
   timelineData: TimelineMonth[];
 };
 
-const TICKS_PER_MONTH = 11;
+const TICKS_PER_MONTH = 10;
 
 function CourseTimeline({ timelineData }: CourseTimelineProps) {
   const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
@@ -26,23 +26,27 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
         aria-label="Oś czasu kursu"
         opts={{
           align: "start",
+          loop: true,
+          slidesToScroll: "auto",
         }}
       >
-        <CarouselContent className="-ml-2">
+        <CarouselContent
+          className="-ml-1"
+          onMouseLeave={() => setHoveredMonth(null)}
+        >
           {timelineData.map((month) => {
             const isHovered = hoveredMonth === month.month;
 
             return (
               <CarouselItem
                 key={month.month}
-                className="basis-1/7 pl-2"
+                className="basis-1/12 pl-1"
                 onMouseEnter={() => setHoveredMonth(month.month)}
-                onMouseLeave={() => setHoveredMonth(null)}
               >
-                <div className="flex w-full items-start">
-                  <div className="flex flex-col items-center">
+                <div className="whitespace-nowrap">
+                  <div className="inline-block align-top text-center w-[12px]">
                     <span
-                      className="h-8 flex items-end justify-center mb-4 text-small font-450"
+                      className="h-8 flex items-end justify-center mb-4 text-small font-450 transition-colors duration-300"
                       style={{
                         color: isHovered
                           ? "var(--primary-500)"
@@ -52,33 +56,32 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                       {month.roman}
                     </span>
                     <div
-                      className="h-8 w-[2px] rounded-full transition-colors"
+                      className="h-8 w-px mx-auto rounded-full transition-colors duration-300"
                       style={{
                         backgroundColor: isHovered
                           ? "var(--primary-500)"
-                          : "#676767",
+                          : "rgba(255,255,255,0.2)",
                       }}
                     />
                   </div>
 
-                  <div className="flex flex-1 justify-between pl-2">
-                    {Array.from({ length: TICKS_PER_MONTH }).map((_, index) => (
+                  {Array.from({ length: TICKS_PER_MONTH }).map((_, index) => (
+                    <div
+                      key={`${month.month}-tick-${index + 1}`}
+                      className="inline-block align-top text-center w-[8px]"
+                    >
+                      {/* Pusty element dla wyrównania */}
+                      <div className="h-8 mb-4" />
                       <div
-                        key={`${month.month}-tick-${index + 1}`}
-                        className="flex flex-col items-center"
-                      >
-                        <div className="h-8 mb-4" />
-                        <div
-                          className="h-4 w-px rounded-full transition-colors"
-                          style={{
-                            backgroundColor: isHovered
-                              ? "var(--primary-500)"
-                              : "#676767",
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                        className="h-4 w-px mx-auto rounded-full transition-colors duration-300"
+                        style={{
+                          backgroundColor: isHovered
+                            ? "var(--primary-500)"
+                            : "rgba(255,255,255,0.2)",
+                        }}
+                      />
+                    </div>
+                  ))}
                 </div>
               </CarouselItem>
             );

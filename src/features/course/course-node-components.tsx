@@ -1,9 +1,7 @@
-// src/features/course/course-node-components.tsx
-import React, { type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import type { Node } from "@xyflow/react";
 
-// --- Typy ---
 export type EmbeddedNodeData = {
   name: string;
   content: string;
@@ -12,7 +10,6 @@ export type EmbeddedNodeData = {
 export type EmbeddedNodeType = Node<EmbeddedNodeData, "embedded">;
 export type CourseNodeProps = NodeProps<EmbeddedNodeType>;
 
-// --- Komponenty Uchwytów (Handles) ---
 const commonHandleClass =
   "!bg-transparent border-2 border-[rgba(255,255,255,0.2)]";
 

@@ -1,15 +1,7 @@
 import type React from "react";
 import { useMemo, useState } from "react";
 import { ReactFlow, type Edge } from "@xyflow/react";
-import {
-  Background,
-  Controls,
-  MiniMap,
-  Position,
-  Handle,
-  type NodeProps,
-  type Node,
-} from "@xyflow/react";
+import { Background, Controls, MiniMap } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import {
   Dialog,
@@ -48,7 +40,6 @@ type CourseMindmapProps = {
 function CourseMindmap({ mindmapData }: CourseMindmapProps) {
   const { nodes, edges, orientation } = mindmapData;
 
-  // ZMIANA: Rejestrujemy nasz nowy, inteligentny komponent węzła
   const nodeTypes = useMemo(
     () => ({
       embedded: (props: CourseNodeProps) => (
@@ -61,10 +52,9 @@ function CourseMindmap({ mindmapData }: CourseMindmapProps) {
   const [selectedNodeData, setSelectedNodeData] =
     useState<EmbeddedNodeData | null>(null);
 
-  // ZMIANA: Używamy krawędzi typu 'smoothstep' dla ładniejszego wyglądu
   const styledEdges = edges.map(({ type, ...edge }) => ({
     ...edge,
-    type: "smoothstep", // To nada krawędziom zaokrąglony wygląd
+    type: "smoothstep",
     style: { stroke: "#0BAD67", strokeWidth: 1.5 },
   }));
 
@@ -104,7 +94,7 @@ function CourseMindmap({ mindmapData }: CourseMindmapProps) {
       >
         <ReactFlow
           nodes={nodes}
-          edges={styledEdges as Edge[]} // Rzutowanie jest tu bezpieczne
+          edges={styledEdges as Edge[]}
           nodeTypes={nodeTypes}
           fitView
           proOptions={{ hideAttribution: true }}
