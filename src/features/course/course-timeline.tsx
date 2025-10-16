@@ -1,15 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-
-type TimelineMonth = {
-  month: number;
-  roman: string;
-  modules: string[];
-};
+import type { TimelineMonth } from "./markdown-schemas";
 
 type CourseTimelineProps = {
   timelineData: TimelineMonth[];
@@ -18,7 +13,14 @@ type CourseTimelineProps = {
 const TICKS_PER_MONTH = 11;
 
 function CourseTimeline({ timelineData }: CourseTimelineProps) {
-  const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
+  const [hoveredMonth, setHoveredMonth] = useState<number | null>(1); // Default to the first month
+
+  const activeMonthDetails = useMemo(() => {
+    return (
+      timelineData.find((month) => month.month === hoveredMonth) ??
+      timelineData[0]
+    );
+  }, [hoveredMonth, timelineData]);
 
   return (
     <div className="mb-[48px] tbt:mb-[64px]">
@@ -27,6 +29,7 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
         opts={{
           align: "start",
         }}
+        onMouseLeave={() => setHoveredMonth(null)}
       >
         <CarouselContent className="-ml-2">
           {timelineData.map((month) => {
@@ -35,14 +38,13 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
             return (
               <CarouselItem
                 key={month.month}
-                className="basis-1/7 pl-2"
+                className="basis-1/7 cursor-pointer pl-2"
                 onMouseEnter={() => setHoveredMonth(month.month)}
-                onMouseLeave={() => setHoveredMonth(null)}
               >
                 <div className="flex w-full items-start">
                   <div className="flex flex-col items-center">
                     <span
-                      className="h-8 flex items-end justify-center mb-4 text-small font-450"
+                      className="mb-4 flex h-8 items-end justify-center text-small font-450"
                       style={{
                         color: isHovered
                           ? "var(--primary-500)"
@@ -59,6 +61,13 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                           : "#676767",
                       }}
                     />
+                    <div className="mt-4">
+                      <div
+                        className="h-[20px] w-[20px]"
+                        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+                        dangerouslySetInnerHTML={{ __html: month.icon }}
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-1 justify-between pl-2">
@@ -85,6 +94,27 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
           })}
         </CarouselContent>
       </Carousel>
+
+      {/* Details Section */}
+      {activeMonthDetails && (
+        <div className="relative mt-12 min-h-[100px]">
+          <div key={activeMonthDetails.month}>
+            <div className="flex items-center gap-3">
+              <div
+                className="[&_svg]:h-6 [&_svg]:w-6 [&_path]:stroke-foreground"
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+                dangerouslySetInnerHTML={{ __html: activeMonthDetails.icon }}
+              />
+              <h3 className="text-h3 font-500 text-foreground">
+                {activeMonthDetails.title}
+              </h3>
+            </div>
+            <p className="mt-2 max-w-md text-regular text-foreground-secondary">
+              {activeMonthDetails.description}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

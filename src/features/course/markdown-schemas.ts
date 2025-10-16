@@ -3,9 +3,11 @@ import { z } from "zod";
 export const TimelineMonthSchema = z.object({
   month: z.number().int().positive().min(1).max(12),
   roman: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().min(1),
   modules: z.array(z.string().min(1)).min(1),
 });
-
 export const TimelineSchema = z.array(TimelineMonthSchema).min(1);
 
 export const GalleryImageSchema = z.object({

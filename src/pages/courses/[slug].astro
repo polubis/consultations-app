@@ -12,14 +12,14 @@ import CourseSection from "@/features/course/course-section.astro";
 import CourseWhySection from "@/features/course/course-why-section.astro";
 
 export async function getStaticPaths() {
-  const mentoringDir = path.join(process.cwd(), "public", "mentoring");
-  const files = await fs.readdir(mentoringDir);
+  const courseDir = path.join(process.cwd(), "public", "course");
+  const files = await fs.readdir(courseDir);
   const mdFiles = files.filter((file) => file.endsWith(".md"));
 
   const paths = await Promise.all(
     mdFiles.map(async (file) => {
       const slug = file.replace(".md", "");
-      const filePath = path.join(mentoringDir, file);
+      const filePath = path.join(courseDir, file);
       const fileContent = await fs.readFile(filePath, "utf-8");
       const { data: frontmatter, content } = matter(fileContent);
 
