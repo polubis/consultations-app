@@ -13,13 +13,10 @@ type CourseTimelineProps = {
 const TICKS_PER_MONTH = 11;
 
 function CourseTimeline({ timelineData }: CourseTimelineProps) {
-  const [hoveredMonth, setHoveredMonth] = useState<number | null>(1); // Default to the first month
+  const [hoveredMonth, setHoveredMonth] = useState<number | null>(null);
 
   const activeMonthDetails = useMemo(() => {
-    return (
-      timelineData.find((month) => month.month === hoveredMonth) ??
-      timelineData[0]
-    );
+    return timelineData.find((month) => month.month === hoveredMonth) ?? null;
   }, [hoveredMonth, timelineData]);
 
   return (
@@ -38,7 +35,7 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
             return (
               <CarouselItem
                 key={month.month}
-                className="basis-1/7 cursor-pointer pl-2"
+                className="basis-1/3 cursor-pointer pl-2 tbt:basis-1/5 ltp:basis-1/6 dsp:basis-1/7"
                 onMouseEnter={() => setHoveredMonth(month.month)}
               >
                 <div className="flex w-full items-start">
@@ -54,8 +51,9 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                       {month.roman}
                     </span>
                     <div
-                      className="h-8 w-[2px] rounded-full transition-colors"
+                      className="w-[2px] rounded-full transition-all duration-300 ease-in-out"
                       style={{
+                        height: isHovered ? "64px" : "32px",
                         backgroundColor: isHovered
                           ? "var(--primary-500)"
                           : "#676767",
@@ -78,11 +76,9 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                       >
                         <div className="h-8 mb-4" />
                         <div
-                          className="h-4 w-px rounded-full transition-colors"
+                          className="h-4 w-px rounded-full"
                           style={{
-                            backgroundColor: isHovered
-                              ? "var(--primary-500)"
-                              : "#676767",
+                            backgroundColor: "#676767",
                           }}
                         />
                       </div>
@@ -96,16 +92,11 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
       </Carousel>
 
       {/* Details Section */}
-      {activeMonthDetails && (
-        <div className="relative mt-12 min-h-[100px]">
+      {hoveredMonth !== null && activeMonthDetails && (
+        <div className="relative mt-6 min-h-[100px] animate-jump-top-bottom">
           <div key={activeMonthDetails.month}>
             <div className="flex items-center gap-3">
-              <div
-                className="[&_svg]:h-6 [&_svg]:w-6 [&_path]:stroke-foreground"
-                // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-                dangerouslySetInnerHTML={{ __html: activeMonthDetails.icon }}
-              />
-              <h3 className="text-h3 font-500 text-foreground">
+              <h3 className="text-h4 font-500 text-foreground">
                 {activeMonthDetails.title}
               </h3>
             </div>

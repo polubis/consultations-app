@@ -45,7 +45,6 @@ export const HandleY = ({ children }: { children: ReactNode }) => (
   </>
 );
 
-// --- Komponent Kafelka Węzła (NodeTile) ---
 const NodeTileComponent = ({
   children,
   selected,

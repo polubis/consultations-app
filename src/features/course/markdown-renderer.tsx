@@ -1,3 +1,4 @@
+// /src/features/course/markdown-renderer.tsx
 import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -31,25 +32,15 @@ function isValidComponentType(type: string): type is ComponentType {
 }
 
 function extractTextFromChildren(children: React.ReactNode): string {
-  if (typeof children === "string") {
-    return children;
-  }
-
-  if (typeof children === "number") {
-    return String(children);
-  }
-
+  if (typeof children === "string") return children;
+  if (typeof children === "number") return String(children);
   if (Array.isArray(children)) {
     return children.map((child) => extractTextFromChildren(child)).join("");
   }
-
   if (React.isValidElement(children)) {
     const props = children.props as { children?: React.ReactNode };
-    if (props.children) {
-      return extractTextFromChildren(props.children);
-    }
+    if (props.children) return extractTextFromChildren(props.children);
   }
-
   return "";
 }
 
@@ -65,34 +56,16 @@ function renderCustomComponent(
   gallery: GalleryImage[],
   mindmap?: Mindmap,
 ): React.ReactNode {
-  if (!language || !isValidComponentType(language)) {
-    return null;
-  }
-
-  if (language === "component-timeline") {
-    if (!timeline || timeline.length === 0) {
-      console.warn("Timeline component used but no timeline data provided");
-      return null;
-    }
+  if (!language || !isValidComponentType(language)) return null;
+  if (language === "component-timeline" && timeline.length > 0) {
     return <CourseTimeline timelineData={timeline} />;
   }
-
-  if (language === "component-gallery") {
-    if (!gallery || gallery.length === 0) {
-      console.warn("Gallery component used but no gallery data provided");
-      return null;
-    }
+  if (language === "component-gallery" && gallery.length > 0) {
     return <CourseGallery images={gallery} />;
   }
-
-  if (language === "component-mindmap") {
-    if (!mindmap) {
-      console.warn("Mindmap component used but no mindmap data provided");
-      return null;
-    }
+  if (language === "component-mindmap" && mindmap) {
     return <CourseMindmap mindmapData={mindmap} />;
   }
-
   return null;
 }
 
@@ -106,77 +79,69 @@ function MarkdownRenderer({
   const components: Components = useMemo(
     () => ({
       h1: ({ children }) => (
-        <h1 className="text-h1 font-500 text-foreground mb-[24px] tbt:mb-[32px]">
+        <h1 className="text-4xl tbt:text-5xl font-bold mt-8 mb-4 first:mt-0">
           {children}
         </h1>
       ),
       h2: ({ children }) => {
         const text = extractTextFromChildren(children);
         const id = headingIds[text] || undefined;
-
         return (
           <h2
             id={id}
-            className="text-h2 font-500 text-foreground mb-[16px] tbt:mb-[24px] mt-[48px] tbt:mt-[64px] first:mt-0 scroll-mt-[80px]"
+            className="text-3xl tbt:text-4xl font-bold mt-8 mb-4 first:mt-0 scroll-mt-[80px]"
           >
             {children}
           </h2>
         );
       },
       h3: ({ children }) => (
-        <h3 className="text-h3 font-500 text-foreground mb-[12px] tbt:mb-[16px] mt-[32px] tbt:mt-[40px]">
+        <h3 className="text-2xl tbt:text-3xl font-bold mt-6 mb-3">
           {children}
         </h3>
       ),
-
-      p: ({ children }) => {
-        if (React.isValidElement(children)) {
-          return <>{children}</>;
-        }
-
-        return (
-          <p className="text-regular text-foreground leading-[150%] mb-[16px] tbt:mb-[24px]">
-            {children}
-          </p>
-        );
-      },
-
+      h4: ({ children }) => (
+        <h4 className="text-xl tbt:text-2xl font-bold mt-6 mb-3">{children}</h4>
+      ),
+      h5: ({ children }) => (
+        <h5 className="text-lg tbt:text-xl font-bold mt-5 mb-2">{children}</h5>
+      ),
+      h6: ({ children }) => (
+        <h6 className="tbt:text-lg font-bold mt-5 mb-2">{children}</h6>
+      ),
+      p: ({ children }) => (
+        <p className="text-regular text-foreground leading-[150%] mb-4">
+          {children}
+        </p>
+      ),
       ul: ({ children }) => (
-        <ul className="space-y-[12px] mb-[24px] tbt:mb-[32px]">{children}</ul>
+        <ul className="list-disc list-outside pl-5 my-4 space-y-2">
+          {children}
+        </ul>
       ),
       ol: ({ children }) => (
-        <ol className="space-y-[12px] mb-[24px] tbt:mb-[32px] list-decimal list-inside">
+        <ol className="list-decimal list-outside pl-5 my-4 space-y-2">
           {children}
         </ol>
       ),
       li: ({ children }) => (
-        <li className="text-regular text-foreground flex items-start gap-[12px]">
-          <span className="text-primary-500 text-regular font-500 mt-[2px]">
-            •
-          </span>
-          <span className="flex-1">{children}</span>
-        </li>
+        <li className="text-regular text-foreground">{children}</li>
       ),
-
       table: ({ children }) => (
         <CourseTable>
           <table className="min-w-full border-collapse">{children}</table>
         </CourseTable>
       ),
-      thead: ({ children }) => <thead>{children}</thead>,
-      tbody: ({ children }) => <tbody>{children}</tbody>,
-      tr: ({ children }) => <tr>{children}</tr>,
       th: ({ children }) => (
-        <th className="course-table-cell px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-left text-small tbt:text-regular font-500 text-foreground">
+        <th className="course-table-cell px-6 py-3 text-left text-regular font-bold text-foreground">
           {children}
         </th>
       ),
       td: ({ children }) => (
-        <td className="course-table-cell px-[16px] tbt:px-[24px] py-[12px] tbt:py-[16px] text-small tbt:text-regular text-foreground">
+        <td className="course-table-cell px-6 py-3 text-regular text-foreground whitespace-nowrap">
           {children}
         </td>
       ),
-
       pre: ({ children }) => {
         if (React.isValidElement(children)) {
           const childProps = children.props as { className?: string };
@@ -187,61 +152,48 @@ function MarkdownRenderer({
             gallery,
             mindmap,
           );
-
-          if (customComponent) {
-            return customComponent;
-          }
+          if (customComponent) return customComponent;
         }
-
-        return <pre>{children}</pre>;
+        return <pre className="my-6">{children}</pre>;
       },
-
       code: ({ children }) => {
         return (
-          <code className="block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-[16px] rounded-[8px] text-small font-400 text-foreground overflow-x-auto">
+          <code className="block bg-[#181818] p-4 rounded-lg text-small font-mono overflow-x-auto">
             {children}
           </code>
         );
       },
-
       a: ({ children, href }) => (
         <a
           href={href}
-          className="text-primary-500 hover:text-primary-400 transition-colors underline"
+          className="text-primary-500 hover:text-primary-400 transition-colors underline break-words"
           target={href?.startsWith("http") ? "_blank" : undefined}
           rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
         >
           {children}
         </a>
       ),
-
       blockquote: ({ children }) => (
-        <blockquote className="border-l-4 border-primary-500 pl-[16px] tbt:pl-[24px] py-[8px] my-[24px] tbt:my-[32px] text-foreground-secondary italic">
+        <blockquote className="border-l-4 border-primary-500 pl-6 my-6 text-foreground-secondary italic">
           {children}
         </blockquote>
       ),
-
       hr: () => (
-        <hr className="border-t border-[rgba(255,255,255,0.05)] my-[32px] tbt:my-[48px]" />
+        <hr className="border-t border-[rgba(255,255,255,0.05)] my-8" />
       ),
     }),
     [timeline, gallery, mindmap, headingIds],
   );
 
-  const renderedContent = useMemo(
-    () => (
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkCustomComponents]}
-        rehypePlugins={[rehypeRaw]}
-        components={components}
-      >
-        {content}
-      </ReactMarkdown>
-    ),
-    [content, components],
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm, remarkCustomComponents]}
+      rehypePlugins={[rehypeRaw]}
+      components={components}
+    >
+      {content}
+    </ReactMarkdown>
   );
-
-  return renderedContent;
 }
 
 export { MarkdownRenderer };
