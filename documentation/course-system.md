@@ -6,7 +6,7 @@ System pozwala na tworzenie dynamicznych sekcji kursów/produktów z wykorzystan
 
 ## 🏗️ Architektura
 
-### 1. Plik Markdown (`public/mentoring/senior-w-js.md`)
+### 1. Plik Markdown (`public/course/senior-w-js.md`)
 
 Zawiera treść kursu z możliwością użycia:
 
@@ -109,7 +109,7 @@ Mobile/Tablet:
 
 ```astro
 // 1. Import
-import MentorCourseSection from "@/features/mentoring/mentor-course-section.astro";
+import MentorCourseSection from "@/features/course/mentor-course-section.astro";
 
 // 2. Wczytaj MD (już istnieje)
 const markdownContent = await fs.readFile(filePath, "utf-8");
@@ -144,7 +144,7 @@ Wszystkie komponenty używają:
 
 ## 📝 Jak dodać nowy kurs?
 
-1. **Utwórz plik MD** w `public/mentoring/nazwa-kursu.md`:
+1. **Utwórz plik MD** w `public/course/nazwa-kursu.md`:
 
 ```markdown
 # Tytuł Kursu
@@ -176,7 +176,7 @@ Więcej contentu...
 
 ```ts
 export async function getStaticPaths() {
-  const mentoring = ["senior-w-js", "nazwa-kursu"]; // ← dodaj
+  const course = ["senior-w-js", "nazwa-kursu"]; // ← dodaj
   // ...
 }
 ```
@@ -187,7 +187,7 @@ export async function getStaticPaths() {
 
 ### Jak stworzyć nowy custom komponent?
 
-1. **Utwórz komponent** w `src/features/mentoring/`:
+1. **Utwórz komponent** w `src/features/course/`:
 
 ```tsx
 // custom-component.tsx
@@ -249,7 +249,7 @@ p: ({ children, ...props }) => {
 ## 📊 Struktura Plików
 
 ```
-src/features/mentoring/
+src/features/course/
 ├── course-table.tsx           # Table wrapper
 ├── course-timeline.tsx        # Interactive timeline
 ├── course-gallery.tsx         # Image gallery
@@ -257,16 +257,16 @@ src/features/mentoring/
 ├── markdown-renderer.tsx      # Main MD renderer
 └── mentor-course-section.astro # Main section component
 
-public/mentoring/
+public/course/
 └── senior-w-js.md            # Course content
 
-src/pages/mentoring/
+src/pages/course/
 └── [slug].astro              # Dynamic page
 ```
 
 ## 🎓 Przykład Użycia
 
-Zobacz `public/mentoring/senior-w-js.md` dla pełnego przykładu kursu z:
+Zobacz `public/course/senior-w-js.md` dla pełnego przykładu kursu z:
 
 - 12-miesięczną tabelą programu
 - Interaktywną timeline

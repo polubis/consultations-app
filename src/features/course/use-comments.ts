@@ -14,7 +14,7 @@ const mockComments: CommentProps[] = [
     id: "1",
     rating: "9/10",
     content:
-      "Mentoring przerósł moje oczekiwania! Zaczynałem od zera, a teraz pracuję jako junior frontend developer. Mentor w przystępny sposób tłumaczył nawet najtrudniejsze zagadnienia, a do tego miał ogromną cierpliwość. Dzięki jego wsparciu nie tylko nauczyłam się programować, ale też uwierzyłam w siebie!",
+      "course przerósł moje oczekiwania! Zaczynałem od zera, a teraz pracuję jako junior frontend developer. Mentor w przystępny sposób tłumaczył nawet najtrudniejsze zagadnienia, a do tego miał ogromną cierpliwość. Dzięki jego wsparciu nie tylko nauczyłam się programować, ale też uwierzyłam w siebie!",
     author: {
       name: "Anna",
       avatar: "/adrian-284.webp",
@@ -59,7 +59,7 @@ const mockComments: CommentProps[] = [
       },
       {
         id: "1-3",
-        content: "Też rozważam rozpoczęcie mentoringu po przeczytaniu tego!",
+        content: "Też rozważam rozpoczęcie courseu po przeczytaniu tego!",
         author: {
           name: "Michał",
           avatar: "/adrian-284.webp",
@@ -76,7 +76,7 @@ const mockComments: CommentProps[] = [
     id: "2",
     rating: "10/10",
     content:
-      "Najlepsza inwestycja w moją karierę! Po 3 miesiącach mentoringu dostałem awans na mid-level developera. Mentor nie tylko uczył technologii, ale także pokazał jak myśleć jak senior developer i podchodzić do problemów strategicznie.",
+      "Najlepsza inwestycja w moją karierę! Po 3 miesiącach courseu dostałem awans na mid-level developera. Mentor nie tylko uczył technologii, ale także pokazał jak myśleć jak senior developer i podchodzić do problemów strategicznie.",
     author: {
       name: "Paweł",
       avatar: "/adrian-284.webp",
@@ -109,7 +109,6 @@ const mockComments: CommentProps[] = [
 function useComments() {
   const [comments, setComments] = useState<CommentProps[]>(mockComments);
   const [openInputs, setOpenInputs] = useState<Record<string, boolean>>({});
-  const [activeReactions, setActiveReactions] = useState<ActiveReactions>({});
 
   const toggleInput = (commentId: string) => {
     setOpenInputs((prev) => ({
@@ -166,79 +165,12 @@ function useComments() {
     closeInput(parentId);
   };
 
-  const addNewComment = (content: string, rating?: string) => {
-    const newComment: CommentProps = {
-      id: `new-${Date.now()}`,
-      content,
-      rating,
-      author: {
-        name: "Użytkownik",
-        avatar: "/adrian-284.webp",
-        fallback: "U",
-      },
-      reactions: {},
-      replies: [],
-    };
-
-    setComments((prevComments) => [...prevComments, newComment]);
-  };
-
-  const toggleReaction = (commentId: string, reactionType: ReactionType) => {
-    const isActive = activeReactions[commentId]?.[reactionType] || false;
-
-    setActiveReactions((prev) => ({
-      ...prev,
-      [commentId]: {
-        ...prev[commentId],
-        [reactionType]: !isActive,
-      },
-    }));
-
-    setComments((prevComments) => {
-      const updateReaction = (comments: CommentProps[]): CommentProps[] => {
-        return comments.map((comment) => {
-          if (comment.id === commentId) {
-            const currentCount = comment.reactions[reactionType] || 0;
-            return {
-              ...comment,
-              reactions: {
-                ...comment.reactions,
-                [reactionType]: isActive
-                  ? Math.max(0, currentCount - 1)
-                  : currentCount + 1,
-              },
-            };
-          }
-          if (comment.replies) {
-            return {
-              ...comment,
-              replies: updateReaction(comment.replies),
-            };
-          }
-          return comment;
-        });
-      };
-
-      return updateReaction(prevComments);
-    });
-  };
-
-  const isReactionActive = (
-    commentId: string,
-    reactionType: ReactionType,
-  ): boolean => {
-    return activeReactions[commentId]?.[reactionType] || false;
-  };
-
   return {
     comments,
     toggleInput,
     closeInput,
     isInputOpen,
     addComment,
-    addNewComment,
-    toggleReaction,
-    isReactionActive,
   };
 }
 

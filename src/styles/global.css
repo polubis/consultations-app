@@ -247,4 +247,27 @@
       rgba(255, 255, 255, 0.116) 100%
     );
   }
+
+  .bg-mindmap-gradient {
+    background: radial-gradient(
+        30.7% 62.14% at 24.35% 26.82%,
+        rgba(20, 76, 44, 0.2) 0%,
+        rgba(20, 76, 44, 0) 100%
+      )
+      no-repeat, var(--background);
+  }
+
+  .border-mindmap-gradient {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 24px;
+    border-image-source: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.098) 0%,
+      rgba(56, 199, 117, 0.094) 25%,
+      rgba(255, 255, 255, 0.104) 50%,
+      rgba(56, 199, 117, 0.106) 75%,
+      rgba(255, 255, 255, 0.116) 100%
+    );
+  }
 }

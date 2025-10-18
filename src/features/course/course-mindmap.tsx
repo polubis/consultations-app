@@ -102,31 +102,25 @@ function CourseMindmap({ mindmapData }: CourseMindmapProps) {
           }
         }}
       >
-        <DialogContent className="bg-[#1A1A1A] border-[rgba(255,255,255,0.1)] text-white max-h-[85vh] flex flex-col sm:max-w-3xl">
+        <DialogContent className="text-foreground border-foreground/10 max-h-[85vh] flex flex-col sm:max-w-3xl p-0 data-[state=closed]:duration-0">
           {selectedNodeData && (
             <>
-              <DialogHeader className="text-center">
-                <DialogTitle className="text-h3 font-500">
-                  {selectedNodeData.name}
+              <DialogHeader className="px-6 py-4 border-b border-foreground/10">
+                <DialogTitle className="text-regular-bold font-500 text-left">
+                  Full Content
                 </DialogTitle>
               </DialogHeader>
-              <div className="overflow-y-auto mt-2 pr-4 -mr-4">
-                <MarkdownRenderer
-                  content={selectedNodeData.content}
-                  headingIds={{}}
-                />
+
+              <div className="overflow-y-auto px-6 flex-1">
+                <MarkdownRenderer content={selectedNodeData.content} />
               </div>
             </>
           )}
-          <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Zamknij</span>
-          </DialogClose>
         </DialogContent>
       </Dialog>
 
       <div
-        className="w-full aspect-video rounded-[12px] overflow-hidden bg-black border border-[rgba(255,255,255,0.05)] mb-[48px] tbt:mb-[64px]"
+        className="aspect-video bg-mindmap-gradient border-mindmap-gradient"
         aria-label="Mapa myśli kursu"
       >
         <ReactFlow
@@ -139,11 +133,7 @@ function CourseMindmap({ mindmapData }: CourseMindmapProps) {
           panOnDrag={true}
           minZoom={minZoomValue}
         >
-          <Background color="#1A1A1A" gap={16} />
-          <MiniMap
-            nodeColor="#0BAD67"
-            className="!bg-[#1A1A1A] border border-[rgba(255,255,255,0.05)] hidden tbt:block"
-          />
+          <MiniMap className="!bg-background border-foreground/5 hidden tbt:block" />
         </ReactFlow>
       </div>
     </>

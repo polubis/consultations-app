@@ -1,6 +1,6 @@
 ---
 title: "Do seniora w 12 miesięcy"
-description: "Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych."
+description: "Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych."
 timeline:
   - month: 1
     roman: "I"
@@ -445,11 +445,11 @@ mindmap:
 
 ## Do seniora w 12 miesięcy
 
-Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
+Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
 
 ### Programu kursu
 
-Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
+Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych. Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
 
 <CourseTable>
 
@@ -474,7 +474,7 @@ Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ek
 
 ## Co zyskujesz?
 
-Ten kurs to nie tylko teoria – to projektowy bootcamp, mentoring i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
+Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
 
 <Gallery />
 

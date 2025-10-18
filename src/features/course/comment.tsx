@@ -219,7 +219,6 @@ function Comment({
       {!isReply && showInput && (
         <div className="mt-[24px] tbt:mt-[32px] ml-[48px]">
           <CommentInput
-            onSubmit={(content) => onComment?.(id, content)}
             placeholder="Dodaj komentarz..."
             inputName="comment"
             submitAriaLabel="Wyślij komentarz"

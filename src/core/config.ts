@@ -1,6 +1,9 @@
+const seniorInYearSlug = "senior-w-js";
+
 const routing = {
   home: "/",
-  mentoring: (slug: string) => `/mentoring/${slug}/`,
+  courses: "/courses",
+  course: (slug: string) => `/courses/${slug}/`,
 } as const;
 
 const appConfig = {
@@ -24,6 +27,7 @@ const appConfig = {
         cost: "4920",
         currency: "PLN",
         label: "Senior w Rok",
+        href: routing.course(seniorInYearSlug),
       },
       mockedTechInterview: {
         cost: "369",

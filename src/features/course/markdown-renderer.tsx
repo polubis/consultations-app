@@ -1,5 +1,4 @@
-// /src/features/course/markdown-renderer.tsx
-import React, { useMemo } from "react";
+import React, { useMemo, type ComponentProps } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -16,7 +15,7 @@ type MarkdownRendererProps = {
   timeline?: TimelineMonth[];
   gallery?: GalleryImage[];
   mindmap?: Mindmap;
-  headingIds: Record<string, string>;
+  headingIds?: Record<string, string>;
 };
 
 const COMPONENT_MAP = {
@@ -79,38 +78,34 @@ function MarkdownRenderer({
   const components: Components = useMemo(
     () => ({
       h1: ({ children }) => (
-        <h1 className="text-4xl tbt:text-5xl font-bold mt-8 mb-4 first:mt-0">
-          {children}
-        </h1>
+        <h1 className="text-h1 font-500 mt-8 mb-4 first:mt-0">{children}</h1>
       ),
       h2: ({ children }) => {
         const text = extractTextFromChildren(children);
-        const id = headingIds[text] || undefined;
+        const id = headingIds?.[text] ?? undefined;
         return (
           <h2
             id={id}
-            className="text-3xl tbt:text-4xl font-bold mt-8 mb-4 first:mt-0 scroll-mt-[80px]"
+            className="text-h2 font-500 mt-8 mb-4 first:mt-0 scroll-mt-[80px]"
           >
             {children}
           </h2>
         );
       },
       h3: ({ children }) => (
-        <h3 className="text-2xl tbt:text-3xl font-bold mt-6 mb-3">
-          {children}
-        </h3>
+        <h3 className="text-h3 font-500 mt-6 mb-3">{children}</h3>
       ),
       h4: ({ children }) => (
-        <h4 className="text-xl tbt:text-2xl font-bold mt-6 mb-3">{children}</h4>
+        <h4 className="text-h4 font-500 mt-6 mb-3">{children}</h4>
       ),
       h5: ({ children }) => (
-        <h5 className="text-lg tbt:text-xl font-bold mt-5 mb-2">{children}</h5>
+        <h5 className="text-h5 font-500 mt-5 mb-2">{children}</h5>
       ),
       h6: ({ children }) => (
-        <h6 className="tbt:text-lg font-bold mt-5 mb-2">{children}</h6>
+        <h6 className="text-h5 font-500 mt-5 mb-2">{children}</h6>
       ),
       p: ({ children }) => (
-        <p className="text-regular text-foreground leading-[150%] mb-4">
+        <p className="text-regular font-300 text-foreground mb-4 leading-[200%]">
           {children}
         </p>
       ),
@@ -125,7 +120,10 @@ function MarkdownRenderer({
         </ol>
       ),
       li: ({ children }) => (
-        <li className="text-regular text-foreground">{children}</li>
+        <li className="text-regular font-300 text-foreground">{children}</li>
+      ),
+      strong: ({ children }) => (
+        <strong className="font-500">{children}</strong>
       ),
       table: ({ children }) => (
         <CourseTable>
@@ -133,32 +131,47 @@ function MarkdownRenderer({
         </CourseTable>
       ),
       th: ({ children }) => (
-        <th className="course-table-cell px-6 py-3 text-left text-regular font-bold text-foreground">
+        <th className="course-table-cell px-6 py-3 text-left text-regular-bold font-500 text-foreground">
           {children}
         </th>
       ),
       td: ({ children }) => (
-        <td className="course-table-cell px-6 py-3 text-regular text-foreground whitespace-nowrap">
+        <td className="course-table-cell px-6 py-3 text-regular font-300 text-foreground whitespace-nowrap">
           {children}
         </td>
       ),
-      pre: ({ children }) => {
-        if (React.isValidElement(children)) {
-          const childProps = children.props as { className?: string };
-          const language = extractLanguageFromClassName(childProps.className);
-          const customComponent = renderCustomComponent(
-            language,
-            timeline,
-            gallery,
-            mindmap,
-          );
-          if (customComponent) return customComponent;
+      pre: ({ children, ...props }) => {
+        const child = React.Children.only(children) as React.ReactElement<{
+          className?: string;
+          children?: React.ReactNode;
+        }>;
+
+        const language = extractLanguageFromClassName(child.props.className);
+        const customComponent = renderCustomComponent(
+          language,
+          timeline,
+          gallery,
+          mindmap,
+        );
+        if (customComponent) {
+          return customComponent;
         }
-        return <pre className="my-6">{children}</pre>;
-      },
-      code: ({ children }) => {
+
         return (
-          <code className="block bg-[#181818] p-4 rounded-lg text-small font-mono overflow-x-auto">
+          <pre className="my-6" {...props}>
+            <code className="block bg-[#181818] p-4 rounded-lg text-small font-mono overflow-x-auto">
+              {child.props.children}
+            </code>
+          </pre>
+        );
+      },
+
+      code: ({ className, children, ...props }) => {
+        return (
+          <code
+            className="bg-foreground/10 text-foreground rounded px-1.5 py-0.5 font-mono text-[0.9em] mx-[2px]"
+            {...props}
+          >
             {children}
           </code>
         );
@@ -167,8 +180,8 @@ function MarkdownRenderer({
         <a
           href={href}
           className="text-primary-500 hover:text-primary-400 transition-colors underline break-words"
-          target={href?.startsWith("http") ? "_blank" : undefined}
-          rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {children}
         </a>

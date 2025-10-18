@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 
+const seniorInYearSlug = "senior-w-js";
+
 type PlanType = keyof typeof appConfig.plansSection.plans | "default";
 
 const paths: Record<
@@ -16,9 +18,8 @@ const paths: Record<
   { href: string; label: string; target?: "_blank" }
 > = {
   seniorInYear: {
-    href: appConfig.contactSection.calendarLink,
-    target: "_blank",
     label: "Umów spotkanie",
+    href: routing.course(seniorInYearSlug),
   },
   mockedTechInterview: {
     href: appConfig.contactSection.calendarLink,

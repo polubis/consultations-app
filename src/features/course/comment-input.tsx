@@ -2,35 +2,23 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 
 type CommentInputProps = {
-  onSubmit: (content: string) => void;
   placeholder?: string;
   inputName?: string;
   submitAriaLabel?: string;
 };
 
 function CommentInput({
-  onSubmit,
   placeholder = "Dodaj komentarz...",
   inputName = "comment",
   submitAriaLabel = "Wyślij komentarz",
 }: CommentInputProps) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const value = formData.get(inputName) as string;
-    if (value.trim()) {
-      onSubmit(value);
-      e.currentTarget.reset();
-    }
-  };
-
   return (
     <div className="flex items-center gap-[16px]">
       <Avatar className="shrink-0">
         <AvatarImage src="/adrian-284.webp" alt="Twój avatar" />
         <AvatarFallback>U</AvatarFallback>
       </Avatar>
-      <form onSubmit={handleSubmit} className="flex-1 relative">
+      <div className="flex-1 relative">
         <Input
           type="text"
           name={inputName}
@@ -61,7 +49,7 @@ function CommentInput({
             />
           </svg>
         </button>
-      </form>
+      </div>
     </div>
   );
 }
