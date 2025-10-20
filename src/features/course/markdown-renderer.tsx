@@ -105,7 +105,7 @@ function MarkdownRenderer({
         <h6 className="text-h5 font-500 mt-5 mb-2">{children}</h6>
       ),
       p: ({ children }) => (
-        <p className="text-regular font-300 text-foreground mb-4 leading-[200%]">
+        <p className="text-regular font-300 text-foreground mb-4 leading-[130%]">
           {children}
         </p>
       ),

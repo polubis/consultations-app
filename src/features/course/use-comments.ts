@@ -3,18 +3,12 @@ import type { CommentProps } from "./comment";
 
 type ReactionType = "fire" | "heart" | "lightbulb" | "thumbsUp";
 
-type ActiveReactions = {
-  [commentId: string]: {
-    [key in ReactionType]?: boolean;
-  };
-};
-
 const mockComments: CommentProps[] = [
   {
     id: "1",
     rating: "9/10",
     content:
-      "course przerósł moje oczekiwania! Zaczynałem od zera, a teraz pracuję jako junior frontend developer. Mentor w przystępny sposób tłumaczył nawet najtrudniejsze zagadnienia, a do tego miał ogromną cierpliwość. Dzięki jego wsparciu nie tylko nauczyłam się programować, ale też uwierzyłam w siebie!",
+      "Mentoring przerósł moje oczekiwania! Zaczynałem od zera, a teraz pracuję jako junior frontend developer. Mentor w przystępny sposób tłumaczył nawet najtrudniejsze zagadnienia, a do tego miał ogromną cierpliwość. Dzięki jego wsparciu nie tylko nauczyłam się programować, ale też uwierzyłam w siebie!",
     author: {
       name: "Anna",
       avatar: "/adrian-284.webp",

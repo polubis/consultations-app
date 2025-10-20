@@ -68,7 +68,7 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                     </div>
                   </div>
 
-                  <div className="flex flex-1 justify-between pl-2">
+                  <div className="flex flex-1 justify-between pl-1 mbl:pl-2">
                     {Array.from({ length: TICKS_PER_MONTH }).map((_, index) => (
                       <div
                         key={`${month.month}-tick-${index + 1}`}

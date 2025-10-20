@@ -472,6 +472,8 @@ Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspe
 
 <Timeline />
 
+<Mindmap />
+
 ## Co zyskujesz?
 
 Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspertów. Po roku wychodzisz z portfolio aplikacji, wiedzą na poziomie seniora i przygotowaniem do rozmów rekrutacyjnych.
@@ -481,5 +483,3 @@ Ten kurs to nie tylko teoria – to projektowy bootcamp, course i wsparcie ekspe
 ## Jak wygląda proces?
 
 Zrozumienie kluczowych koncepcji i ich wzajemnych powiązań jest fundamentem skutecznej nauki. Poniższa mapa myśli wizualizuje strukturę naszego programu, pokazując, jak poszczególne moduły i technologie łączą się w spójną całość, prowadząc Cię od podstaw do zaawansowanych zagadnień.
-
-<Mindmap />

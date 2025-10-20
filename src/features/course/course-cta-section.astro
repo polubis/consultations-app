@@ -1,4 +1,5 @@
 ---
+import { appConfig } from "@/core/config";
 ---
 
 <section
@@ -34,7 +35,8 @@
 
     <a
     class="primary-button px-[24px] py-[10px]"
-   
+    href={appConfig.contactSection.calendarLink}
+    target="_blank"
   >
     Umów spotkanie
   </a>

@@ -19,7 +19,7 @@ function CourseGallery({ images }: CourseGalleryProps) {
   return (
     <div className="mb-[48px] tbt:mb-[64px]">
       {/* Main image */}
-      <div className="relative w-full aspect-video bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-[12px] overflow-hidden mb-[16px]">
+      <div className="relative w-full aspect-video bg-[rgba(255,255,255,0.02)]   overflow-hidden mb-[16px]">
         <img
           src={images[activeIndex].src}
           alt={images[activeIndex].alt}
@@ -37,9 +37,9 @@ function CourseGallery({ images }: CourseGalleryProps) {
               key={uniqueKey}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`relative aspect-video bg-[rgba(255,255,255,0.02)] border rounded-[8px] overflow-hidden transition-all ${
+              className={`relative aspect-video bg-[rgba(255,255,255,0.02)] border  overflow-hidden transition-all ${
                 activeIndex === index
-                  ? "border-primary-500 ring-2 ring-primary-500/20"
+                  ? "border-primary-500"
                   : "border-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.2)]"
               }`}
               aria-label={`Pokaż zdjęcie ${index + 1}`}
@@ -51,7 +51,7 @@ function CourseGallery({ images }: CourseGalleryProps) {
                 loading="lazy"
               />
               {activeIndex === index && (
-                <div className="absolute inset-0 border-2 border-primary-500 rounded-[8px]" />
+                <div className="absolute inset-0  border-primary-500" />
               )}
             </button>
           );
