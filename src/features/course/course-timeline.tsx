@@ -50,15 +50,25 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                     >
                       {month.roman}
                     </span>
-                    <div
-                      className="w-[2px] rounded-full transition-all duration-300 ease-in-out"
-                      style={{
-                        height: isHovered ? "64px" : "32px",
-                        backgroundColor: isHovered
-                          ? "var(--primary-500)"
-                          : "#676767",
-                      }}
-                    />
+
+                    {/*
+                      THE ONLY CHANGE IS HERE:
+                      Changed `items-center` to `items-start`.
+                      This aligns the bar to the top of the 64px container,
+                      so it correctly grows downwards on hover.
+                    */}
+                    <div className="flex h-[64px] items-start">
+                      <div
+                        className="w-[2px] rounded-full transition-all duration-300 ease-in-out"
+                        style={{
+                          height: isHovered ? "64px" : "32px",
+                          backgroundColor: isHovered
+                            ? "var(--primary-500)"
+                            : "#676767",
+                        }}
+                      />
+                    </div>
+
                     <div className="mt-4">
                       <div
                         className="h-[20px] w-[20px]"
@@ -91,10 +101,13 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
         </CarouselContent>
       </Carousel>
 
-      {/* Details Section */}
-      {hoveredMonth !== null && activeMonthDetails && (
-        <div className="relative mt-6 min-h-[100px] animate-jump-top-bottom">
-          <div key={activeMonthDetails.month}>
+      {/* This section for the details remains correct */}
+      <div className="relative mt-6 h-[120px]">
+        {activeMonthDetails && (
+          <div
+            key={activeMonthDetails.month}
+            className="absolute inset-0 animate-jump-top-bottom"
+          >
             <div className="flex items-center gap-3">
               <h3 className="text-h4 font-500 text-foreground">
                 {activeMonthDetails.title}
@@ -104,8 +117,8 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
               {activeMonthDetails.description}
             </p>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

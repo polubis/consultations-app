@@ -37,23 +37,24 @@ const FaqSection = () => {
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger>
-            Na jakim etapie kariery programisty najlepiej rozpocząć course?
+            Na jakim etapie kariery programisty najlepiej rozpocząć mentoring?
           </AccordionTrigger>
           <AccordionContent>
-            course można rozpocząć na każdym etapie kariery. Dla początkujących
-            będzie wsparciem w zdobywaniu fundamentalnej wiedzy, dla
-            średniozaawansowanych pomoże w specjalizacji, a dla doświadczonych w
-            rozwoju umiejętności liderskich i technicznych.
+            mentoring można rozpocząć na każdym etapie kariery. Dla
+            początkujących będzie wsparciem w zdobywaniu fundamentalnej wiedzy,
+            dla średniozaawansowanych pomoże w specjalizacji, a dla
+            doświadczonych w rozwoju umiejętności liderskich i technicznych.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-2">
           <AccordionTrigger>
-            Jak długo trwa typowy proces courseowy, aby osiągnąć konkretne cele?
+            Jak długo trwa typowy proces mentoringowy, aby osiągnąć konkretne
+            cele?
           </AccordionTrigger>
           <AccordionContent>
             <span>
-              Czas trwania procesu courseowego zależy od wybranego planu i
+              Czas trwania procesu mentoringowego zależy od wybranego planu i
               preferencji klienta. Jeżeli masz inną sytuację życiową, to możemy
               dostosować go do Twoich indywidualnych preferencji.
             </span>
@@ -87,7 +88,7 @@ const FaqSection = () => {
               Dodatkowo, wykorzystujemy naukowo potwierdzone metody wspólnej
               nauki i priorytetyzacji zadań (jak tablica Eisenhowera, „Świadomy
               dzień”, planowanie strategiczne i taktyczne), aby osiągnąć efekty
-              jak najszybciej. Więcej o tym, jak działamy w courseu możesz
+              jak najszybciej. Więcej o tym, jak działamy w mentoringu możesz
               przeczytać w artykule:
             </span>
             <a
@@ -103,11 +104,11 @@ const FaqSection = () => {
 
         <AccordionItem value="item-4">
           <AccordionTrigger>
-            Czy course jest dostosowany do indywidualnych potrzeb, czy obejmuje
-            standardowy plan nauki?
+            Czy mentoring jest dostosowany do indywidualnych potrzeb, czy
+            obejmuje standardowy plan nauki?
           </AccordionTrigger>
           <AccordionContent>
-            course jest zawsze dostosowany do indywidualnych potrzeb. Na
+            mentoring jest zawsze dostosowany do indywidualnych potrzeb. Na
             początku definiujemy cele i oczekiwania, na podstawie których
             tworzony jest spersonalizowany plan rozwoju. Podążamy za Twoimi
             priorytetami, jednocześnie dbając o całościowy rozwój umiejętności.
@@ -116,7 +117,7 @@ const FaqSection = () => {
 
         <AccordionItem value="item-5">
           <AccordionTrigger>
-            Jakie są Twoje metody oceny, czy course jest skuteczny i przynosi
+            Jakie są Twoje metody oceny, czy mentoring jest skuteczny i przynosi
             oczekiwane rezultaty?
           </AccordionTrigger>
           <AccordionContent>

@@ -65,6 +65,7 @@
 
   /* Typography - Font Weights */
   --font-weight-500: 500;
+  --font-weight-450: 450;
   --font-weight-400: 400;
   --font-weight-300: 300;
 
@@ -156,6 +157,7 @@
 
   /* Typography - Font Weights */
   --font-weight-500: var(--font-weight-500);
+  --font-weight-450: var(--font-weight-450);
   --font-weight-400: var(--font-weight-400);
   --font-weight-300: var(--font-weight-300);
 
@@ -175,20 +177,23 @@
     @apply scroll-smooth;
   }
 
-  ::-webkit-scrollbar {
+  .mindmap-dialog-content::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
-  ::-webkit-scrollbar-track {
+
+  .mindmap-dialog-content::-webkit-scrollbar-track {
     background-color: transparent;
   }
-  ::-webkit-scrollbar-thumb {
+
+  .mindmap-dialog-content::-webkit-scrollbar-thumb {
     background-color: var(--foreground-secondary);
     border-radius: 4px;
     border: 2px solid transparent;
     background-clip: content-box;
   }
-  ::-webkit-scrollbar-thumb:hover {
+
+  .mindmap-dialog-content::-webkit-scrollbar-thumb:hover {
     background-color: var(--foreground);
   }
 }

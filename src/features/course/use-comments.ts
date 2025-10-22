@@ -53,7 +53,7 @@ const mockComments: CommentProps[] = [
       },
       {
         id: "1-3",
-        content: "Też rozważam rozpoczęcie courseu po przeczytaniu tego!",
+        content: "Też rozważam rozpoczęcie mentoringu po przeczytaniu tego!",
         author: {
           name: "Michał",
           avatar: "/adrian-284.webp",
@@ -70,7 +70,7 @@ const mockComments: CommentProps[] = [
     id: "2",
     rating: "10/10",
     content:
-      "Najlepsza inwestycja w moją karierę! Po 3 miesiącach courseu dostałem awans na mid-level developera. Mentor nie tylko uczył technologii, ale także pokazał jak myśleć jak senior developer i podchodzić do problemów strategicznie.",
+      "Najlepsza inwestycja w moją karierę! Po 3 miesiącach mentoringu dostałem awans na mid-level developera. Mentor nie tylko uczył technologii, ale także pokazał jak myśleć jak senior developer i podchodzić do problemów strategicznie.",
     author: {
       name: "Paweł",
       avatar: "/adrian-284.webp",

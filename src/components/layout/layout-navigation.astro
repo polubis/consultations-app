@@ -1,6 +1,9 @@
 ---
 import { appConfig } from "@/core/config";
 import Logo from "../../../public/logo.svg";
+
+const isHomePage = Astro.url.pathname === "/";
+const homePrefix = isHomePage ? "" : "/";
 ---
 
 <style>
@@ -31,7 +34,8 @@ import Logo from "../../../public/logo.svg";
       <li>
         <a
           class="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
-          href={`#${appConfig.faqSection.id}`}
+          href={`${homePrefix}#${appConfig.faqSection.id}`}
+
         >
           FAQ
         </a>
@@ -49,7 +53,8 @@ import Logo from "../../../public/logo.svg";
       <li>
         <a
           class="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
-          href={`#${appConfig.materialsSection.id}`}
+          href={`${homePrefix}#${appConfig.materialsSection.id}`}
+
         >
           Materiały
         </a>
@@ -57,7 +62,7 @@ import Logo from "../../../public/logo.svg";
       <li>
         <a
           class="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
-          href={`#${appConfig.aboutSection.id}`}
+          href={`${homePrefix}#${appConfig.aboutSection.id}`}
         >
           O mnie
         </a>
@@ -73,7 +78,7 @@ import Logo from "../../../public/logo.svg";
       <li>
         <a
           class="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
-          href={`#${appConfig.plansSection.id}`}
+          href={`${homePrefix}#${appConfig.plansSection.id}`}
         >
           Plany
         </a>
@@ -81,7 +86,7 @@ import Logo from "../../../public/logo.svg";
       <li>
         <a
           class="text-regular hover:text-white transition-colors font-400 duration-300 ease-in-out"
-          href={`#${appConfig.specializationsSection.id}`}
+          href={`${homePrefix}#${appConfig.specializationsSection.id}`}
         >
           Specjalizacje
         </a>
@@ -90,7 +95,7 @@ import Logo from "../../../public/logo.svg";
 
     <a
       class="primary-button text-center px-6 py-2.5 ml-16 ltp:inline hidden"
-      href={`#${appConfig.contactSection.id}`}
+      href={`${homePrefix}#${appConfig.contactSection.id}`}
     >
       Umów konsultację
     </a>
@@ -162,7 +167,7 @@ import Logo from "../../../public/logo.svg";
       <li class="text-center animate-jump-top-bottom opacity-0 delay-100">
         <a
           class="hover:text-white font-500 text-h4"
-          href={`#${appConfig.faqSection.id}`}
+          href={`${homePrefix}#${appConfig.faqSection.id}`}
         >
           FAQ
         </a>
@@ -180,7 +185,7 @@ import Logo from "../../../public/logo.svg";
       <li class="text-center animate-jump-top-bottom opacity-0 delay-300">
         <a
           class="hover:text-white font-500 text-h4"
-          href={`#${appConfig.materialsSection.id}`}
+          href={`${homePrefix}#${appConfig.materialsSection.id}`}
         >
           Materiały
         </a>
@@ -188,7 +193,7 @@ import Logo from "../../../public/logo.svg";
       <li class="text-center animate-jump-top-bottom opacity-0 delay-400">
         <a
           class="hover:text-white font-500 text-h4"
-          href={`#${appConfig.aboutSection.id}`}
+          href={`${homePrefix}#${appConfig.aboutSection.id}`}
         >
           O mnie
         </a>
@@ -204,7 +209,7 @@ import Logo from "../../../public/logo.svg";
       <li class="text-center animate-jump-top-bottom opacity-0 delay-600">
         <a
           class="hover:text-white font-500 text-h4"
-          href={`#${appConfig.plansSection.id}`}
+          href={`${homePrefix}#${appConfig.plansSection.id}`}
         >
           Plany
         </a>
@@ -212,7 +217,7 @@ import Logo from "../../../public/logo.svg";
       <li class="text-center animate-jump-top-bottom opacity-0 delay-700">
         <a
           class="hover:text-white font-500 text-h4"
-          href={`#${appConfig.specializationsSection.id}`}
+          href={`${homePrefix}#${appConfig.specializationsSection.id}`}
         >
           Specjalizacje
         </a>
@@ -220,7 +225,7 @@ import Logo from "../../../public/logo.svg";
     </ul>
     <a
       class="primary-button text-center px-6 py-2.5 mt-10 animate-jump-top-bottom opacity-0 delay-800"
-      href={`#${appConfig.contactSection.id}`}
+      href={`${homePrefix}#${appConfig.contactSection.id}`}
     >
       Umów konsultację
     </a>

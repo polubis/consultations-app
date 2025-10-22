@@ -1,14 +1,10 @@
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "../../components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "../../components/ui/accordion";
+} from "@/components/ui/accordion";
 import { CommentInput } from "./comment-input";
 import { ReactionButton } from "./reaction-button";
 import type { ReactionType } from "./use-comments";

@@ -9,9 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogClose,
 } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 import type { Mindmap } from "./markdown-schemas";
 import { MarkdownRenderer } from "./markdown-renderer";
 import {
@@ -111,7 +109,7 @@ function CourseMindmap({ mindmapData }: CourseMindmapProps) {
                 </DialogTitle>
               </DialogHeader>
 
-              <div className="overflow-y-auto px-6 flex-1">
+              <div className="overflow-y-auto px-6 flex-1 mindmap-dialog-content">
                 <MarkdownRenderer content={selectedNodeData.content} />
               </div>
             </>
