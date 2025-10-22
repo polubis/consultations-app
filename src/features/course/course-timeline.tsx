@@ -51,12 +51,6 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                       {month.roman}
                     </span>
 
-                    {/*
-                      THE ONLY CHANGE IS HERE:
-                      Changed `items-center` to `items-start`.
-                      This aligns the bar to the top of the 64px container,
-                      so it correctly grows downwards on hover.
-                    */}
                     <div className="flex h-[64px] items-start">
                       <div
                         className="w-[2px] rounded-full transition-all duration-300 ease-in-out"
@@ -101,7 +95,6 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
         </CarouselContent>
       </Carousel>
 
-      {/* This section for the details remains correct */}
       <div className="relative mt-6 h-[120px]">
         {activeMonthDetails && (
           <div
