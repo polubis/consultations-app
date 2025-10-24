@@ -1,0 +1,110 @@
+[
+  {
+    "month": 1,
+    "roman": "I",
+    "title": "Fundament Techniczny",
+    "description": "Określamy Twój poziom, stack oraz kierunek rozwoju",
+    "modules": [
+      "Wprowadzenie do ekosystemu",
+      "Zaawansowany TypeScript",
+      "Podstawy projektowania UI"
+    ]
+  },
+  {
+    "month": 2,
+    "roman": "II",
+    "title": "Fundamenty React",
+    "description": "Głębokie zrozumienie hooków, zarządzania stanem i mechanizmów renderowania w React",
+    "modules": [
+      "React Hooks w praktyce",
+      "Zarządzanie stanem: Redux vs. Zustand",
+      "Context API i Performance"
+    ]
+  },
+  {
+    "month": 3,
+    "roman": "III",
+    "title": "Architektura Next.js",
+    "description": "Budowa nowoczesnych aplikacji z Server Components, routingiem i optymalizacją SEO",
+    "modules": ["Next.js 14 i App Router", "Server Components", "Routing i SEO"]
+  },
+  {
+    "month": 4,
+    "roman": "IV",
+    "title": "Jakość i Testowanie",
+    "description": "Zapewnienie jakości kodu poprzez testy jednostkowe, integracyjne oraz E2E",
+    "modules": ["Testing: Jest i RTL", "E2E z Playwright", "TDD w praktyce"]
+  },
+  {
+    "month": 5,
+    "roman": "V",
+    "title": "Styling i Design Systems",
+    "description": "Tworzenie spójnych i dostępnych interfejsów użytkownika z Tailwind i Design Systems",
+    "modules": ["CSS-in-JS i Tailwind", "Design Systems", "Accessibility"]
+  },
+  {
+    "month": 6,
+    "roman": "VI",
+    "title": "Komunikacja z API",
+    "description": "Efektywne pobieranie i zarządzanie danymi z użyciem GraphQL i REST API",
+    "modules": [
+      "GraphQL i Apollo",
+      "REST API Best Practices",
+      "Data Fetching Strategies"
+    ]
+  },
+  {
+    "month": 7,
+    "roman": "VII",
+    "title": "Skalowalność i CI/CD",
+    "description": "Budowa skalowalnych architektur z monorepo i automatyzacja procesów wdrożeniowych",
+    "modules": ["Monorepo z Turborepo", "Mikroserwisy", "CI/CD Pipelines"]
+  },
+  {
+    "month": 8,
+    "roman": "VIII",
+    "title": "Infrastruktura i DevOps",
+    "description": "Zarządzanie infrastrukturą, wdrażanie aplikacji w chmurze i monitorowanie ich działania",
+    "modules": [
+      "Docker i Kubernetes",
+      "AWS/Vercel Deploy",
+      "Monitoring i Logging"
+    ]
+  },
+  {
+    "month": 9,
+    "roman": "IX",
+    "title": "Wzorce i Architektura",
+    "description": "Poznanie zaawansowanych wzorców projektowych i zasad czystej architektury",
+    "modules": ["Wzorce projektowe", "Clean Architecture", "SOLID w JS/TS"]
+  },
+  {
+    "month": 10,
+    "roman": "X",
+    "title": "Optymalizacja Wydajności",
+    "description": "Analiza i optymalizacja wydajności aplikacji webowych, w tym Web Vitals",
+    "modules": ["Performance Optimization", "Web Vitals", "Code Splitting"]
+  },
+  {
+    "month": 11,
+    "roman": "XI",
+    "title": "Bezpieczeństwo Aplikacji",
+    "description": "Zabezpieczanie aplikacji przed typowymi atakami i implementacja mechanizmów autentykacji",
+    "modules": [
+      "Security Best Practices",
+      "Authentication: OAuth/JWT",
+      "Authorization Patterns"
+    ]
+  },
+  {
+    "month": 12,
+    "roman": "XII",
+    "title": "Projekt Finałowy",
+    "description": "Zwieńczenie nauki - kompleksowy projekt, code review i przygotowanie do rozmów kwalifikacyjnych",
+    "modules": [
+      "Projekt dyplomowy",
+      "Code Review z Seniorem",
+      "Przygotowanie do rozmów"
+    ]
+  }
+]

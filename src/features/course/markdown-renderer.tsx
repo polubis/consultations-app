@@ -53,16 +53,19 @@ function renderCustomComponent(
   language: string | null,
   timeline: TimelineMonth[],
   gallery: GalleryImage[],
-  mindmap?: Mindmap,
+  mindmap: Mindmap | undefined,
+  hasTimeline: boolean,
+  hasGallery: boolean,
+  hasMindmap: boolean,
 ): React.ReactNode {
   if (!language || !isValidComponentType(language)) return null;
-  if (language === "component-timeline" && timeline.length > 0) {
+  if (language === "component-timeline" && hasTimeline && timeline.length > 0) {
     return <CourseTimeline timelineData={timeline} />;
   }
-  if (language === "component-gallery" && gallery.length > 0) {
+  if (language === "component-gallery" && hasGallery && gallery.length > 0) {
     return <CourseGallery images={gallery} />;
   }
-  if (language === "component-mindmap" && mindmap) {
+  if (language === "component-mindmap" && hasMindmap && mindmap) {
     return <CourseMindmap mindmapData={mindmap} />;
   }
   return null;
@@ -75,6 +78,14 @@ function MarkdownRenderer({
   mindmap,
   headingIds,
 }: MarkdownRendererProps) {
+  // Remove HTML comments to check if components are really present
+  const markdownWithoutComments = content.replace(/<!--[\s\S]*?-->/g, "");
+
+  // Check if components are actually used (not commented out)
+  const hasTimeline = markdownWithoutComments.includes("<Timeline");
+  const hasGallery = markdownWithoutComments.includes("<Gallery");
+  const hasMindmap = markdownWithoutComments.includes("<Mindmap");
+
   const components: Components = useMemo(
     () => ({
       h1: ({ children }) => (
@@ -149,9 +160,12 @@ function MarkdownRenderer({
         const language = extractLanguageFromClassName(child.props.className);
         const customComponent = renderCustomComponent(
           language,
-          timeline,
-          gallery,
+          timeline || [],
+          gallery || [],
           mindmap,
+          hasTimeline,
+          hasGallery,
+          hasMindmap,
         );
         if (customComponent) {
           return customComponent;
@@ -194,8 +208,23 @@ function MarkdownRenderer({
       hr: () => (
         <hr className="border-t border-[rgba(255,255,255,0.05)] my-8" />
       ),
+      img: ({ src, alt }) => (
+        <img
+          src={src}
+          alt={alt || "Course content image"}
+          className="w-full h-full object-contain my-6"
+        />
+      ),
     }),
-    [timeline, gallery, mindmap, headingIds],
+    [
+      timeline,
+      gallery,
+      mindmap,
+      headingIds,
+      hasTimeline,
+      hasGallery,
+      hasMindmap,
+    ],
   );
 
   return (

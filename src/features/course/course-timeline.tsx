@@ -67,7 +67,7 @@ function CourseTimeline({ timelineData }: CourseTimelineProps) {
                       <div
                         className="h-[20px] w-[20px]"
                         // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-                        dangerouslySetInnerHTML={{ __html: month.icon }}
+                        dangerouslySetInnerHTML={{ __html: month.icon ?? "" }}
                       />
                     </div>
                   </div>

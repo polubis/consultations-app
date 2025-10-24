@@ -5,7 +5,7 @@ export const TimelineMonthSchema = z.object({
   roman: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1),
-  icon: z.string().min(1),
+  icon: z.string().min(1).optional(),
   modules: z.array(z.string().min(1)).min(1),
 });
 export const TimelineSchema = z.array(TimelineMonthSchema).min(1);

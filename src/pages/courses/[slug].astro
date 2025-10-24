@@ -1,7 +1,7 @@
 ---
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { loadCourseBySlug } from "@/lib/course-loader";
 import MainLayout from "@/layouts/main.astro";
 import { routing } from "@/core/config";
 import LayoutNavigation from "@/components/layout/layout-navigation.astro";
@@ -13,30 +13,44 @@ import CourseWhySection from "@/features/course/course-why-section.astro";
 
 export async function getStaticPaths() {
   const courseDir = path.join(process.cwd(), "public", "course");
-  const files = await fs.readdir(courseDir);
-  const mdFiles = files.filter((file) => file.endsWith(".md"));
 
-  const paths = await Promise.all(
-    mdFiles.map(async (file) => {
-      const slug = file.replace(".md", "");
-      const filePath = path.join(courseDir, file);
-      const fileContent = await fs.readFile(filePath, "utf-8");
-      const { data: frontmatter, content } = matter(fileContent);
+  try {
+    const items = await fs.readdir(courseDir, { withFileTypes: true });
 
-      return {
-        params: { slug },
-        props: {
-          frontmatter,
-          content,
-        },
-      };
-    }),
-  );
+    const courseFolders = items
+      .filter((item) => item.isDirectory())
+      .map((item) => item.name);
 
-  return paths;
+    const paths = await Promise.all(
+      courseFolders.map(async (slug) => {
+        const courseData = await loadCourseBySlug(slug);
+
+        if (!courseData) {
+          console.warn(
+            `Skipping course "${slug}": missing content.md or data files`,
+          );
+          return null;
+        }
+
+        return {
+          params: { slug },
+          props: {
+            frontmatter: courseData.frontmatter,
+            content: courseData.content,
+          },
+        };
+      }),
+    );
+
+    return paths.filter(Boolean);
+  } catch (error) {
+    console.error("Error loading courses:", error);
+    return [];
+  }
 }
 
 const { frontmatter, content } = Astro.props;
+const { slug } = Astro.params;
 
 const breadcrumbItems = [
   { label: "Home", href: routing.home },
@@ -46,7 +60,6 @@ const breadcrumbItems = [
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const domain = Astro.site!.toString().replace(/\/$/, "");
 const imageUrl = `${domain}/adrian-512.webp`;
-const { slug } = Astro.params;
 ---
 
 <MainLayout

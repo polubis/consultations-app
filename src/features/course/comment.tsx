@@ -114,7 +114,7 @@ function Comment({
 
       {/* Reactions - z przyciskiem Skomentuj tylko dla głównych komentarzy */}
       {!isReply ? (
-        <div className="flex items-center gap-[24px] ">
+        <div className="flex items-center gap-[16px] sbl:gap-[24px]">
           {reactions.fire && reactions.fire > 0 && (
             <ReactionButton
               type="fire"

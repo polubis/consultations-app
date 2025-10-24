@@ -11,20 +11,39 @@ import {
 interface Props {
   markdownContent: string;
   frontmatter: {
-    timeline?: Array<{ month: number; roman: string; modules: string[] }>;
-    gallery?: Array<{ src: string; alt: string }>;
-    mindmap?: Array<{
-      content: string;
-      description: string;
-      name: string;
-      path: string;
+    timeline?: Array<{
+      month: number;
+      roman: string;
+      modules: string[];
+      title?: string;
+      description?: string;
     }>;
+    gallery?: Array<{ src: string; alt: string }>;
+    mindmap?: {
+      edges: Array<{
+        id: string;
+        source: string;
+        target: string;
+        type: string;
+      }>;
+      nodes: Array<{
+        id: string;
+        type: string;
+        position: { x: number; y: number };
+        data: {
+          content: string;
+          description: string | null;
+          name: string;
+          path: string;
+        };
+      }>;
+      orientation: string;
+    };
   };
 }
 
 const { markdownContent, frontmatter } = Astro.props;
 
-// Validate frontmatter data with Zod schemas
 const validatedTimeline = frontmatter.timeline
   ? validateTimeline(frontmatter.timeline)
   : undefined;
