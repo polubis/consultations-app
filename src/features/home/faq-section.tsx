@@ -40,7 +40,7 @@ const FaqSection = () => {
             Na jakim etapie kariery programisty najlepiej rozpocząć mentoring?
           </AccordionTrigger>
           <AccordionContent>
-            Mentoring można rozpocząć na każdym etapie kariery. Dla
+            mentoring można rozpocząć na każdym etapie kariery. Dla
             początkujących będzie wsparciem w zdobywaniu fundamentalnej wiedzy,
             dla średniozaawansowanych pomoże w specjalizacji, a dla
             doświadczonych w rozwoju umiejętności liderskich i technicznych.
@@ -108,7 +108,7 @@ const FaqSection = () => {
             obejmuje standardowy plan nauki?
           </AccordionTrigger>
           <AccordionContent>
-            Mentoring jest zawsze dostosowany do indywidualnych potrzeb. Na
+            mentoring jest zawsze dostosowany do indywidualnych potrzeb. Na
             początku definiujemy cele i oczekiwania, na podstawie których
             tworzony jest spersonalizowany plan rozwoju. Podążamy za Twoimi
             priorytetami, jednocześnie dbając o całościowy rozwój umiejętności.

@@ -1,0 +1,123 @@
+---
+import { CommentsSection } from "./comments-section";
+---
+
+<section class="page-section fluid" aria-labelledby="why-section-title">
+  <div class="max-w-4xl mx-auto dsp:max-w-none dsp:grid dsp:grid-cols-2 dsp:gap-[64px]">
+    <!-- Left Column: Dlaczego warto? -->
+    <div>
+      <h2 id="why-section-title" class="text-h2 font-500 mb-[32px]">
+        Dlaczego warto?
+      </h2>
+
+      <div class="flex flex-col space-y-[16px]">
+        <div class="flex items-center gap-[16px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-primary-500"
+            aria-hidden="true"
+          >
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <div>
+            <p class="text-foreground font-500 text-regular">
+              Średnia ocena <span class="text-primary-500">9.4/10</span> na
+              podstawie 100 opinii
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-[16px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-primary-500"
+            aria-hidden="true"
+          >
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+          </svg>
+          <div>
+            <p class="text-foreground font-500 text-regular">
+              82% osób awansowało w ciągu 6 miesięcy po mentoringu
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-[16px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-primary-500"
+            aria-hidden="true"
+          >
+            <path d="M10 9.33398C10.1333 8.66732 10.4667 8.20065 11 7.66732C11.6667 7.06732 12 6.20065 12 5.33398C12 4.27312 11.5786 3.2557 10.8284 2.50556C10.0783 1.75541 9.06087 1.33398 8 1.33398C6.93913 1.33398 5.92172 1.75541 5.17157 2.50556C4.42143 3.2557 4 4.27312 4 5.33398C4 6.00065 4.13333 6.80065 5 7.66732C5.46667 8.13398 5.86667 8.66732 6 9.33398M6 12.0007H10M6.66667 14.6673H9.33333" />
+          </svg>
+          <div>
+            <p class="text-foreground font-500 text-regular">
+              90 osób podkreśla skuteczność mentoringu
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-[16px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-primary-500"
+            aria-hidden="true"
+          >
+            <defs>
+              <clipPath id="clip0_974_5434">
+                <rect width="16" height="16" fill="white" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#clip0_974_5434)">
+              <path d="M4.66683 6.66732V14.6673M10.0002 3.92065L9.3335 6.66732H13.2202C13.4272 6.66732 13.6313 6.71551 13.8164 6.80808C14.0016 6.90065 14.1626 7.03506 14.2868 7.20065C14.411 7.36625 14.495 7.55848 14.532 7.76214C14.569 7.96579 14.5581 8.17527 14.5002 8.37398L12.9468 13.7073C12.8661 13.9843 12.6976 14.2276 12.4668 14.4007C12.236 14.5737 11.9553 14.6673 11.6668 14.6673H2.66683C2.31321 14.6673 1.97407 14.5268 1.72402 14.2768C1.47397 14.0267 1.3335 13.6876 1.3335 13.334V8.00065C1.3335 7.64703 1.47397 7.30789 1.72402 7.05784C1.97407 6.80779 2.31321 6.66732 2.66683 6.66732H4.50683C4.75489 6.66719 4.99799 6.59786 5.2088 6.46713C5.41961 6.3364 5.58978 6.14946 5.70016 5.92732L8.00016 1.33398C8.31455 1.33788 8.62399 1.41276 8.90537 1.55305C9.18674 1.69333 9.43278 1.89539 9.6251 2.14412C9.81742 2.39285 9.95104 2.68182 10.016 2.98945C10.0809 3.29708 10.0755 3.61541 10.0002 3.92065Z" />
+            </g>
+          </svg>
+          <div>
+            <p class="text-foreground font-500 text-regular">
+              80 osób ceni spersonalizowane, holistyczne podejście
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <CommentsSection client:load />
+    </div>
+  </div>
+</section>
