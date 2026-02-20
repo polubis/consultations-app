@@ -11,6 +11,14 @@ type Material = {
 
 const MATERIALS_MOCK: Material[] = [
   {
+    id: "senior-in-year-mindmap",
+    title: "Senior w Rok - Mindmapa",
+    description:
+      "Materiał premium – prezentuje zaledwie 1 moduł kursu (JavaScript).",
+    price: "PREMIUM (DEMO)",
+    url: "https://4markdown.com/mindmap-preview/?mindmapId=150353b58d7c&authorId=Xbkvo5Su6GgW3QMO6F4Fw7MDJMb2",
+  },
+  {
     id: "react-hooks-spellbook",
     title: "React hooks spellbook",
     description: "Kurs skupiający się na tworzeniu Reactowych hooków.",
@@ -57,6 +65,35 @@ const MATERIALS_MOCK: Material[] = [
 ];
 ---
 
+<style>
+  @keyframes golden-border-rotate {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 400% 50%;
+    }
+  }
+
+  .golden-tile-border {
+    position: relative;
+    background: linear-gradient(
+      90deg,
+      #3d3311 0%,
+      #d4af37 10%,
+      #3d3311 20%,
+      #3d3311 40%,
+      #d4af37 50%,
+      #3d3311 60%,
+      #3d3311 80%,
+      #d4af37 90%,
+      #3d3311 100%
+    );
+    background-size: 400% 100%;
+    animation: golden-border-rotate 8s linear infinite;
+  }
+</style>
+
 <section
   class="fluid page-section flex flex-col justify-center"
   id={appConfig.materialsSection.id}
@@ -80,9 +117,16 @@ const MATERIALS_MOCK: Material[] = [
     aria-label="Lista dostępnych materiałów"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr"
   >
-    {MATERIALS_MOCK.map((material, index) => (
+    {MATERIALS_MOCK.map((material, index) => {
+      const isGoldenTile = material.id === "senior-in-year-mindmap";
+      return (
       <li
-        class="p-[1px] relative rounded-xl bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
+        class:list={[
+          "p-[1px] relative rounded-xl",
+          isGoldenTile 
+            ? "golden-tile-border"
+            : "bg-gradient-to-r from-[#111311] via-[#08140f] to-[#010F09]"
+        ]}
       >
         <a
           href={material.url}
@@ -92,8 +136,11 @@ const MATERIALS_MOCK: Material[] = [
           aria-describedby={`description-${material.id}`}
         >
           <div
-            class="radial-flare size-30"
-            style={`top: ${((index * 25) % 75) + 10}%; right: ${((index * 30) % 70) + 15}%;`}
+            class:list={[
+              "size-30",
+              isGoldenTile ? "bg-[#d4af3755]" : "radial-flare"
+            ]}
+            style={`top: ${((index * 25) % 75) + 10}%; right: ${((index * 30) % 70) + 15}%; ${isGoldenTile ? 'position: absolute; border-radius: 9999px; filter: blur(48px);' : ''}`}
             aria-hidden="true"
           />
           <article
@@ -101,7 +148,10 @@ const MATERIALS_MOCK: Material[] = [
             class="flex flex-col h-full"
           >
             <header class="mb-4">
-              <h3 id={`material-title-${material.id}`} class="mb-2 text-h4 font-500">
+              <h3 id={`material-title-${material.id}`} class:list={[
+                "mb-2 text-h4 font-500",
+                isGoldenTile && "text-[#d4af37]"
+              ]}>
                 {material.title}
               </h3>
               <p
@@ -113,7 +163,10 @@ const MATERIALS_MOCK: Material[] = [
             </header>
             <footer class="mt-auto pt-6">
               <p
-                class="text-h5 font-500"
+                class:list={[
+                  "text-h5 font-500",
+                  isGoldenTile && "text-[#d4af37]"
+                ]}
               >
                 {material.price}
               </p>
@@ -121,6 +174,7 @@ const MATERIALS_MOCK: Material[] = [
           </article>
         </a>
       </li>
-    ))}
+    )}
+    )}
   </ol>
 </section> 
