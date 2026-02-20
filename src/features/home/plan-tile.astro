@@ -8,7 +8,14 @@ type PlanTileProps = {
   };
   price: {
     label: string;
-    description: string;
+    description:
+      | string
+      | {
+          label: string;
+          href: string;
+          title?: string;
+          target?: "_blank";
+        };
     id: string;
   };
   heading: {
@@ -72,7 +79,21 @@ const { button, price, heading, benefits } = Astro.props as PlanTileProps;
           <strong id={price.id} class="text-h4 font-500">{price.label}</strong>
         </p>
         <p aria-describedby={price.id} class="text-small font-400 mt-2 mb-6">
-          {price.description}
+          {
+            typeof price.description === "string" ? (
+              price.description
+            ) : (
+              <a
+                href={price.description.href}
+                class="text-foreground-secondary underline underline-offset-4"
+                title={price.description.title ?? price.description.label}
+                target={price.description.target}
+                rel={price.description.target === "_blank" ? "noopener noreferrer" : undefined}
+              >
+                {price.description.label}
+              </a>
+            )
+          }
         </p>
         <a
           href={button.href}

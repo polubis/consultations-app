@@ -1,13 +1,15 @@
 type TestimonialProps = {
   content: string;
-  avatar: {
+  avatar?: {
     url: string;
     title: string;
     alt: string;
   };
   className?: string;
+  /** Optional class for the content paragraph (e.g. line-clamp-4) */
+  contentClassName?: string;
   name: string;
-  position: string;
+  position?: string;
 };
 
 const Testimonial = ({
@@ -16,6 +18,7 @@ const Testimonial = ({
   name,
   position,
   className,
+  contentClassName,
 }: TestimonialProps) => {
   return (
     <figure className={className}>
@@ -34,21 +37,34 @@ const Testimonial = ({
             className="fill-foreground"
           />
         </svg>
-        <p className="text-regular font-400 mt-6">{content}</p>
+        <p
+          className={`text-regular font-400 mt-6 ${contentClassName ?? ""}`.trim()}
+        >
+          {content}
+        </p>
       </blockquote>
-      <figcaption className="flex items-center gap-4 mt-6">
-        <img
-          className="rounded-full w-12 h-12 object-cover"
-          src={avatar.url}
-          alt={avatar.alt}
-          title={avatar.title}
-          width="48"
-          height="48"
-          loading="lazy"
-        />
+      <figcaption className="flex items-center gap-5 mt-6">
+        {avatar?.url ? (
+          <img
+            className="rounded-full w-12 h-12 object-cover"
+            src={avatar.url}
+            alt={avatar.alt}
+            title={avatar.title}
+            width={48}
+            height={48}
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="avatar-placeholder-neon rounded-full w-12 h-12 flex items-center justify-center text-primary-400 font-medium shrink-0 text-[length:var(--text-regular)]"
+            aria-hidden
+          >
+            {name ? name.charAt(0).toUpperCase() : "?"}
+          </div>
+        )}
         <div className="flex flex-col gap-1">
           <cite className="text-regular-bold font-400 not-italic">{name}</cite>
-          <span className="text-regular font-400">{position}</span>
+          {position && <span className="text-small font-400">{position}</span>}
         </div>
       </figcaption>
     </figure>

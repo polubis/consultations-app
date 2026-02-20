@@ -4,21 +4,29 @@ const routing = {
 
 const appConfig = {
   aboutSection: {
-    id: "about-section",
+    id: "about",
   },
   opinionsSection: {
-    id: "opinions-section",
+    id: "opinions",
   },
   faqSection: {
-    id: "faq-section",
+    id: "faq",
   },
   materialsSection: {
-    id: "materials-section",
+    id: "materials",
     link: "https://4markdown.com/education-zone/",
   },
+  learningProcessSection: {
+    id: "learning-process",
+  },
   plansSection: {
-    id: "plans-section",
+    id: "plans",
     plans: {
+      introductoryMeeting: {
+        cost: "Bezpłatne",
+        currency: "",
+        label: "Spotkanie zapoznawcze",
+      },
       seniorInYear: {
         cost: "4920",
         currency: "PLN",
@@ -39,13 +47,20 @@ const appConfig = {
         currency: "PLN",
         label: "Własny Plan",
       },
+      cvMastering: {
+        cost: "246",
+        currency: "PLN",
+        label: "CV Mastering",
+      },
     },
   },
   specializationsSection: {
-    id: "specializations-section",
+    id: "specializations",
+    technologiesLink:
+      "https://4markdown.com/document-preview/?id=7de38215-335d-4ed5-8daf-c247626aee72",
   },
   contactSection: {
-    id: "contact-section",
+    id: "contact",
     calendarLink: "https://calendar.app.google/unoaL2rV1MhKvVvZ8",
     linkedInLink:
       "https://www.linkedin.com/in/adrian-po%C5%82ubi%C5%84ski-281ab2172/",
