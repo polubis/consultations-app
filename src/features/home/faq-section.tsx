@@ -56,8 +56,8 @@ const FaqSection = () => {
             <AccordionContent>
               <span>
                 Czas trwania procesu mentoringowego zależy od wybranego planu i
-                preferencji klienta. Jeżeli masz inną sytuację życiową, to
-                możemy dostosować go do Twoich indywidualnych preferencji.
+                Twoich preferencji. Jeżeli Twoja sytuacja tego wymaga, chętnie
+                dostosujemy plan do Twoich indywidualnych potrzeb.
               </span>
               <a
                 href={appConfig.contactSection.linkedInLink}
